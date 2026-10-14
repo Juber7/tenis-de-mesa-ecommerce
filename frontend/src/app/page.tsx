@@ -3,7 +3,6 @@ import { ArrowRight, MessageCircle, PackageCheck, Target } from "lucide-react";
 import { Hero } from "@/components/hero";
 import { ProductCard } from "@/components/products/product-card";
 import { fetchProducts } from "@/lib/woocommerce";
-export const dynamic = "force-dynamic";
 export default async function Home() {
   let products;
   try {

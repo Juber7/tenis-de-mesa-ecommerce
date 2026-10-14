@@ -5,7 +5,10 @@ import { money } from "@/lib/utils";
 import { AddToCart } from "@/components/products/add-to-cart";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-export const dynamic = "force-dynamic";
+import { demoProducts } from "@/lib/demo";
+export function generateStaticParams() {
+  return demoProducts.map((product) => ({ slug: product.slug }));
+}
 export default async function ProductPage({
   params,
 }: {

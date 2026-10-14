@@ -6,7 +6,7 @@ import { fetchProducts } from "@/lib/woocommerce";
 import { ProductCard } from "@/components/products/product-card";
 import { isDemo } from "@/lib/woocommerce";
 export const metadata = { title: "Tienda" };
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 export default async function Shop({
   searchParams,
 }: {
