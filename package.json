@@ -1,0 +1,10 @@
+{
+  "name": "tenis-de-mesa-proyecto",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "backend": "npm --prefix backend start",
+    "frontend": "npm --prefix frontend run dev -- --hostname 127.0.0.1",
+    "test:db": "npm --prefix frontend run test:db"
+  }
+}

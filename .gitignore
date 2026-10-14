@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env*
+!.env.example
+*.tsbuildinfo
+backend/node_modules/
+backend/wordpress/
+backend/.runtime/
+backend/backups/

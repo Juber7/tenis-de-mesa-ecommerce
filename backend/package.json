@@ -1,0 +1,12 @@
+{
+  "name": "tenis-de-mesa-wordpress",
+  "private": true,
+  "version": "1.0.0",
+  "description": "WordPress y WooCommerce local persistente con el runtime oficial WordPress Playground",
+  "scripts": {
+    "start": "node scripts/start.mjs"
+  },
+  "dependencies": {
+    "@wp-playground/cli": "^3.1.58"
+  }
+}

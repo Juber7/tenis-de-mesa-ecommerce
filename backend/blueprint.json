@@ -1,0 +1,21 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "features": { "networking": true },
+  "login": false,
+  "plugins": ["sqlite-database-integration", "woocommerce"],
+  "siteOptions": {
+    "blogname": "Tenis de Mesa · Leandro (local)",
+    "blogdescription": "Catálogo de trabajo local. Productos de ejemplo.",
+    "timezone_string": "America/Managua",
+    "blog_public": "0",
+    "permalink_structure": "/%postname%/",
+    "woocommerce_currency": "NIO",
+    "woocommerce_default_country": "NI",
+    "woocommerce_price_num_decimals": "2",
+    "woocommerce_store_address": "",
+    "woocommerce_calc_taxes": "no",
+    "woocommerce_allow_tracking": "no"
+  },
+  "steps": []
+}
