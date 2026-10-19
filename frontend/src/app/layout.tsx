@@ -27,7 +27,7 @@ export default function RootLayout({
         </a>
         <Header />
         {(isDemo() || process.env.LOCAL_CATALOG === "true") && (
-          <div className="bg-cream py-2 text-center text-[11px] text-petroleum">
+          <div className="bg-white px-5 py-2 text-center text-[13px] leading-5 text-petroleum">
             {process.env.LOCAL_CATALOG === "true"
               ? "WordPress local conectado · Productos de ejemplo, no disponibles para venta"
               : "Catálogo de demostración · Precios e imágenes ilustrativos"}

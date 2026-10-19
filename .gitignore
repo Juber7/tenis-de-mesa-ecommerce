@@ -1,5 +1,6 @@
 node_modules/
 .next/
+.next-build-check/
 .env*
 !.env.example
 *.tsbuildinfo
@@ -7,3 +8,6 @@ backend/node_modules/
 backend/wordpress/
 backend/.runtime/
 backend/backups/
+.impeccable-engine/
+.taste-skill/
+frontend/.taste-review/

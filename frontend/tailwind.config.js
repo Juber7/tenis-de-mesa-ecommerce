@@ -4,16 +4,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bone: "#F3EBD8",
-        cream: "#FAF5E8",
-        sand: "#E3D7BC",
-        charcoal: "#2A2420",
-        ink: "#1A1714",
-        paddle: "#C8312B",
-        petroleum: "#1F4E5F",
-        mustard: "#E08A1E",
+        bone: "#F4F8FC",
+        electric: "#1E4BFF",
+        banner: "#0A1F44",
+        cream: "#FFFFFF",
+        sand: "#DCE6F2",
+        charcoal: "#0A1F44",
+        ink: "#0A1F44",
+        paddle: "#1E4BFF",
+        petroleum: "#285486",
+        mustard: "#A9CFFF",
         forest: "#3A7D55",
-        muted: "#8C8070",
+        muted: "#60718A",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "Arial", "sans-serif"],

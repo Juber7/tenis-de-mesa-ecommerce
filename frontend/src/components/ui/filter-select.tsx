@@ -18,7 +18,7 @@ export function FilterSelect({
     <div className="min-w-0">
       <span
         id={`${name}-label`}
-        className="text-xs font-medium text-charcoal/75"
+        className="text-sm font-medium text-charcoal/75"
       >
         {label}
       </span>

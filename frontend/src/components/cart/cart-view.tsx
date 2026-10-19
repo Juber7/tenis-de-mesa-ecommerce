@@ -9,7 +9,7 @@ import { CONTACT_NUMBER } from "@/lib/contact";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 export function CartView() {
-  const { items, setQuantity, remove, clear } = useCart();
+  const { items, setQuantity, remove } = useCart();
   const [ready, setReady] = useState(false);
   useEffect(() => {
     setReady(true);
@@ -55,11 +55,8 @@ export function CartView() {
         <h1 className="font-display text-5xl font-semibold uppercase">
           Tu carrito.
         </h1>
-        <button className="text-xs underline" onClick={clear}>
-          Vaciar carrito
-        </button>
       </div>
-      <div className="grid min-w-0 gap-10 lg:grid-cols-[1.5fr_1fr]">
+      <div className="cart-content-grid min-w-0">
         <div className="min-w-0 divide-y divide-sand">
           {items.map(({ product: p, quantity: q }) => (
             <article key={p.id} className="flex flex-wrap gap-4 py-6 first:pt-0">
@@ -67,7 +64,7 @@ export function CartView() {
                 <img
                   src={p.image}
                   alt={p.imageAlt}
-                  className="h-24 w-24 bg-sand object-cover"
+                  className="h-24 w-24 rounded-xl bg-[#F4F8FC] object-cover"
                 />
               )}
               <div className="min-w-0 flex-1">
@@ -81,12 +78,12 @@ export function CartView() {
                   {money(p.price, p.currency, p.minorUnit)} / unidad
                 </p>
                 <div className="mt-4 flex items-center gap-4">
-                  <div className="flex items-center border border-sand">
+                  <div className="flex items-center rounded-xl border border-sand">
                     <button
                       aria-label={`Reducir cantidad de ${p.name}`}
                       disabled={q <= 1}
                       onClick={() => setQuantity(p.id, q - 1)}
-                      className="p-3 disabled:opacity-30"
+                      className="inline-flex min-h-11 min-w-11 items-center justify-center disabled:opacity-30"
                     >
                       <Minus size={13} />
                     </button>
@@ -95,7 +92,7 @@ export function CartView() {
                       aria-label={`Aumentar cantidad de ${p.name}`}
                       disabled={q >= p.maxQuantity}
                       onClick={() => setQuantity(p.id, q + 1)}
-                      className="p-3 disabled:opacity-30"
+                      className="inline-flex min-h-11 min-w-11 items-center justify-center disabled:opacity-30"
                     >
                       <Plus size={13} />
                     </button>
@@ -115,7 +112,7 @@ export function CartView() {
             </article>
           ))}
         </div>
-        <aside className="h-fit rounded-2xl border border-sand bg-cream p-7">
+        <aside className="h-fit rounded-2xl bg-[#F4F8FC] p-5 md:p-7">
           <h2 className="font-display text-3xl">Resumen del pedido</h2>
           <div className="my-6 flex flex-wrap items-center justify-between gap-3 border-y border-sand py-5">
             <span>Total calculado</span>
@@ -127,13 +124,13 @@ export function CartView() {
               )}
             </strong>
           </div>
-          <p className="mb-6 text-xs leading-6 text-charcoal/70">
+          <p className="mb-6 text-sm leading-6 text-charcoal/75">
             Entrega y disponibilidad se confirman con Leandro. El total
             corresponde a los productos y no incluye costos adicionales de
             envío.
           </p>
           {invalid && (
-            <p role="alert" className="mb-4 text-sm text-paddle">
+            <p role="alert" className="mb-4 text-sm font-medium text-banner">
               {invalid}
             </p>
           )}

@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .nav-link {
-  @apply relative whitespace-nowrap rounded-full px-3 py-2 text-xs transition-colors duration-200 hover:bg-white/10 hover:text-mustard;
+  @apply relative whitespace-nowrap rounded-full px-3.5 py-3 text-sm transition-colors duration-200 hover:bg-white/10 hover:text-white;
 }
 .nav-link::after {
   content: "";
@@ -14,38 +14,26 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c8312b;
+  background: #a9cfff;
   opacity: 0;
   transform: translate(-50%, 5px);
-  transition: all 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 .nav-link:hover::after {
   opacity: 1;
   transform: translate(-50%, 0);
 }
 .header-search {
-  @apply flex items-center gap-3 rounded-full border border-cream/20 bg-white/5 py-1 pl-4 pr-1 text-sand transition-all duration-300 focus-within:border-mustard/70 focus-within:bg-white/10 focus-within:shadow-[0_0_0_3px_rgba(224,138,30,.1)];
+  @apply flex items-center gap-3 rounded-full border border-white/20 bg-white/5 py-1 pl-4 pr-1 text-sand transition-colors duration-200 focus-within:border-white/70 focus-within:bg-white/10;
 }
 .search-submit {
-  @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cream text-ink transition-all duration-200 hover:rotate-12 hover:bg-mustard;
+  @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-ink transition-colors duration-200 hover:bg-bone;
 }
 .cart-button {
-  @apply flex shrink-0 items-center gap-2 rounded-full border border-white/20 px-3 py-2.5 text-xs transition-all duration-200 hover:border-mustard/60 hover:bg-white/10;
+  @apply flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/25 px-4 py-3 text-sm transition-colors duration-200 hover:border-white/60 hover:bg-white/10;
 }
 .product-card {
-  @apply overflow-hidden rounded-2xl border border-sand bg-cream transition-all duration-300 hover:-translate-y-1 hover:border-muted/50 hover:shadow-[0_12px_30px_-16px_rgba(42,36,32,.3)];
-}
-.sport-button::after {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0.65;
-  transition: transform 0.25s;
-}
-.sport-button:hover::after {
-  transform: translateY(-3px);
+  @apply overflow-hidden rounded-2xl border border-sand bg-white transition-[border-color,box-shadow,transform] duration-200 hover:border-[#A9CFFF] hover:shadow-[0_14px_30px_-20px_rgba(10,31,68,.4)];
 }
 .loader-ball {
   animation: ball-bounce 0.75s cubic-bezier(0.36, 0, 0.66, 1) infinite alternate;
@@ -90,7 +78,7 @@
   color-scheme: light;
 }
 body {
-  @apply bg-bone text-charcoal font-sans antialiased;
+  @apply bg-white text-charcoal font-sans antialiased;
   margin: 0;
 }
 .shell {
@@ -111,7 +99,7 @@ body {
   line-height: 1;
 }
 .logo-mark span {
-  color: #c8312b;
+  color: #a9cfff;
   margin-left: 4px;
 }
 .filter-options {
@@ -151,11 +139,19 @@ textarea {
   touch-action: manipulation;
 }
 :focus-visible {
-  outline: 2px solid #1f4e5f;
+  outline: 2px solid #1e4bff;
   outline-offset: 4px;
 }
+.filter-trigger:focus-visible,
+.filter-options:focus-visible,
+.filter-options [role="option"]:focus-visible {
+  outline: none;
+}
+.filter-trigger:focus:not(:focus-visible) {
+  box-shadow: none;
+}
 ::selection {
-  background: #c8312b;
+  background: #1e4bff;
   color: white;
 }
 @media (max-width: 767px) {
@@ -180,59 +176,70 @@ textarea {
   }
 }
 .remove-item {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: calc(1.5rem + 15px);
+  height: calc(1.5rem + 15px);
   flex-shrink: 0;
-  border-radius: 9999px;
-  border: 1px solid #c8312b;
-  color: #c8312b;
-  transition: background 0.2s;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  color: #285486;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
 }
 .remove-item:hover,
 .remove-item:focus-visible {
-  background: rgba(200, 49, 43, 0.08);
+  border-color: #285486;
+  background-color: rgba(30, 75, 255, 0.08);
 }
-.remove-item svg {
-  transition:
-    opacity 0.2s,
-    transform 0.2s;
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.category-card {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.category-art {
+  transform: translateY(1rem);
+  transition: transform 220ms ease;
+}
+.shop-filter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.product-detail-grid,
+.cart-content-grid {
+  display: grid;
+  gap: 2rem;
 }
 @media (hover: hover) and (pointer: fine) {
-  .remove-item {
-    border-color: transparent;
+  .category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 30px -24px rgba(10, 31, 68, .65);
   }
-  .remove-item::before {
-    content: "";
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #c8312b;
-    transition:
-      opacity 0.2s,
-      transform 0.2s;
+  .category-card:hover .category-art {
+    transform: translateY(1rem) scale(1.035);
   }
-  .remove-item svg {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  .remove-item:hover svg,
-  .remove-item:focus-visible svg {
-    opacity: 1;
-    transform: scale(1);
-  }
-  .remove-item:hover::before,
-  .remove-item:focus-visible::before {
-    opacity: 0;
-    transform: scale(0.5);
+  .product-card:hover {
+    transform: translateY(-3px);
   }
 }
-@media (max-width:767px) {
-  .remove-item { border-color:#C8312B; }
-  .remove-item::before { display:none; }
-  .remove-item svg { opacity:1; transform:none; }
+@media (min-width: 40rem) {
+  .shop-filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 48rem) {
+  .category-grid { gap: 1.5rem; }
+  .product-detail-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+@media (min-width: 64rem) {
+  .category-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cart-content-grid { grid-template-columns: minmax(0, 1.5fr) minmax(20rem, 1fr); gap: 3rem; }
+}
+@media (min-width: 80rem) {
+  .shop-filter-grid { grid-template-columns: minmax(12rem, 1fr) 14rem 14rem auto auto; }
 }

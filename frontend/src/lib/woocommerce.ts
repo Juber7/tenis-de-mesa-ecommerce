@@ -2,6 +2,7 @@ import { z } from "zod";
 import { decode } from "he";
 import type { Product } from "@/types/product";
 import { demoProducts } from "./demo";
+import { filterProducts } from "./product-filters";
 
 const integerPrice = z
   .string()
@@ -59,9 +60,7 @@ export async function fetchProducts(
 ): Promise<{ products: Product[]; totalPages: number; total: number }> {
   const base = process.env.WOOCOMMERCE_URL;
   if (!base) {
-    let products = demoProducts;
-    if (query.slug) products = products.filter((p) => p.slug === query.slug);
-    return { products, totalPages: 1, total: products.length };
+    return filterProducts(demoProducts, query);
   }
   const url = new URL(
     `${base.replace(/\/$/, "")}/wp-json/wc/store/v1/products`,
