@@ -1,7 +1,11 @@
 import Link from "next/link";
 export function Footer() {
   return (
-    <footer className="mt-20 bg-banner py-12 text-white">
+    <footer className="site-footer mt-20 bg-banner py-12 text-white">
+      <div className="home-footer-line shell">
+        <span>© TENIS DE MESA · NICARAGUA</span>
+        <span className="home-footer-ni">NI</span>
+      </div>
       <div className="shell grid gap-10 md:grid-cols-3">
         <div>
           <Link href="/" className="font-display text-4xl font-bold uppercase">
@@ -19,7 +23,7 @@ export function Footer() {
           <div className="flex flex-col gap-3 text-sm">
             <Link href="/tienda">Explorar catálogo</Link>
             <Link href="/carrito">Mi carrito</Link>
-            <Link href="/#como-comprar">Cómo comprar</Link>
+            <Link href="/#contacto">Contacto</Link>
           </div>
         </div>
         <div>

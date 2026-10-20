@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./home.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { isDemo } from "@/lib/woocommerce";
@@ -10,6 +11,16 @@ export const metadata: Metadata = {
   },
   description:
     "Paletas, pelotas y accesorios de tenis de mesa. Elige tu equipo y coordina tu pedido por WhatsApp.",
+};
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F4F8FC" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A1F44" },
+  ],
 };
 export default function RootLayout({
   children,
@@ -27,7 +38,7 @@ export default function RootLayout({
         </a>
         <Header />
         {(isDemo() || process.env.LOCAL_CATALOG === "true") && (
-          <div className="bg-white px-5 py-2 text-center text-[13px] leading-5 text-petroleum">
+          <div className="catalog-demo-notice bg-white px-5 py-2 text-center text-[13px] leading-5 text-petroleum">
             {process.env.LOCAL_CATALOG === "true"
               ? "WordPress local conectado · Productos de ejemplo, no disponibles para venta"
               : "Catálogo de demostración · Precios e imágenes ilustrativos"}

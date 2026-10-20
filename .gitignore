@@ -10,5 +10,6 @@ backend/wordpress/
 backend/.runtime/
 backend/backups/
 .impeccable-engine/
+.impeccable-engine-cache/
 .taste-skill/
 frontend/.taste-review/

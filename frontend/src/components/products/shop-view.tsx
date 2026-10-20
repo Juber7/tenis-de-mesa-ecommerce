@@ -44,7 +44,7 @@ export function ShopView({
             defaultValue={q}
             name="q"
             placeholder="Busca tu equipo…"
-            className="mt-2 block min-h-12 w-full rounded-xl border border-sand bg-cream px-4 text-sm text-charcoal transition-colors focus:border-petroleum focus:outline-none focus:ring-2 focus:ring-petroleum/30"
+            className="shop-search-input mt-2 block min-h-12 w-full rounded-xl border border-sand bg-cream px-4 text-sm text-charcoal focus:border-petroleum focus:outline-none focus:ring-2 focus:ring-petroleum/30"
           />
         </label>
         <FilterSelect
@@ -77,7 +77,7 @@ export function ShopView({
           />{" "}
           Ofertas
         </label>
-        <button className="sport-button flex min-h-12 items-center justify-center gap-3 rounded-xl bg-electric px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1239D8] active:scale-[.97]">
+        <button className="sport-button flex min-h-12 items-center justify-center gap-3 rounded-xl bg-electric px-6 py-3 text-sm font-semibold text-white">
           Filtrar
         </button>
       </SearchForm>
