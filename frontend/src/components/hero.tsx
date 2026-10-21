@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { ProductShowcase } from "@/components/category-showcase";
 
 const floatingCards = [
-  { name: "Raquetas", slug: "paletas", image: "raquetas", className: "hero-card-racket" },
-  { name: "Gomas", slug: "gomas", image: "gomas", className: "hero-card-rubbers" },
-  { name: "Pelotas", slug: "pelotas", image: "pelotas", className: "hero-card-balls" },
-];
+  { name: "Raquetas", slug: "paletas", showcase: "raquetas", className: "hero-card-racket" },
+  { name: "Gomas", slug: "gomas", showcase: "gomas", className: "hero-card-rubbers" },
+  { name: "Pelotas", slug: "pelotas", showcase: "pelotas", className: "hero-card-balls" },
+] as const;
 
 export function Hero() {
   return (
@@ -31,14 +31,7 @@ export function Hero() {
               className={`hero-product-card ${card.className}`}
             >
               <div className="hero-product-art">
-                <Image
-                  src={`/category-art/${card.image}.png`}
-                  alt=""
-                  width={1024}
-                  height={1024}
-                  sizes="(max-width: 767px) 38vw, 230px"
-                  priority={card.slug === "paletas"}
-                />
+                <ProductShowcase category={card.showcase} label={card.name} />
               </div>
               <span>{card.name}<ArrowUpRight size={16} aria-hidden="true" /></span>
             </Link>

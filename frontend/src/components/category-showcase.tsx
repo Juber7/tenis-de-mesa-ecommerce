@@ -8,19 +8,15 @@ const showcaseImages = {
 
 type ShowcaseCategory = keyof typeof showcaseImages;
 
-export function hasCategoryShowcase(category: string): category is ShowcaseCategory {
-  return category in showcaseImages;
-}
-
-export function CategoryShowcase({ category, label }: { category: ShowcaseCategory; label: string }) {
+export function ProductShowcase({ category, label }: { category: ShowcaseCategory; label: string }) {
   const images = showcaseImages[category];
   const slides = [...images, images[0]];
 
   return (
-    <span className="home-category-showcase" aria-hidden="true">
-      <span className="home-category-showcase-track">
+    <span className="hero-product-showcase" aria-hidden="true">
+      <span className="hero-product-showcase-track">
         {slides.map((image, index) => (
-          <span className="home-category-showcase-slide" key={`${image}-${index}`}>
+          <span className="hero-product-showcase-slide" key={`${image}-${index}`}>
             <Image
               src={`/category-art/showcase/${image}.png`}
               alt={`${label}, producto ${index + 1}`}
