@@ -1,0 +1,118 @@
+:root {
+  --commerce-paper: #f4f8fc;
+  --commerce-ink: #0a1f44;
+  --commerce-accent: #1e4bff;
+  --commerce-card: #a9cfff;
+}
+
+.commerce-page { position: relative; isolation: isolate; overflow: hidden; padding-left: 64px; background: var(--commerce-paper); color: var(--commerce-ink); }
+.commerce-page::before { content: ""; position: absolute; z-index: -2; inset: 0; opacity: .1; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.45' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E"); pointer-events: none; }
+.commerce-intro { position: relative; overflow: hidden; padding: clamp(48px, 7vw, 94px) 0 42px; }
+.commerce-intro::before { display: none; }
+.commerce-intro::after { content: ""; position: absolute; z-index: -2; top: -112px; right: -90px; width: 320px; height: 320px; border-radius: 50%; background: var(--commerce-accent); }
+.commerce-kicker { display: inline-block; padding: 8px 12px; background: var(--commerce-ink); color: white; font: 700 14px/1 "Barlow Condensed", sans-serif; letter-spacing: .1em; }
+.commerce-title { max-width: 760px; margin-top: 17px; color: var(--commerce-ink); font: 400 clamp(54px, 7vw, 98px)/.91 Anton, Impact, sans-serif; letter-spacing: -.025em; text-transform: uppercase; }
+.commerce-title em { color: var(--commerce-accent); font-style: normal; }
+.commerce-subtitle { max-width: 430px; margin-top: 16px; font: 500 18px/1.35 "Barlow Condensed", sans-serif; color: var(--commerce-ink); }
+
+.shop-controls { position: relative; margin-top: -4px; padding: 16px; border: 2px solid var(--commerce-ink); border-radius: 28px; background: white; box-shadow: 8px 8px 0 var(--commerce-ink); }
+.shop-controls label, .shop-controls [id$="-label"] { color: var(--commerce-ink); font: 700 15px/1 "Barlow Condensed", sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.shop-controls input, .shop-controls .filter-trigger { border-color: var(--commerce-card); background: var(--commerce-paper); color: var(--commerce-ink); }
+.shop-controls input:focus, .shop-controls .filter-trigger:focus { border-color: var(--commerce-accent); box-shadow: 0 0 0 3px rgb(30 75 255 / .16); }
+.filter-options { border: 2px solid var(--commerce-ink) !important; border-radius: 16px !important; background: var(--commerce-paper) !important; box-shadow: 6px 6px 0 var(--commerce-ink) !important; }
+.filter-options [role="option"] { border-radius: 10px !important; color: var(--commerce-ink) !important; font-family: "Barlow Condensed", sans-serif; font-size: 16px !important; font-weight: 700; letter-spacing: .025em; }
+.filter-options [role="option"][data-highlighted], .filter-options [role="option"][data-state="checked"] { background: var(--commerce-accent) !important; color: white !important; }
+.shop-controls .sport-button { border: 2px solid var(--commerce-ink); border-radius: 12px; background: var(--commerce-accent); box-shadow: 4px 4px 0 var(--commerce-ink); font: 400 20px/1 Anton, Impact, sans-serif; letter-spacing: .025em; }
+.shop-controls .sport-button:active { box-shadow: 1px 1px 0 var(--commerce-ink); transform: translate(3px, 3px) scale(.98); }
+.shop-results-meta { margin-top: 42px; color: var(--commerce-ink); font: 700 16px/1 "Barlow Condensed", sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.shop-results-meta a { color: var(--commerce-ink); text-decoration-color: var(--commerce-accent); text-decoration-thickness: 2px; }
+.commerce-page .product-card { border: 2px solid #000; border-radius: 28px; background: white; box-shadow: 4px 4px 0 #000; }
+.commerce-page .product-card > a { background: var(--commerce-card); }
+.commerce-page .product-card img { mix-blend-mode: multiply; }
+.commerce-page .product-card h3, .commerce-page .product-card .font-display { font-family: Anton, Impact, sans-serif; font-weight: 400; letter-spacing: -.01em; color: var(--commerce-ink); }
+.commerce-page .product-card p { color: var(--commerce-ink); }
+.commerce-page .product-card [class*="bg-banner"] { border-radius: 0; background: var(--commerce-ink); font-family: "Barlow Condensed", sans-serif; letter-spacing: .08em; }
+.shop-empty { border: 2px solid var(--commerce-ink); border-radius: 28px; background: white; box-shadow: 7px 7px 0 var(--commerce-card); color: var(--commerce-ink); font: 500 19px/1.4 "Barlow Condensed", sans-serif; }
+.shop-pagination { font: 700 17px/1 "Barlow Condensed", sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.shop-pagination a { color: var(--commerce-ink); text-decoration: none; }
+.shop-pagination a:hover { color: var(--commerce-accent); }
+
+.cart-page { min-height: 70vh; padding: clamp(28px, 3vw, 52px) 0 88px; }
+.cart-intro { position: relative; isolation: isolate; overflow: hidden; margin-bottom: 42px; padding: 12px 0 18px; }
+.cart-intro::after { content: ""; position: absolute; z-index: -1; top: -112px; right: 4%; width: 240px; height: 240px; border-radius: 50%; background: var(--commerce-accent); }
+.cart-kicker { display: table; padding: 8px 12px; background: var(--commerce-ink); color: white; font: 700 14px/1 "Barlow Condensed", sans-serif; letter-spacing: .1em; }
+.cart-title { display: inline-block; margin-top: 16px; padding: 8px 14px 5px; background: var(--commerce-ink); color: white; font: 400 clamp(46px, 6vw, 74px)/1 Anton, Impact, sans-serif; letter-spacing: -.01em; text-transform: uppercase; transform: rotate(-3deg); }
+.cart-subtitle { max-width: 410px; margin-top: 18px; color: var(--commerce-ink); font: 500 18px/1.35 "Barlow Condensed", sans-serif; }
+.cart-list { max-height: min(62vh, 620px); overflow-y: auto; overscroll-behavior: contain; padding: 18px 20px; scroll-padding-block: 18px; scrollbar-color: var(--commerce-accent) white; border: 3px solid var(--commerce-ink); border-radius: 28px; background: white; box-shadow: 8px 8px 0 var(--commerce-ink); }
+.cart-list article { border-color: var(--commerce-card); }
+.cart-list article:first-child { padding-top: 6px; }
+.cart-list::-webkit-scrollbar { width: 12px; }
+.cart-list::-webkit-scrollbar-track { margin: 14px 0; border-left: 1px solid var(--commerce-card); background: white; }
+.cart-list::-webkit-scrollbar-thumb { min-height: 48px; border: 3px solid white; border-radius: 999px; background: var(--commerce-accent); box-shadow: inset 0 0 0 1px var(--commerce-ink); }
+.cart-list::-webkit-scrollbar-thumb:hover { background: var(--commerce-ink); }
+.cart-list img { border-radius: 20px; background: var(--commerce-card); mix-blend-mode: multiply; }
+.cart-list h2, .cart-list .font-display { font-family: Anton, Impact, sans-serif; font-weight: 400; color: var(--commerce-ink); }
+.cart-quantity { border: 2px solid var(--commerce-ink); background: var(--commerce-paper); }
+.cart-quantity button { color: var(--commerce-ink); transition: background-color 160ms ease, transform 140ms var(--ease-out); }
+.cart-quantity button:active { transform: scale(.94); }
+.cart-summary { position: relative; overflow: hidden; border: 2px solid var(--commerce-ink); border-radius: 28px; background: var(--commerce-card); box-shadow: 8px 8px 0 var(--commerce-ink); }
+.cart-summary::before { content: ""; position: absolute; right: -70px; top: -86px; width: 190px; height: 190px; border-radius: 50%; background: var(--commerce-accent); }
+.cart-summary > * { position: relative; }
+.cart-summary h2, .cart-summary strong { font-family: Anton, Impact, sans-serif; font-weight: 400; color: var(--commerce-ink); }
+.cart-summary .sport-button { border: 2px solid var(--commerce-ink); border-radius: 12px; background: var(--commerce-accent); box-shadow: 4px 4px 0 var(--commerce-ink); font-family: Anton, Impact, sans-serif; font-weight: 400; }
+.cart-summary .sport-button:last-child { background: white; color: var(--commerce-ink); }
+.cart-empty { max-width: 650px; margin-inline: auto; padding: 54px 28px; border: 2px solid var(--commerce-ink); border-radius: 28px; background: white; box-shadow: 8px 8px 0 var(--commerce-accent); }
+.cart-empty h1 { font-family: Anton, Impact, sans-serif; font-weight: 400; color: var(--commerce-ink); }
+
+@media (hover: hover) and (pointer: fine) {
+  .commerce-page .product-card:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 #000; }
+  .shop-controls .sport-button:hover, .cart-summary .sport-button:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--commerce-ink); }
+}
+@media (max-width: 767px) {
+  .commerce-intro { padding-top: 44px; padding-bottom: 32px; }
+  .commerce-title { font-size: clamp(50px, 14vw, 72px); }
+  .shop-controls { padding: 14px; border-radius: 22px; box-shadow: 5px 5px 0 var(--commerce-ink); }
+  .commerce-page .product-card { box-shadow: 3px 3px 0 #000; }
+  .cart-title { margin-bottom: 28px; }
+  .cart-page { padding-top: 18px; padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)); }
+  .cart-intro { margin-bottom: 28px; }
+  .cart-intro::after { right: -88px; width: 205px; height: 205px; }
+  .cart-list { max-height: min(56vh, 520px); padding: 14px; border-radius: 22px; box-shadow: 5px 5px 0 var(--commerce-ink); }
+  .cart-summary { border-radius: 22px; box-shadow: 5px 5px 0 var(--commerce-ink); }
+}
+@media (max-width: 1023px) {
+  .commerce-page { padding-left: 0; padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+  body:has(.commerce-page) .site-footer { padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+}
+
+body:has(.commerce-page) .catalog-demo-notice { display: none; }
+
+.product-page { min-height: 72vh; }
+.product-page-inner { padding-top: clamp(28px, 4vw, 56px); padding-bottom: 96px; }
+.product-back { border: 2px solid var(--commerce-ink); border-radius: 12px; background: white; color: var(--commerce-ink); font-family: "Barlow Condensed", sans-serif; font-size: 16px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.product-detail-layout { align-items: start; gap: clamp(32px, 4vw, 64px); margin-top: 32px; }
+.product-gallery { position: relative; width: 100%; min-width: 0; aspect-ratio: 1; overflow: hidden; border: 3px solid var(--commerce-ink); border-radius: 28px; background: var(--commerce-card); box-shadow: 9px 9px 0 var(--commerce-ink); }
+.product-gallery::after { content: ""; position: absolute; right: -16%; bottom: -18%; width: 48%; height: 48%; border-radius: 50%; background: var(--commerce-accent); }
+.product-gallery img { position: relative; z-index: 1; mix-blend-mode: multiply; }
+.product-info-panel { position: relative; overflow: hidden; display: flex; max-width: none; flex-direction: column; justify-content: center; padding: clamp(26px, 4vw, 52px); border: 3px solid var(--commerce-ink); border-radius: 28px; background: white; box-shadow: 9px 9px 0 var(--commerce-accent); }
+.product-info-panel::before { content: ""; position: absolute; z-index: 0; top: -72px; right: -72px; width: 160px; height: 160px; border-radius: 50%; background: var(--commerce-card); }
+.product-info-panel > * { position: relative; z-index: 1; }
+.product-kicker { display: table; width: fit-content; padding: 8px 12px; background: var(--commerce-ink); color: white; font: 700 14px/1 "Barlow Condensed", sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+.product-info-panel h1 { max-width: 720px; margin-top: 18px; color: var(--commerce-ink); font: 400 clamp(44px, 5vw, 72px)/.96 Anton, Impact, sans-serif; letter-spacing: -.02em; text-transform: uppercase; }
+.product-price { margin-top: 22px; color: var(--commerce-accent); font: 400 clamp(34px, 4vw, 52px)/1 Anton, Impact, sans-serif; }
+.product-description { margin-top: 22px; color: var(--commerce-ink); font: 500 18px/1.5 "Barlow Condensed", sans-serif; }
+.product-stock { margin: 20px 0; font: 700 15px/1 "Barlow Condensed", sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.product-actions .sport-button { width: 100%; border: 2px solid var(--commerce-ink); border-radius: 12px; background: var(--commerce-accent); box-shadow: 4px 4px 0 var(--commerce-ink); font-family: Anton, Impact, sans-serif; font-size: 19px; font-weight: 400; }
+.product-actions .sport-button + .sport-button { background: var(--commerce-ink); }
+.product-note { margin-top: 26px; padding-top: 18px; border-top: 2px solid var(--commerce-card); color: var(--commerce-ink); font: 500 15px/1.45 "Barlow Condensed", sans-serif; }
+@media (hover: hover) and (pointer: fine) {
+  .product-back:hover { background: var(--commerce-ink); color: white; }
+  .product-actions .sport-button:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--commerce-ink); }
+}
+@media (max-width: 767px) {
+  .product-page-inner { padding-top: 18px; padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)); }
+  .product-detail-layout { gap: 24px; margin-top: 24px; }
+  .product-gallery, .product-info-panel { border-radius: 22px; box-shadow: 5px 5px 0 var(--commerce-ink); }
+  .product-info-panel { padding: 24px; }
+  .product-description { font-size: 17px; }
+}

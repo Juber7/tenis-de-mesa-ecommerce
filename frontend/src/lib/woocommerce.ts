@@ -32,7 +32,10 @@ const schema = z.object({
   on_sale: z.boolean(),
   add_to_cart: z.object({ maximum: z.number().optional() }).optional(),
 });
-export const isDemo = () => !process.env.WOOCOMMERCE_URL;
+const usesLocalCatalog = () =>
+  !process.env.WOOCOMMERCE_URL || process.env.LOCAL_CATALOG === "true";
+
+export const isDemo = usesLocalCatalog;
 export function normalizeProduct(raw: unknown): Product {
   const p = schema.parse(raw);
   return {
@@ -59,7 +62,7 @@ export async function fetchProducts(
   fresh = false,
 ): Promise<{ products: Product[]; totalPages: number; total: number }> {
   const base = process.env.WOOCOMMERCE_URL;
-  if (!base) {
+  if (!base || usesLocalCatalog()) {
     return filterProducts(demoProducts, query);
   }
   const url = new URL(

@@ -10,11 +10,12 @@ type ShowcaseCategory = keyof typeof showcaseImages;
 
 export function ProductShowcase({ category, label }: { category: ShowcaseCategory; label: string }) {
   const images = showcaseImages[category];
+  const slides = [...images, images[0]];
 
   return (
     <span className="hero-product-showcase" aria-hidden="true">
       <span className="hero-product-showcase-track">
-        {images.map((image, index) => (
+        {slides.map((image, index) => (
           <span className="hero-product-showcase-slide" key={`${image}-${index}`}>
             <Image
               src={`/category-art/showcase/${image}-cutout.png`}

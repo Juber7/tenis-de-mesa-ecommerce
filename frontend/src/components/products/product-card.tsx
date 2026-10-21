@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import type { Product } from "@/types/product";
 import { money } from "@/lib/utils";
 export function ProductCard({ product: p }: { product: Product }) {
@@ -26,9 +25,6 @@ export function ProductCard({ product: p }: { product: Product }) {
             OFERTA
           </span>
         )}
-        <span className="absolute bottom-3 right-3 rounded-full bg-white p-2 text-banner">
-          <ArrowUpRight size={18} />
-        </span>
       </Link>
       <div className="p-4 md:p-5">
         <p className="text-[13px] font-medium text-petroleum">

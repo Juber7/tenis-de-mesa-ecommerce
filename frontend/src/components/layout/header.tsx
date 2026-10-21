@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ShoppingBag, Menu, ArrowUpRight, MessageCircle } from "lucide-react";
 import { useCart } from "@/store/cart";
-import { contactLink } from "@/lib/contact";
+import { CONTACT_NUMBER, contactLink } from "@/lib/contact";
 import { productCategories } from "@/lib/categories";
 import {
   Sheet,
@@ -16,11 +16,12 @@ import {
 } from "@/components/ui/sheet";
 
 export function Header() {
-  const isHome = usePathname() === "/";
+  const pathname = usePathname();
+  const usesSideRail = ["/", "/tienda", "/carrito"].includes(pathname) || pathname.startsWith("/producto/");
   const items = useCart((s) => s.items);
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
-  const [whatsapp, setWhatsapp] = useState("https://wa.me/50589415416");
+  const [whatsapp, setWhatsapp] = useState("https://wa.me/" + CONTACT_NUMBER);
   useEffect(() => {
     void useCart.persist.rehydrate();
     setReady(true);
@@ -37,7 +38,7 @@ export function Header() {
     ...categoryLinks,
     ["Ofertas ↗", "/tienda?ofertas=si"],
   ];
-  if (isHome) return null;
+  if (usesSideRail) return null;
 
   return (
     <>

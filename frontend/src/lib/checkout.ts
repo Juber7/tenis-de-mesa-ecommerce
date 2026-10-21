@@ -1,5 +1,6 @@
 import type { CartItem } from "@/types/product";
 import { fetchProducts, isDemo } from "./woocommerce";
+import { CONTACT_NUMBER } from "./contact";
 import { whatsappLink } from "./whatsapp";
 export async function prepareCheckout(
   lines: { id: number; quantity: number }[],
@@ -26,6 +27,6 @@ export async function prepareCheckout(
   });
   return {
     items,
-    url: whatsappLink(items, process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""),
+    url: whatsappLink(items, CONTACT_NUMBER),
   };
 }

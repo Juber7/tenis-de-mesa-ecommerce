@@ -92,6 +92,159 @@ body {
 .shell {
   @apply mx-auto w-full max-w-[1320px] px-5 md:px-10;
 }
+.site-footer {
+  position: relative;
+  margin-top: 0;
+  background: #0a1f44;
+  color: #fff;
+}
+.footer-contact-banner {
+  position: relative;
+  overflow: hidden;
+  background: #a9cfff;
+  color: #0a1f44;
+}
+.footer-contact-banner::before {
+  content: "";
+  position: absolute;
+  right: 112px;
+  bottom: -138px;
+  width: 290px;
+  height: 290px;
+  border-radius: 50%;
+  background: #1e4bff;
+}
+.footer-contact-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: clamp(22px, 4vw, 58px);
+  min-height: 190px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-right: clamp(86px, 9vw, 128px);
+}
+.footer-contact-copy {
+  max-width: 560px;
+}
+.footer-kicker {
+  display: table;
+  padding: 7px 10px;
+  background: #0a1f44;
+  color: #fff;
+  font: 700 13px/1 "Barlow Condensed", sans-serif;
+  letter-spacing: .09em;
+}
+.footer-contact-copy h2 {
+  margin-top: 12px;
+  font: 400 clamp(34px, 4vw, 56px)/.92 Anton, Impact, sans-serif;
+  letter-spacing: -.02em;
+}
+.footer-contact-copy > p:last-child {
+  max-width: 460px;
+  margin-top: 10px;
+  font: 500 17px/1.35 "Barlow Condensed", sans-serif;
+}
+.footer-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 194px;
+  padding: 12px 16px;
+  border: 2px solid #0a1f44;
+  background: #1e4bff;
+  box-shadow: 5px 5px 0 #0a1f44;
+  color: #fff;
+  font: 700 19px/1 "Barlow Condensed", sans-serif;
+  transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+}
+.footer-whatsapp span {
+  display: grid;
+  gap: 4px;
+}
+.footer-whatsapp small {
+  font: 700 11px/1 "Barlow Condensed", sans-serif;
+  letter-spacing: .1em;
+}
+.footer-socials {
+  display: flex;
+  gap: 8px;
+}
+.footer-socials a {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 2px solid #0a1f44;
+  border-radius: 50%;
+  background: #fff;
+  color: #0a1f44;
+  transition: transform 180ms var(--ease-out), background-color 180ms ease, color 180ms ease;
+}
+.footer-ni {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: clamp(68px, 7vw, 100px);
+  height: 100%;
+  place-items: center;
+  background: #1e4bff;
+  color: #fff;
+  font: 400 clamp(26px, 2.8vw, 42px)/1 Anton, Impact, sans-serif;
+}
+@media (hover: hover) and (pointer: fine) {
+  .footer-whatsapp:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 #0a1f44;
+  }
+  .footer-socials a:hover {
+    transform: translateY(-3px);
+    background: #0a1f44;
+    color: #fff;
+  }
+}
+@media (max-width: 767px) {
+  .footer-contact-banner::before {
+    right: -74px;
+    bottom: -104px;
+    width: 220px;
+    height: 220px;
+  }
+  .footer-contact-layout {
+    display: flex;
+    min-height: 0;
+    flex-wrap: wrap;
+    gap: 22px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 72px;
+  }
+  .footer-contact-copy {
+    width: 100%;
+  }
+  .footer-contact-copy h2 {
+    font-size: clamp(34px, 10vw, 48px);
+  }
+  .footer-contact-copy > p:last-child {
+    max-width: 275px;
+  }
+  .footer-whatsapp {
+    min-width: 0;
+  }
+  .footer-socials {
+    gap: 6px;
+  }
+  .footer-socials a {
+    width: 38px;
+    height: 38px;
+  }
+  .footer-ni {
+    width: 60px;
+  }
+}
 .eyebrow {
   @apply text-[10px] font-semibold tracking-[.2em] text-petroleum;
 }

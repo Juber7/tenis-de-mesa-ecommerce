@@ -1,4 +1,4 @@
-export const CONTACT_NUMBER = "50589415416";
+export const CONTACT_NUMBER = "50588174072";
 export function contactMessage(now = new Date()): string {
   const hour = Number(
     new Intl.DateTimeFormat("es-NI", {

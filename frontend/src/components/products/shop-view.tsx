@@ -29,13 +29,18 @@ export function ShopView({
     return `/tienda?${params}`;
   };
   return (
-    <section className="shell py-10 md:py-16">
-      <h1 className="max-w-4xl font-display text-5xl font-bold uppercase leading-none md:text-6xl">
-        Encuentra tu equipo.
-      </h1>
+    <section className="commerce-page">
+      <div className="commerce-intro">
+        <div className="shell">
+          <p className="commerce-kicker">TENIS DE MESA · NICARAGUA</p>
+          <h1 className="commerce-title">Encuentra<br /><em>tu equipo.</em></h1>
+          <p className="commerce-subtitle">Selecciona, compara y prepara tu pedido en un solo lugar.</p>
+        </div>
+      </div>
+      <div className="shell pb-16 md:pb-24">
       <SearchForm
         key={`filters-${JSON.stringify(s)}`}
-        className="shop-filter-grid my-8 items-end rounded-2xl bg-[#F4F8FC] p-4 md:p-6"
+        className="shop-controls shop-filter-grid items-end"
       >
         <label className="min-w-0 text-sm font-medium text-charcoal/75">
           Buscar
@@ -81,7 +86,7 @@ export function ShopView({
           Filtrar
         </button>
       </SearchForm>
-      <div className="mb-6 flex items-center justify-between gap-4 text-sm">
+      <div className="shop-results-meta mb-6 flex items-center justify-between gap-4 text-sm">
         <p>{data.total} productos</p>
         <Link href="/tienda" className="inline-flex min-h-11 items-center underline underline-offset-4">
           Limpiar filtros
@@ -97,11 +102,11 @@ export function ShopView({
           ))}
         </div>
       ) : (
-        <p className="rounded-2xl border border-sand bg-cream p-10">
+        <p className="shop-empty p-10">
           No encontramos productos. Prueba otra búsqueda o elimina los filtros.
         </p>
       )}
-      <nav aria-label="Paginación" className="mt-10 flex justify-center gap-6">
+      <nav aria-label="Paginación" className="shop-pagination mt-10 flex justify-center gap-6">
         {page > 1 && <Link href={pageLink(page - 1)}>← Anterior</Link>}
         {data.totalPages > 1 && (
           <span>
@@ -112,6 +117,7 @@ export function ShopView({
           <Link href={pageLink(page + 1)}>Siguiente →</Link>
         )}
       </nav>
+      </div>
     </section>
   );
 }

@@ -14,7 +14,7 @@ test("saludo usa la hora de Nicaragua y codifica el mensaje en WhatsApp", () => 
   );
   const now = new Date("2026-10-14T14:00:00Z");
   const url = new URL(contactLink(now));
-  assert.equal(url.pathname, "/50589415416");
+  assert.equal(url.pathname, "/50588174072");
   assert.equal(url.searchParams.get("text"), contactMessage(now));
 });
 test("precios NIO conservan unidades menores y muestran córdobas", () => {

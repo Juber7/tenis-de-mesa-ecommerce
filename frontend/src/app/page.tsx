@@ -3,12 +3,10 @@ import { Hero } from "@/components/hero";
 import { CategoryArt } from "@/components/products/category-art";
 import { productCategories } from "@/lib/categories";
 import { contactLink } from "@/lib/contact";
-import { HomeSideRail } from "@/components/home-side-rail";
 
 export default function Home() {
   return (
     <div className="home-page">
-      <HomeSideRail />
       <Hero />
       <section id="categorias" className="home-categories shell" aria-labelledby="categories-title">
         <div className="home-section-heading">
@@ -38,6 +36,7 @@ export default function Home() {
             CONTÁCTATE CONMIGO <span aria-hidden="true">→</span>
           </a>
         </div>
+        <span className="home-contact-ni" aria-hidden="true">NI</span>
       </section>
     </div>
   );
