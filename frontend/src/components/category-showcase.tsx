@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const showcaseImages = {
-  raquetas: ["raquetas-1", "raquetas-2", "raquetas-3", "raquetas-4"],
+  raquetas: ["raquetas-1", "raquetas-3", "raquetas-4", "raquetas-1"],
   gomas: ["gomas-1", "gomas-2", "gomas-3", "gomas-1"],
   pelotas: ["pelotas-1", "pelotas-2", "pelotas-3", "pelotas-1"],
 } as const;
@@ -18,7 +18,7 @@ export function ProductShowcase({ category, label }: { category: ShowcaseCategor
         {slides.map((image, index) => (
           <span className="hero-product-showcase-slide" key={`${image}-${index}`}>
             <Image
-              src={`/category-art/showcase/${image}.png`}
+              src={`/category-art/showcase/${image}-cutout.png`}
               alt={`${label}, producto ${index + 1}`}
               width={720}
               height={720}
