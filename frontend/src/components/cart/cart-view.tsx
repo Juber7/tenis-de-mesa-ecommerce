@@ -22,13 +22,13 @@ export function CartView() {
     );
   if (!items.length)
     return (
-      <div className="py-20 text-center">
+      <div className="cart-empty text-center">
         <ShoppingBag className="mx-auto mb-6" size={40} />
         <h1 className="font-display text-5xl">
           Tu próximo punto empieza aquí.
         </h1>
         <p className="my-5 text-sm">Aún no tienes productos en tu carrito.</p>
-        <Button asChild>
+        <Button asChild className="mt-2">
           <Link href="/tienda">Explorar la tienda</Link>
         </Button>
       </div>
@@ -51,13 +51,15 @@ export function CartView() {
   }
   return (
     <>
-      <div className="mb-9 flex items-center justify-between">
-        <h1 className="font-display text-5xl font-semibold uppercase">
+      <div className="cart-intro">
+        <p className="cart-kicker">TU SELECCIÓN · NICARAGUA</p>
+        <h1 className="cart-title">
           Tu carrito.
         </h1>
+        <p className="cart-subtitle">Revisa tus productos y envía tu pedido cuando estés listo.</p>
       </div>
       <div className="cart-content-grid min-w-0">
-        <div className="min-w-0 divide-y divide-sand">
+        <div className="cart-list min-w-0 divide-y divide-sand">
           {items.map(({ product: p, quantity: q }) => (
             <article key={p.id} className="flex flex-wrap gap-4 py-6 first:pt-0">
               {p.image && (
@@ -78,7 +80,7 @@ export function CartView() {
                   {money(p.price, p.currency, p.minorUnit)} / unidad
                 </p>
                 <div className="mt-4 flex items-center gap-4">
-                  <div className="flex items-center rounded-xl border border-sand">
+                  <div className="cart-quantity flex items-center rounded-xl">
                     <button
                       aria-label={`Reducir cantidad de ${p.name}`}
                       disabled={q <= 1}
@@ -112,7 +114,7 @@ export function CartView() {
             </article>
           ))}
         </div>
-        <aside className="h-fit rounded-2xl bg-[#F4F8FC] p-5 md:p-7">
+        <aside className="cart-summary h-fit p-5 md:p-7">
           <h2 className="font-display text-3xl">Resumen del pedido</h2>
           <div className="my-6 flex flex-wrap items-center justify-between gap-3 border-y border-sand py-5">
             <span>Total calculado</span>

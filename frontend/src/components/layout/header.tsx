@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { ShoppingBag, Menu, ArrowUpRight, MessageCircle } from "lucide-react";
 import { useCart } from "@/store/cart";
-import { contactLink } from "@/lib/contact";
+import { CONTACT_NUMBER, contactLink } from "@/lib/contact";
 import { productCategories } from "@/lib/categories";
 import {
   Sheet,
@@ -15,10 +16,12 @@ import {
 } from "@/components/ui/sheet";
 
 export function Header() {
+  const pathname = usePathname();
+  const usesSideRail = ["/", "/tienda", "/carrito"].includes(pathname) || pathname.startsWith("/producto/");
   const items = useCart((s) => s.items);
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
-  const [whatsapp, setWhatsapp] = useState("https://wa.me/50589415416");
+  const [whatsapp, setWhatsapp] = useState("https://wa.me/" + CONTACT_NUMBER);
   useEffect(() => {
     void useCart.persist.rehydrate();
     setReady(true);
@@ -35,9 +38,11 @@ export function Header() {
     ...categoryLinks,
     ["Ofertas ↗", "/tienda?ofertas=si"],
   ];
+  if (usesSideRail) return null;
+
   return (
     <>
-      <div className="flex items-center justify-center bg-[#F4F8FC] px-4 py-2 text-xs">
+      <div className="announcement-bar flex items-center justify-center bg-[#F4F8FC] px-4 py-2 text-xs">
         <a
           href={whatsapp}
           target="_blank"
@@ -52,8 +57,8 @@ export function Header() {
           <ArrowUpRight size={12} />
         </a>
       </div>
-      <header className="relative z-40 bg-banner text-white">
-        <div className="shell flex min-h-[72px] items-center gap-4 py-3">
+      <header className="shop-header relative z-40 bg-banner text-white">
+        <div className="shell shop-header-inner flex min-h-[72px] items-center gap-4 py-3">
           <Link
             href="/"
             aria-label="Tenis de Mesa, inicio"
@@ -67,7 +72,7 @@ export function Header() {
             </span>
           </Link>
           <nav aria-label="Navegación principal" className="ml-auto hidden items-center gap-1 lg:flex">
-            {[["Tienda", "/tienda"], ["Categorías", "/#categorias"], ["Ofertas", "/tienda?ofertas=si"], ["Cómo comprar", "/#como-comprar"]].map(([label, url]) => (
+            {[["Tienda", "/tienda"], ["Categorías", "/#categorias"], ["Ofertas", "/tienda?ofertas=si"], ["Inicio", "/"]].map(([label, url]) => (
               <Link
                 key={url}
                 href={url}

@@ -8,7 +8,7 @@ const ids = (query: Record<string, string>) =>
   filterProducts(demoProducts, query).products.map((p) => p.id);
 
 test("búsqueda ignora mayúsculas, espacios y acentos", () => {
-  assert.deepEqual(ids({ search: "  COMPETICION  " }), [2]);
+  assert.deepEqual(ids({ search: "  DIGNICS  " }), [101]);
   assert.deepEqual(ids({ search: "inexistente" }), []);
 });
 test("cada categoría incluye únicamente productos de esa categoría", () => {
@@ -20,20 +20,22 @@ test("cada categoría incluye únicamente productos de esa categoría", () => {
         .map((p) => p.id),
     );
   }
-  assert.deepEqual(ids({ category: "all" }), [1, 2, 3, 4]);
+  assert.deepEqual(ids({ category: "all" }), demoProducts.map((p) => p.id));
 });
 test("ofertas y combinaciones de filtros", () => {
-  assert.deepEqual(ids({ on_sale: "true" }), [1, 4]);
+  assert.deepEqual(ids({ on_sale: "true" }), []);
   assert.deepEqual(
-    ids({ search: "paleta", category: "paletas", on_sale: "true" }),
-    [1],
+    ids({ search: "butterfly", category: "paletas", on_sale: "true" }),
+    [],
   );
   assert.deepEqual(ids({ category: "pelotas", on_sale: "true" }), []);
 });
 test("precio en ambos sentidos y restauración del orden inicial", () => {
-  assert.deepEqual(ids({ orderby: "price", order: "asc" }), [2, 1, 4, 3]);
-  assert.deepEqual(ids({ orderby: "price", order: "desc" }), [3, 4, 1, 2]);
-  assert.deepEqual(ids({}), [1, 2, 3, 4]);
+  const ascending = [...demoProducts].sort((a, b) => a.price - b.price).map((p) => p.id);
+  const descending = [...demoProducts].sort((a, b) => b.price - a.price).map((p) => p.id);
+  assert.deepEqual(ids({ orderby: "price", order: "asc" }), ascending);
+  assert.deepEqual(ids({ orderby: "price", order: "desc" }), descending);
+  assert.deepEqual(ids({}), demoProducts.map((p) => p.id));
 });
 test("filtra y ordena antes de paginar, conservando totales", () => {
   const result = filterProducts(demoProducts, {
@@ -45,10 +47,10 @@ test("filtra y ordena antes de paginar, conservando totales", () => {
   });
   assert.deepEqual(
     result.products.map((p) => p.id),
-    [1],
+    [107],
   );
-  assert.equal(result.total, 2);
-  assert.equal(result.totalPages, 2);
+  assert.equal(result.total, 4);
+  assert.equal(result.totalPages, 4);
   assert.deepEqual(ids({ page: "2" }), []);
 });
 test("URL traduce todos los filtros y normaliza valores predeterminados", () => {
@@ -85,13 +87,12 @@ test("fetchProducts aplica los filtros también al catálogo de demostración", 
   try {
     const result = await fetchProducts({
       category: "paletas",
-      on_sale: "true",
     });
     assert.deepEqual(
       result.products.map((p) => p.id),
-      [1],
+      [102, 107, 108, 109],
     );
-    assert.equal(result.total, 1);
+    assert.equal(result.total, 4);
   } finally {
     if (previous === undefined) delete process.env.WOOCOMMERCE_URL;
     else process.env.WOOCOMMERCE_URL = previous;

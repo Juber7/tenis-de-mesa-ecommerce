@@ -7,7 +7,10 @@ const items = [
   { product: demoProducts[1], quantity: 3 },
 ];
 test("total exacto, dos productos, cuatro campos y encabezado solicitado", () => {
-  assert.equal(cartTotal(items), 115500);
+  assert.equal(
+    cartTotal(items),
+    demoProducts[0].price * 2 + demoProducts[1].price * 3,
+  );
   const message = whatsappMessage(items);
   const blocks = message.split("\n\n");
   assert.equal(

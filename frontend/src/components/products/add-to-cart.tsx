@@ -27,7 +27,7 @@ export function AddToCart({ product: p }: { product: Product }) {
     }
   }
   return (
-    <div>
+    <div className="product-actions">
       <Button
         className="w-full"
         disabled={

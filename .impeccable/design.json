@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T00:00:00Z",
+  "title": "Sistema visual · Tenis de Mesa",
+  "extensions": {
+    "shadows": [
+      { "name": "home-floating", "value": "0 12px 36px -12px rgb(10 31 68 / .2), 0 3px 8px rgb(10 31 68 / .04)", "purpose": "Tarjetas flotantes del cartel." },
+      { "name": "home-card", "value": "0 4px 12px -6px rgb(10 31 68 / .09)", "purpose": "Categorías de portada en reposo." },
+      { "name": "home-card-hover", "value": "0 16px 28px -18px rgb(10 31 68 / .25)", "purpose": "Categorías con hover y puntero fino." }
+    ],
+    "motion": [
+      { "name": "home-action", "value": "180ms ease", "purpose": "Cambio de color de acciones." },
+      { "name": "home-card", "value": "220ms ease", "purpose": "Elevación y sombra de categoría." },
+      { "name": "home-art", "value": "240ms ease", "purpose": "Transformación de ilustración y tarjetas flotantes; respetar prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "filters-two-columns", "value": "640px" },
+      { "name": "medium", "value": "768px" },
+      { "name": "large", "value": "1024px" },
+      { "name": "filters-row", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Acción de portada", "kind": "button", "refersTo": "home-primary",
+      "description": "Enlace principal hacia la tienda.",
+      "html": "<a class=\"ds-primary\" href=\"/tienda\">Encuentra tu equipo</a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 24px;border-radius:999px;background:#0A1F44;color:#fff;font:600 15px Inter,Arial,sans-serif;text-decoration:none;transition:background 180ms ease}.ds-primary:hover{background:#1E4BFF}.ds-primary:focus-visible{outline:2px solid #1E4BFF;outline-offset:4px}"
+    },
+    {
+      "name": "Acción sobre marino", "kind": "button", "refersTo": "home-light",
+      "description": "Variante blanca del panel de compra, con foco azul claro.",
+      "html": "<div class=\"ds-panel\"><a class=\"ds-light\" href=\"/tienda\">Explorar la tienda</a></div>",
+      "css": ".ds-panel{background:#0A1F44;padding:24px;border-radius:28px}.ds-light{display:inline-flex;align-items:center;min-height:52px;padding:14px 24px;border-radius:999px;background:#fff;color:#0A1F44;font:600 15px Inter,Arial,sans-serif;text-decoration:none;transition:background 180ms ease}.ds-light:hover{background:#A9CFFF}.ds-light:focus-visible{outline:2px solid #A9CFFF;outline-offset:4px}"
+    },
+    {
+      "name": "Buscador de portada", "kind": "input",
+      "description": "Cápsula con foco del grupo y envío circular.",
+      "html": "<form class=\"ds-search\" action=\"/tienda\"><input name=\"q\" type=\"search\" aria-label=\"Buscar equipo\" placeholder=\"¿Qué le falta a tu juego?\"><button aria-label=\"Buscar productos\">→</button></form>",
+      "css": ".ds-search{display:flex;align-items:center;gap:14px;padding:7px 7px 7px 22px;border:1px solid #DCE6F2;border-radius:999px;background:#F4F8FC}.ds-search input{width:100%;min-width:0;height:44px;border:0;outline:none;background:transparent;color:#0A1F44;font:16px Inter,Arial,sans-serif}.ds-search input::placeholder{color:#60718A}.ds-search:focus-within{outline:2px solid #1E4BFF;outline-offset:3px}.ds-search button{flex-shrink:0;width:46px;height:46px;border:0;border-radius:50%;background:#1E4BFF;color:white;font-size:22px}.ds-search button:hover{background:#0A1F44}.ds-search button:focus-visible{outline:2px solid #1E4BFF;outline-offset:4px}"
+    },
+    {
+      "name": "Enlace de navegación", "kind": "nav",
+      "description": "Patrón compartido existente sobre encabezado marino.",
+      "html": "<nav class=\"ds-nav\"><a href=\"/tienda\">Tienda</a></nav>",
+      "css": ".ds-nav{background:#0A1F44;padding:16px}.ds-nav a{display:inline-block;position:relative;padding:12px 14px;border-radius:999px;color:#DCE6F2;font:14px Inter,Arial,sans-serif;text-decoration:none;transition:background 200ms,color 200ms}.ds-nav a:hover{background:rgb(255 255 255 / .1);color:white}.ds-nav a:focus-visible{outline:2px solid #1E4BFF;outline-offset:4px}"
+    },
+    {
+      "name": "Tarjeta de categoría", "kind": "card", "refersTo": "home-card",
+      "description": "Superficie de portada; vista de la leyenda sin sustituir ilustraciones existentes.",
+      "html": "<a class=\"ds-card\" href=\"/tienda?categoria=paletas\"><strong>Raquetas</strong><span>El golpe empieza contigo</span></a>",
+      "css": ".ds-card{display:block;padding:24px;border-radius:28px;background:#fff;color:#0A1F44;text-decoration:none;box-shadow:0 4px 12px -6px rgb(10 31 68 / .09);transition:transform 220ms ease,box-shadow 220ms ease}.ds-card strong{font:600 27px/1.1 'Barlow Condensed',sans-serif}.ds-card span{display:block;margin-top:8px;color:#285486;font:12px/1.5 Inter,Arial,sans-serif}.ds-card:focus-visible{outline:2px solid #1E4BFF;outline-offset:4px}@media(hover:hover) and (pointer:fine){.ds-card:hover{transform:translateY(-5px);box-shadow:0 16px 28px -18px rgb(10 31 68 / .25)}}@media(max-width:767px){.ds-card{border-radius:24px}.ds-card strong{font-size:23px}}@media(prefers-reduced-motion:reduce){.ds-card{transition-duration:.01ms}}"
+    }
+  ],
+  "narrative": {
+    "overview": "La portada incorpora la dirección solicitada: cartel constructivista deportivo con tarjetas comerciales suaves. Su composición específica se documenta en `.impeccable/surfaces/home.md`; no modifica la composición de tienda, detalle ni carrito.",
+    "dos": ["Conservar la paleta azul y las ilustraciones existentes.", "Mantener titulares expresivos y controles de lectura clara.", "Aplicar el cartel diagonal a la portada; conservar los patrones documentados de las otras vistas.", "Mantener espacio interno alrededor de cada ilustración y reducir movimiento cuando se solicite."],
+    "donts": ["Evitar texto azul claro sobre blanco y mantener foco visible sobre paneles oscuros."]
+  }
+}
