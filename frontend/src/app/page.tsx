@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Hero } from "@/components/hero";
 import { CategoryArt } from "@/components/products/category-art";
+import { CategoryShowcase, hasCategoryShowcase } from "@/components/category-showcase";
 import { productCategories } from "@/lib/categories";
 import { contactLink } from "@/lib/contact";
 import { HomeSideRail } from "@/components/home-side-rail";
@@ -22,7 +23,11 @@ export default function Home() {
               href={`/tienda?categoria=${category.value}`}
               className="home-category-card"
             >
-              <CategoryArt category={category.value} className="home-category-art" />
+              {hasCategoryShowcase(category.value) ? (
+                <CategoryShowcase category={category.value} label={category.label} />
+              ) : (
+                <CategoryArt category={category.value} className="home-category-art" />
+              )}
               <span className="home-category-label">{category.label}</span>
             </Link>
           ))}
