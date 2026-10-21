@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 const showcaseImages = {
-  raquetas: ["raquetas-1", "raquetas-3", "raquetas-4", "raquetas-1"],
-  gomas: ["gomas-1", "gomas-2", "gomas-3", "gomas-1"],
-  pelotas: ["pelotas-1", "pelotas-2", "pelotas-3", "pelotas-1"],
+  raquetas: ["raquetas-1", "raquetas-3", "raquetas-4"],
+  gomas: ["gomas-1", "gomas-2", "gomas-3"],
+  pelotas: ["pelotas-1", "pelotas-2", "pelotas-3"],
 } as const;
 
 type ShowcaseCategory = keyof typeof showcaseImages;
