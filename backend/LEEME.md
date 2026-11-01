@@ -33,13 +33,14 @@ Los cuatro productos iniciales, sus precios y el inventario son de práctica. No
 ## Dónde se guarda todo
 
 - `wordpress/`: archivos completos de WordPress, plugins y medios.
-- `wordpress/wp-content/database/`: base de datos SQLite persistente, incluidos productos y ajustes. Incluye archivos ocultos.
+- `%LOCALAPPDATA%/TenisDeMesaLeandro/database/.ht.sqlite`: base de datos SQLite activa, incluidos productos y ajustes. Se guarda fuera de OneDrive para que WordPress pueda escribir sesiones y cambios.
+- `wordpress/wp-content/database/`: copia de la base original usada al migrar este proyecto. El arranque la copia a la ubicación local si esta todavía no existe.
 - `.runtime/`: información local de acceso y de instalación.
 - `blueprint.json`: configuración inicial reproducible.
 - `scripts/seed.php`: carga idempotente de ejemplos, solo en la instalación inicial.
 - `scripts/start.mjs`: servidor y preparación del entorno.
 
-Para una copia de seguridad local, cierra los servidores y copia **backend/wordpress/** y **backend/.runtime/** completos a una carpeta segura. No basta con guardar el código en Git, porque los datos y contraseñas están excluidos. No sincronices la base de datos abierta con otro equipo; espera a detener el servidor y a que OneDrive termine de sincronizar.
+Para una copia de seguridad local, cierra los servidores y copia **backend/wordpress/**, **backend/.runtime/** y **%LOCALAPPDATA%/TenisDeMesaLeandro/database/** completos a una carpeta segura. No basta con guardar el código en Git, porque los datos y contraseñas están excluidos. No copies la base de datos mientras WordPress está abierto.
 
 ## Comprobar la conexión
 

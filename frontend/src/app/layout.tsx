@@ -7,12 +7,29 @@ import { Footer } from "@/components/layout/footer";
 import { HomeSideRail } from "@/components/home-side-rail";
 import { isDemo } from "@/lib/woocommerce";
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   title: {
     default: "Tenis de Mesa",
     template: "%s | Tenis de Mesa",
   },
   description:
     "Paletas, pelotas y accesorios de tenis de mesa. Elige tu equipo y coordina tu pedido por WhatsApp.",
+  openGraph: {
+    type: "website",
+    locale: "es_NI",
+    siteName: "Tenis de Mesa",
+    title: "Tenis de Mesa",
+    description:
+      "Paletas, pelotas y accesorios de tenis de mesa. Elige tu equipo y coordina tu pedido por WhatsApp.",
+    images: [{ url: "/social-preview.png", width: 1200, height: 630, alt: "Logo de Tenis de Mesa" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tenis de Mesa",
+    images: ["/social-preview.png"],
+  },
 };
 export const viewport: Viewport = {
   width: "device-width",

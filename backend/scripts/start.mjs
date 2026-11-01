@@ -1,5 +1,5 @@
 import { runCLI } from "@wp-playground/cli";
-import { mkdir, readFile, writeFile, access, copyFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile, access, copyFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve, dirname } from "node:path";
 import { randomBytes } from "node:crypto";
@@ -10,13 +10,43 @@ import { Server as NetServer } from "node:net";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const wordpress = resolve(root, "wordpress");
 const runtime = resolve(root, ".runtime");
+const database = resolve(process.env.LOCALAPPDATA || process.env.TEMP || runtime, "TenisDeMesaLeandro", "database");
 await mkdir(wordpress, { recursive: true });
 await mkdir(runtime, { recursive: true });
+await mkdir(database, { recursive: true });
 const exists = async (path) =>
   access(path).then(
     () => true,
     () => false,
   );
+const sqliteDropin = resolve(wordpress, "wp-content/db.php");
+const sqliteTemplate = resolve(wordpress, "wp-content/plugins/sqlite-database-integration/db.copy");
+if (!(await exists(sqliteDropin)) && (await exists(sqliteTemplate))) {
+  const template = await readFile(sqliteTemplate, "utf8");
+  await writeFile(sqliteDropin, template
+    .replaceAll("{SQLITE_IMPLEMENTATION_FOLDER_PATH}", "/wordpress/wp-content/plugins/sqlite-database-integration")
+    .replaceAll("{SQLITE_PLUGIN}", "sqlite-database-integration/load.php"));
+}
+const databaseConfig = resolve(wordpress, "wp-content/database/db-path.php");
+const localDatabaseFile = resolve(database, ".ht.sqlite");
+if (await exists(databaseConfig)) {
+  if (!(await exists(localDatabaseFile))) {
+    const databaseFolder = resolve(wordpress, "wp-content/database");
+    const entries = await readdir(databaseFolder, { withFileTypes: true });
+    const backups = entries
+      .filter((entry) => entry.isDirectory() && entry.name.startsWith(".ht."))
+      .map((entry) => resolve(databaseFolder, entry.name, ".ht.sqlite"));
+    const backup = (await Promise.all(backups.map(async (path) => (await exists(path)) ? path : null))).find(Boolean);
+    if (!backup) throw new Error("No se encontró la base de datos local de WordPress.");
+    await copyFile(backup, localDatabaseFile);
+  }
+  const config = await readFile(databaseConfig, "utf8");
+  const updated = config.replace(/return\s+(?:__DIR__\s*\.\s*)?'[^']+\.ht\.sqlite';/, "return '/leandro-db/.ht.sqlite';");
+  if (updated === config && !config.includes("return '/leandro-db/.ht.sqlite';")) {
+    throw new Error("No se pudo configurar la ruta de la base de datos local.");
+  }
+  if (updated !== config) await writeFile(databaseConfig, updated);
+}
 const initialized = await exists(resolve(runtime, "installed.json"));
 await mkdir(resolve(wordpress, "wp-content/mu-plugins"), { recursive: true });
 await copyFile(resolve(root, "mu-plugins/tienda-cordobas.php"), resolve(wordpress, "wp-content/mu-plugins/tienda-cordobas.php"));
@@ -134,6 +164,7 @@ const instance = await runCLI({
   "mount-before-install": [
     { hostPath: wordpress, vfsPath: "/wordpress" },
     { hostPath: runtime, vfsPath: "/leandro-private" },
+    { hostPath: database, vfsPath: "/leandro-db" },
   ],
   wordpressInstallMode: (await exists(resolve(wordpress, "wp-config.php")))
     ? "do-not-attempt-installing"
