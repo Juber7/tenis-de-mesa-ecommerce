@@ -1,5 +1,4 @@
 node_modules/
-.netlify/
 .next/
 .next-build-check/
 frontend/out/
