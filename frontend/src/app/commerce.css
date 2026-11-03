@@ -27,8 +27,7 @@
 .shop-results-meta { margin-top: 42px; color: var(--commerce-ink); font: 700 16px/1 "Barlow Condensed", sans-serif; letter-spacing: .04em; text-transform: uppercase; }
 .shop-results-meta a { color: var(--commerce-ink); text-decoration-color: var(--commerce-accent); text-decoration-thickness: 2px; }
 .commerce-page .product-card { border: 2px solid #000; border-radius: 28px; background: white; box-shadow: 4px 4px 0 #000; }
-.commerce-page .product-card > a { background: var(--commerce-card); }
-.commerce-page .product-card img { mix-blend-mode: multiply; }
+.commerce-page .product-card > a { background: white; }
 .commerce-page .product-card h3, .commerce-page .product-card .font-display { font-family: Anton, Impact, sans-serif; font-weight: 400; letter-spacing: -.01em; color: var(--commerce-ink); }
 .commerce-page .product-card p { color: var(--commerce-ink); }
 .commerce-page .product-card [class*="bg-banner"] { border-radius: 0; background: var(--commerce-ink); font-family: "Barlow Condensed", sans-serif; letter-spacing: .08em; }
@@ -85,22 +84,24 @@
   body:has(.commerce-page) .site-footer { padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
 }
 
-body:has(.commerce-page) .catalog-demo-notice { display: none; }
 
 .product-page { min-height: 72vh; }
 .product-page-inner { padding-top: clamp(28px, 4vw, 56px); padding-bottom: 96px; }
 .product-back { border: 2px solid var(--commerce-ink); border-radius: 12px; background: white; color: var(--commerce-ink); font-family: "Barlow Condensed", sans-serif; font-size: 16px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .product-detail-layout { align-items: start; gap: clamp(32px, 4vw, 64px); margin-top: 32px; }
-.product-gallery { position: relative; width: 100%; min-width: 0; aspect-ratio: 1; overflow: hidden; border: 3px solid var(--commerce-ink); border-radius: 28px; background: var(--commerce-card); box-shadow: 9px 9px 0 var(--commerce-ink); }
-.product-gallery::after { content: ""; position: absolute; right: -16%; bottom: -18%; width: 48%; height: 48%; border-radius: 50%; background: var(--commerce-accent); }
-.product-gallery img { position: relative; z-index: 1; mix-blend-mode: multiply; }
+.product-gallery-group { display: flex; min-width: 0; flex-direction: column; gap: 18px; }
+.product-thumbs { display: flex; flex-wrap: wrap; gap: 10px; }
+.product-thumb { width: 72px; height: 72px; padding: 4px; overflow: hidden; border: 2px solid var(--commerce-ink); border-radius: 12px; background: white; cursor: pointer; }
+.product-thumb img { width: 100%; height: 100%; object-fit: contain; }
+.product-thumb[aria-current="true"] { box-shadow: 3px 3px 0 var(--commerce-accent); }
+.product-gallery { position: relative; width: 100%; min-width: 0; aspect-ratio: 1; overflow: hidden; border: 3px solid var(--commerce-ink); border-radius: 28px; background: white; box-shadow: 9px 9px 0 var(--commerce-ink); }
 .product-info-panel { position: relative; overflow: hidden; display: flex; max-width: none; flex-direction: column; justify-content: center; padding: clamp(26px, 4vw, 52px); border: 3px solid var(--commerce-ink); border-radius: 28px; background: white; box-shadow: 9px 9px 0 var(--commerce-accent); }
 .product-info-panel::before { content: ""; position: absolute; z-index: 0; top: -72px; right: -72px; width: 160px; height: 160px; border-radius: 50%; background: var(--commerce-card); }
 .product-info-panel > * { position: relative; z-index: 1; }
 .product-kicker { display: table; width: fit-content; padding: 8px 12px; background: var(--commerce-ink); color: white; font: 700 14px/1 "Barlow Condensed", sans-serif; letter-spacing: .09em; text-transform: uppercase; }
 .product-info-panel h1 { max-width: 720px; margin-top: 18px; color: var(--commerce-ink); font: 400 clamp(44px, 5vw, 72px)/.96 Anton, Impact, sans-serif; letter-spacing: -.02em; text-transform: uppercase; }
 .product-price { margin-top: 22px; color: var(--commerce-accent); font: 400 clamp(34px, 4vw, 52px)/1 Anton, Impact, sans-serif; }
-.product-description { margin-top: 22px; color: var(--commerce-ink); font: 500 18px/1.5 "Barlow Condensed", sans-serif; }
+.product-description { margin-top: 22px; color: var(--commerce-ink); font: 500 18px/1.5 "Barlow Condensed", sans-serif; white-space: pre-line; }
 .product-stock { margin: 20px 0; font: 700 15px/1 "Barlow Condensed", sans-serif; letter-spacing: .04em; text-transform: uppercase; }
 .product-actions .sport-button { width: 100%; border: 2px solid var(--commerce-ink); border-radius: 12px; background: var(--commerce-accent); box-shadow: 4px 4px 0 var(--commerce-ink); font-family: Anton, Impact, sans-serif; font-size: 19px; font-weight: 400; }
 .product-actions .sport-button + .sport-button { background: var(--commerce-ink); }

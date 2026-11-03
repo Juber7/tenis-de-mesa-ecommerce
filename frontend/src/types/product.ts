@@ -1,15 +1,16 @@
 export type Product = {
-  id: number;
+  id: string;
   slug: string;
   name: string;
   description: string;
   image: string;
   imageAlt: string;
+  gallery: { src: string; thumb: string; alt: string }[];
   price: number;
   regularPrice: number;
   currency: string;
   minorUnit: number;
-  categories: { id: number; name: string; slug: string }[];
+  categories: { name: string; slug: string }[];
   inStock: boolean;
   purchasable: boolean;
   hasOptions: boolean;

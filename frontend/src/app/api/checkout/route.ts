@@ -4,7 +4,7 @@ import { prepareCheckout } from "@/lib/checkout";
 const schema = z
   .array(
     z.object({
-      id: z.number().int().positive(),
+      id: z.string().regex(/^[A-Za-z0-9._-]{1,128}$/),
       quantity: z.number().int().min(1).max(99),
     }),
   )
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     );
     const message =
       error instanceof Error &&
-      /demostración|disponible|cantidad|monedas|WhatsApp|imagen/i.test(
+      /disponible|cantidad|monedas|WhatsApp|imagen/i.test(
         error.message,
       )
         ? error.message

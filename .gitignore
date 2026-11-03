@@ -2,13 +2,11 @@ node_modules/
 .next/
 .next-build-check/
 frontend/out/
+studio/dist/
+studio/.sanity/
 .env*
 !.env.example
 *.tsbuildinfo
-backend/node_modules/
-backend/wordpress/
-backend/.runtime/
-backend/backups/
 .impeccable-engine/
 .impeccable-engine-cache/
 .taste-skill/

@@ -5,8 +5,8 @@ import type { Product, CartItem } from "@/types/product";
 type Cart = {
   items: CartItem[];
   add: (p: Product) => void;
-  setQuantity: (id: number, q: number) => void;
-  remove: (id: number) => void;
+  setQuantity: (id: string, q: number) => void;
+  remove: (id: string) => void;
   clear: () => void;
 };
 export const useCart = create<Cart>()(
@@ -57,7 +57,7 @@ export const useCart = create<Cart>()(
       clear: () => set({ items: [] }),
     }),
     {
-      name: "tenis-cart-nio-v3",
+      name: "tenis-cart-usd-v4",
       version: 1,
       storage: createJSONStorage(() => localStorage),
       partialize: (s) => ({ items: s.items }),

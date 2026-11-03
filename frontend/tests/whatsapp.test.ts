@@ -1,15 +1,15 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { demoProducts } from "../src/lib/demo";
+import { testProducts } from "./fixtures";
 import { cartTotal, whatsappLink, whatsappMessage } from "../src/lib/whatsapp";
 const items = [
-  { product: demoProducts[0], quantity: 2 },
-  { product: demoProducts[1], quantity: 3 },
+  { product: testProducts[0], quantity: 2 },
+  { product: testProducts[1], quantity: 3 },
 ];
 test("total exacto, dos productos, cuatro campos y encabezado solicitado", () => {
   assert.equal(
     cartTotal(items),
-    demoProducts[0].price * 2 + demoProducts[1].price * 3,
+    testProducts[0].price * 2 + testProducts[1].price * 3,
   );
   const message = whatsappMessage(items);
   const blocks = message.split("\n\n");
@@ -28,19 +28,19 @@ test("total exacto, dos productos, cuatro campos y encabezado solicitado", () =>
 });
 test("rechaza carrito vacío, cantidades inválidas, moneda mixta y teléfono inválido", () => {
   assert.throws(() => cartTotal([]));
-  assert.throws(() => cartTotal([{ product: demoProducts[0], quantity: -1 }]));
-  assert.throws(() => cartTotal([{ product: demoProducts[0], quantity: 1.5 }]));
+  assert.throws(() => cartTotal([{ product: testProducts[0], quantity: -1 }]));
+  assert.throws(() => cartTotal([{ product: testProducts[0], quantity: 1.5 }]));
   assert.throws(() =>
     cartTotal([
       items[0],
-      { product: { ...demoProducts[1], currency: "USD" }, quantity: 1 },
+      { product: { ...testProducts[1], currency: "NIO" }, quantity: 1 },
     ]),
   );
   assert.throws(() => whatsappLink(items, "+502 invalid"));
 });
 test("respeta monedas sin decimales y rechaza imágenes no HTTP", () => {
   const item = {
-    product: { ...demoProducts[0], currency: "JPY", minorUnit: 0, price: 1200 },
+    product: { ...testProducts[0], currency: "JPY", minorUnit: 0, price: 1200 },
     quantity: 2,
   };
   assert.equal(cartTotal([item]), 2400);
@@ -48,7 +48,7 @@ test("respeta monedas sin decimales y rechaza imágenes no HTTP", () => {
   assert.throws(() =>
     whatsappMessage([
       {
-        product: { ...demoProducts[0], image: "javascript:alert(1)" },
+        product: { ...testProducts[0], image: "javascript:alert(1)" },
         quantity: 1,
       },
     ]),

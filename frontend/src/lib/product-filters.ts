@@ -31,13 +31,11 @@ export function filterProducts(
   const products = catalog.filter(
     (p) =>
       (!query.slug || p.slug === query.slug) &&
-      (!query.include || query.include.split(",").includes(String(p.id))) &&
+      (!query.include || query.include.split(",").includes(p.id)) &&
       (!search || normalize(`${p.name} ${p.description}`).includes(search)) &&
       (!query.category ||
         query.category === "all" ||
-        p.categories.some(
-          (c) => c.slug === query.category || String(c.id) === query.category,
-        )) &&
+        p.categories.some((c) => c.slug === query.category)) &&
       (query.on_sale !== "true" || p.onSale),
   );
   if (query.orderby === "price") {

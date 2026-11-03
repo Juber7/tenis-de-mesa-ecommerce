@@ -13,7 +13,7 @@ export function ProductCard({ product: p }: { product: Product }) {
             src={p.image}
             alt={p.imageAlt}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
+            className="h-full w-full object-contain transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
           />
         ) : (
           <div className="flex h-full items-center justify-center text-sm">

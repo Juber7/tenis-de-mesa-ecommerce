@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProduct } from "@/lib/woocommerce";
+import { fetchProducts, getProduct } from "@/lib/catalog";
 import { money } from "@/lib/utils";
 import { AddToCart } from "@/components/products/add-to-cart";
+import { ProductGallery } from "@/components/products/product-gallery";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { demoProducts } from "@/lib/demo";
-export function generateStaticParams() {
-  return demoProducts.map((product) => ({ slug: product.slug }));
+export async function generateStaticParams() {
+  const { products } = await fetchProducts({ per_page: "1000" });
+  return products.map((product) => ({ slug: product.slug }));
 }
 export default async function ProductPage({
   params,
@@ -22,17 +23,13 @@ export default async function ProductPage({
       <div className="shell product-page-inner">
         <Button asChild variant="outline" className="product-back"><Link href="/tienda"><ArrowLeft size={18} />Volver a la tienda</Link></Button>
       <div className="product-detail-grid product-detail-layout">
-        <div className="product-gallery">
-          {p.image ? (
-            <img
-              className="h-full w-full object-cover"
-              src={p.image}
-              alt={p.imageAlt}
-            />
-          ) : (
+        {p.gallery.length ? (
+          <ProductGallery images={p.gallery} />
+        ) : (
+          <div className="product-gallery">
             <p className="p-10">Imagen no disponible</p>
-          )}
-        </div>
+          </div>
+        )}
         <div className="product-info-panel">
           <p className="product-kicker">
             {p.categories.map((c) => c.name).join(" · ")}
