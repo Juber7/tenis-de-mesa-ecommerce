@@ -1,16 +1,12 @@
 import type { CartItem } from "@/types/product";
-import { fetchProducts, isDemo } from "./woocommerce";
+import { fetchProducts } from "./catalog";
 import { CONTACT_NUMBER } from "./contact";
 import { whatsappLink } from "./whatsapp";
 export async function prepareCheckout(
-  lines: { id: number; quantity: number }[],
+  lines: { id: string; quantity: number }[],
 ) {
-  if (isDemo() || process.env.LOCAL_CATALOG === "true")
-    throw new Error(
-      "Este es un catálogo de demostración. Configura productos reales y un WordPress público para enviar pedidos.",
-    );
   const { products } = await fetchProducts(
-    { include: lines.map((l) => l.id).join(","), per_page: "100" },
+    { include: lines.map((l) => l.id).join(","), per_page: "1000" },
     true,
   );
   const items: CartItem[] = lines.map((line) => {

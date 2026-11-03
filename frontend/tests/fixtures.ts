@@ -1,4 +1,4 @@
-import type { Product } from "@/types/product";
+import type { Product } from "../src/types/product";
 
 type CatalogEntry = {
   id: number;
@@ -12,21 +12,17 @@ type CatalogEntry = {
 };
 
 const categories = {
-  paletas: { id: 1, name: "Raquetas", slug: "paletas" },
-  gomas: { id: 2, name: "Gomas", slug: "gomas" },
-  pelotas: { id: 3, name: "Pelotas", slug: "pelotas" },
-  pega: { id: 4, name: "Pega", slug: "pega" },
+  paletas: { name: "Raquetas", slug: "paletas" },
+  gomas: { name: "Gomas", slug: "gomas" },
+  pelotas: { name: "Pelotas", slug: "pelotas" },
+  pega: { name: "Pega", slug: "pega" },
   seminuevos: {
-    id: 8,
     name: "Productos seminuevos",
     slug: "productos-seminuevos",
   },
 };
 
-const productImage = (name: string) =>
-  (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000") +
-  "/products/" +
-  name;
+const productImage = (name: string) => "https://example.com/products/" + name;
 
 const catalog: CatalogEntry[] = [
   {
@@ -141,11 +137,13 @@ const catalog: CatalogEntry[] = [
   },
 ];
 
-export const demoProducts: Product[] = catalog.map((product) => ({
+export const testProducts: Product[] = catalog.map((product) => ({
   ...product,
+  id: String(product.id),
   imageAlt: product.name,
+  gallery: [],
   regularPrice: product.price,
-  currency: "NIO",
+  currency: "USD",
   minorUnit: 2,
   categories: [categories[product.categorySlug]],
   inStock: true,

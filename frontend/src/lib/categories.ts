@@ -1,4 +1,4 @@
-// Keep existing catalog slugs so category links continue to match WooCommerce.
+// Must match studio/schemaTypes/categories.ts: products store these values.
 export const productCategories = [
   { value: "paletas", label: "Raquetas" },
   { value: "gomas", label: "Gomas" },

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ShopView } from "@/components/products/shop-view";
 import { shopQuery, type ShopParams } from "@/lib/product-filters";
-import { fetchProducts } from "@/lib/woocommerce";
+import { fetchProducts } from "@/lib/catalog";
 
 export const metadata = { title: "Tienda" };
 

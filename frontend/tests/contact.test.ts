@@ -17,7 +17,7 @@ test("saludo usa la hora de Nicaragua y codifica el mensaje en WhatsApp", () => 
   assert.equal(url.pathname, "/50588174072");
   assert.equal(url.searchParams.get("text"), contactMessage(now));
 });
-test("precios NIO conservan unidades menores y muestran córdobas", () => {
-  assert.equal(money(45000), "C$450.00");
-  assert.match(money(45000), /450\.00/);
+test("precios en dólares conservan unidades menores y usan el símbolo del catálogo", () => {
+  assert.equal(money(45000), "$450.00");
+  assert.equal(money(45000, "USD", 2), "$450.00");
 });

@@ -5,7 +5,6 @@ import "./commerce.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { HomeSideRail } from "@/components/home-side-rail";
-import { isDemo } from "@/lib/woocommerce";
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
@@ -57,13 +56,6 @@ export default function RootLayout({
         </a>
         <Header />
         <HomeSideRail />
-        {(isDemo() || process.env.LOCAL_CATALOG === "true") && (
-          <div className="catalog-demo-notice bg-white px-5 py-2 text-center text-[13px] leading-5 text-petroleum">
-            {process.env.LOCAL_CATALOG === "true"
-              ? "Catálogo local · Disponibilidad y precio final se confirman por WhatsApp"
-              : "Catálogo de demostración · Precios e imágenes ilustrativos"}
-          </div>
-        )}
         <main id="contenido">{children}</main>
         <Footer />
       </body>

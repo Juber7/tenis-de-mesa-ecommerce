@@ -8,7 +8,6 @@
 }
 
 body:has(.home-page) { background: var(--poster-paper); }
-body:has(.home-page) .catalog-demo-notice { display: none; }
 body:has(.home-page) .announcement-bar {
   min-height: 30px;
   padding: 3px 20px;
