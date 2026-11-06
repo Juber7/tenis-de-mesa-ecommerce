@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usesSideRail as railRoute } from "@/lib/routes";
 import { usePathname } from "next/navigation";
@@ -65,9 +66,7 @@ export function Header() {
             aria-label="Tenis de Mesa, inicio"
             className="flex shrink-0 items-center gap-3 focus-visible:rounded-md"
           >
-            <span className="logo-mark">
-              tm<span>•</span>
-            </span>
+            <Image src="/icon.svg" alt="" width={44} height={44} className="logo-mark" priority />
             <span className="max-w-[72px] text-[10px] font-bold leading-4 tracking-[.2em]">
               TENIS DE MESA
             </span>
