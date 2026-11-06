@@ -7,7 +7,7 @@ const path = "/legal/reclamos";
 export const metadata = legalMetadata(
   path,
   "Reclamos",
-  "Presentación de reclamos con comprobante numerado y fechado. Respuesta en un máximo de 10 días hábiles.",
+  "Presentación de reclamos con comprobante numerado y fechado. Respuesta en un máximo de 3 días hábiles.",
 );
 
 export default function ComplaintsPage() {
@@ -23,7 +23,7 @@ export default function ComplaintsPage() {
         <li>Se completa el formulario. Los datos permanecen en el navegador: el sitio no los guarda ni los envía a ningún servidor.</li>
         <li>Al pulsar «Generar comprobante» se muestra el reclamo con su número y fecha, que puede guardarse o imprimirse.</li>
         <li>El comprobante se envía por WhatsApp con el botón correspondiente. La recepción se confirma en el chat.</li>
-        <li>El reclamo se responde en un plazo máximo de <strong>10 días hábiles</strong>.</li>
+        <li>El reclamo se responde en un plazo máximo de <strong>3 días hábiles</strong>.</li>
       </ol>
       <p>
         Si la respuesta no resulta satisfactoria, existe un plazo de 30 días

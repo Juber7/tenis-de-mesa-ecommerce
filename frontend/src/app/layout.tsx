@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { HomeSideRail } from "@/components/home-side-rail";
 import { CookieConsent } from "@/components/consent/cookie-consent";
+import { PressNavigation } from "@/components/press-navigation";
 import { OG_BASE, SITE_URL } from "@/lib/site";
 import { CONSENT_STORAGE_KEY } from "@/lib/consent";
 
@@ -100,6 +101,7 @@ export default function RootLayout({
         <main id="contenido">{children}</main>
         <Footer />
         <CookieConsent />
+        <PressNavigation />
       </body>
     </html>
   );

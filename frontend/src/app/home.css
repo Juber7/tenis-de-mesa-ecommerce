@@ -82,12 +82,12 @@ body:has(.home-page) .cart-button span:last-child { color: var(--poster-ink); }
 .home-category-card:active { transform: scale(.98); }
 .home-category-art { width: 89%; height: 89%; object-fit: contain; transition: transform 180ms var(--ease-premium-out); }
 .hero-product-showcase { width: 100%; height: 100%; overflow: hidden; }
-.hero-product-showcase-track { display: flex; width: 400%; height: 100%; animation: home-showcase-slide 12s var(--ease-premium-move) infinite; will-change: transform; }
+.hero-product-showcase-track { display: flex; width: 400%; height: 100%; animation: home-showcase-slide 6s var(--ease-premium-move) infinite; will-change: transform; }
 .hero-product-showcase-slide { display: grid; width: 25%; height: 100%; flex: 0 0 25%; place-items: center; overflow: hidden; }
-.hero-product-showcase-slide img { width: 88%; height: 88%; object-fit: contain; animation: home-showcase-zoom 12s var(--ease-premium-out) infinite both; will-change: transform; }
-.hero-product-showcase-slide:nth-child(2) img { animation-delay: 4s; }
-.hero-product-showcase-slide:nth-child(3) img { animation-delay: 8s; }
-.hero-product-showcase-slide:nth-child(4) img { animation-delay: 12s; }
+.hero-product-showcase-slide img { width: 88%; height: 88%; object-fit: contain; animation: home-showcase-zoom 6s var(--ease-premium-out) infinite both; will-change: transform; }
+.hero-product-showcase-slide:nth-child(2) img { animation-delay: 2s; }
+.hero-product-showcase-slide:nth-child(3) img { animation-delay: 4s; }
+.hero-product-showcase-slide:nth-child(4) img { animation-delay: 6s; }
 @keyframes home-showcase-slide {
   0%, 27% { transform: translateX(0); }
   33%, 60% { transform: translateX(-25%); }
@@ -133,7 +133,8 @@ body:has(.home-page) .footer-contact-banner { display: none; }
   .home-side-rail { position: fixed; z-index: 50; top: auto; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); width: auto; height: 60px; flex-direction: row; justify-content: center; padding: 8px 12px; border: 1px solid rgb(255 255 255 / .14); border-radius: 22px; box-shadow: 0 12px 30px rgb(10 31 68 / .32); }
   .home-side-rail::after { display: none; }
   .home-side-rail .home-rail-logo { width: 44px; height: 44px; flex: none; align-self: center; margin: 0 6px 0 0; padding: 0; }
-  .home-side-rail .home-rail-logo img { display: block; width: 38px; height: 38px; transform: translateY(-1px); }
+  /* The glyph sits low inside icon.svg: lift it so the "m" lines up with the icons. */
+  .home-side-rail .home-rail-logo img { display: block; width: 34px; height: 34px; transform: translateY(-3px); }
   .home-rail-actions { flex: none; flex-direction: row; gap: 4px; transform: none; }
   .home-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .home-category-card { aspect-ratio: 1.2; }
@@ -170,11 +171,11 @@ body:has(.home-page) .footer-contact-banner { display: none; }
   .home-contact::after { width: 230px; height: 230px; right: -112px; bottom: -118px; }
   .home-contact-ni { right: 19px; bottom: calc(37px + env(safe-area-inset-bottom, 0px)); font-size: 31px; }
   .hero-product-card { animation-duration: 420ms; }
-  .hero-product-showcase-track { animation-duration: 15s; }
-  .hero-product-showcase-slide img { animation-duration: 15s; }
-  .hero-product-showcase-slide:nth-child(2) img { animation-delay: 5s; }
-  .hero-product-showcase-slide:nth-child(3) img { animation-delay: 10s; }
-  .hero-product-showcase-slide:nth-child(4) img { animation-delay: 15s; }
+  .hero-product-showcase-track { animation-duration: 6s; }
+  .hero-product-showcase-slide img { animation-duration: 6s; }
+  .hero-product-showcase-slide:nth-child(2) img { animation-delay: 2s; }
+  .hero-product-showcase-slide:nth-child(3) img { animation-delay: 4s; }
+  .hero-product-showcase-slide:nth-child(4) img { animation-delay: 6s; }
 }
 @media (prefers-reduced-motion: reduce) {
   .home-page *, .home-page *::before, .home-page *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }

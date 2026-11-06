@@ -13,6 +13,7 @@ import { createReference } from "@/lib/reference";
 import { whatsappTextLink } from "@/lib/contact";
 import { BUSINESS } from "@/lib/site";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
+import { SelectMenu } from "@/components/ui/filter-select";
 
 const empty: ComplaintInput = {
   name: "",
@@ -156,23 +157,23 @@ export function ComplaintForm() {
           ) : null}
         </label>
       ))}
-      <label className="complaint-field">
-        <span>Motivo<abbr title="obligatorio" aria-hidden="true"> *</abbr></span>
-        <select
-          id="reclamo-reason"
-          required
+      <div className="complaint-field">
+        <span id="reclamo-reason-label">Motivo<abbr title="obligatorio" aria-hidden="true"> *</abbr></span>
+        <SelectMenu
           value={values.reason}
-          aria-invalid={errors.reason ? true : undefined}
-          aria-describedby={errors.reason ? "reclamo-reason-error" : undefined}
-          onChange={(e) => set("reason", e.target.value)}
-        >
-          <option value="">Seleccionar motivo</option>
-          {COMPLAINT_REASONS.map((r) => (
-            <option key={r} value={r}>{r}</option>
-          ))}
-        </select>
+          onValueChange={(value) => set("reason", value)}
+          placeholder="Seleccionar motivo"
+          options={COMPLAINT_REASONS.map((r) => ({ value: r, label: r }))}
+          className="complaint-select"
+          triggerProps={{
+            id: "reclamo-reason",
+            "aria-labelledby": "reclamo-reason-label",
+            "aria-invalid": errors.reason ? true : undefined,
+            "aria-describedby": errors.reason ? "reclamo-reason-error" : undefined,
+          }}
+        />
         {errors.reason && <small id="reclamo-reason-error" className="complaint-error">{errors.reason}</small>}
-      </label>
+      </div>
       <label className="complaint-field complaint-wide">
         <span>Descripción de lo ocurrido<abbr title="obligatorio" aria-hidden="true"> *</abbr></span>
         <textarea

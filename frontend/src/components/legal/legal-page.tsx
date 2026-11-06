@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { MessageCircle } from "lucide-react";
-import { BUSINESS, LEGAL_PAGES, LEGAL_UPDATED_AT, OG_BASE } from "@/lib/site";
+import { BUSINESS, LEGAL_PAGES, OG_BASE } from "@/lib/site";
 import { CONTACT_NUMBER_DISPLAY } from "@/lib/contact";
 import { ContactLink } from "@/components/contact-link";
 
@@ -13,13 +13,6 @@ export function legalMetadata(path: string, title: string, description: string):
     openGraph: { ...OG_BASE, title, description, url: path },
   };
 }
-
-const updated = new Intl.DateTimeFormat("es-NI", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  timeZone: "UTC",
-}).format(new Date(LEGAL_UPDATED_AT + "T12:00:00Z"));
 
 export function LegalPage({
   path,
@@ -41,7 +34,6 @@ export function LegalPage({
           <p className="commerce-kicker">{kicker}</p>
           <h1 className="legal-title">{title}</h1>
           <p className="legal-lead">{lead}</p>
-          <p className="legal-meta">Última actualización: {updated}</p>
         </div>
       </div>
       <div className="shell legal-layout">

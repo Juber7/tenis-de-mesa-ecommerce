@@ -1041,3 +1041,54 @@ a,
     font-size: 42px;
   }
 }
+
+/* ---------- Shared press animation (same motion as "VER CATÁLOGO") ----------
+   Hover lifts the button over its offset shadow; pressing pushes it into the
+   shadow. PressNavigation waits for the press (180 ms) before navigating. */
+.sport-button {
+  border: 2px solid #0a1f44;
+  box-shadow: 4px 4px 0 #0a1f44;
+}
+.sport-button,
+.footer-whatsapp,
+.legal-whatsapp,
+.consent-button,
+.cart-line-fix {
+  transition:
+    transform 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out),
+    background-color 180ms ease,
+    color 180ms ease;
+}
+.cart-line-fix { box-shadow: 3px 3px 0 #0a1f44; }
+@media (hover: hover) and (pointer: fine) {
+  .sport-button:hover,
+  .footer-whatsapp:hover,
+  .legal-whatsapp:hover,
+  .consent-button:hover,
+  .cart-line-fix:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #0a1f44;
+  }
+}
+.sport-button:active,
+.sport-button.is-pressing,
+.footer-whatsapp:active,
+.footer-whatsapp.is-pressing,
+.legal-whatsapp:active,
+.legal-whatsapp.is-pressing,
+.consent-button:active,
+.consent-button.is-pressing,
+.cart-line-fix:active,
+.cart-line-fix.is-pressing {
+  transform: translate(3px, 3px) scale(0.97);
+  box-shadow: 1px 1px 0 #0a1f44;
+}
+.poster-action.is-pressing {
+  transform: rotate(-4deg) translate(3px, 3px) scale(0.97);
+  box-shadow: 3px 3px 0 var(--poster-ink);
+}
+.sport-button:disabled { box-shadow: 2px 2px 0 #0a1f44; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .sport-button, .footer-whatsapp, .legal-whatsapp, .consent-button, .cart-line-fix { transition: none; }
+}
