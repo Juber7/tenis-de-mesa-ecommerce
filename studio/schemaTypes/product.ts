@@ -36,14 +36,16 @@ export const product = defineType({
     defineField({
       name: "price",
       title: "Precio (US$)",
-      description: "Precio normal en dólares. Ejemplo: 24.49",
+      description:
+        "Precio final en dólares, con impuestos incluidos. Ejemplo: 24.49. La tienda lo muestra en córdobas con el tipo de cambio oficial del BCN del día.",
       type: "number",
       validation: (rule) => rule.required().min(0).precision(2),
     }),
     defineField({
       name: "salePrice",
       title: "Precio de oferta (US$)",
-      description: "Opcional. Si se llena, el producto aparece en ofertas con este precio.",
+      description:
+        "Opcional, en dólares. Si se llena, el producto aparece en ofertas con este precio (convertido a córdobas en la tienda).",
       type: "number",
       validation: (rule) =>
         rule
@@ -100,7 +102,7 @@ export const product = defineType({
     prepare: ({ title, price, category, inStock, media }) => ({
       title,
       subtitle: [
-        typeof price === "number" ? `$${price.toFixed(2)}` : "Sin precio",
+        typeof price === "number" ? `US$ ${price.toFixed(2)}` : "Sin precio",
         productCategories.find((c) => c.value === category)?.title,
         inStock === false ? "Agotado" : null,
       ]

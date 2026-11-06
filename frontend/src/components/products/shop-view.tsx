@@ -92,6 +92,7 @@ export function ShopView({
           Limpiar filtros
         </Link>
       </div>
+      <h2 className="sr-only">Productos</h2>
       {products.length ? (
         <div
           key={`results-${JSON.stringify(s)}`}

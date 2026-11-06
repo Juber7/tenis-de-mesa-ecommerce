@@ -8,6 +8,8 @@ type Cart = {
   setQuantity: (id: string, q: number) => void;
   remove: (id: string) => void;
   clear: () => void;
+  /** Replaces stored product snapshots with data verified by the server. */
+  sync: (products: Product[]) => void;
 };
 export const useCart = create<Cart>()(
   persist(
@@ -55,9 +57,25 @@ export const useCart = create<Cart>()(
       remove: (id) =>
         set((s) => ({ items: s.items.filter((i) => i.product.id !== id) })),
       clear: () => set({ items: [] }),
+      sync: (products) =>
+        set((s) => {
+          let changed = false;
+          const items = s.items.map((i) => {
+            const fresh = products.find((p) => p.id === i.product.id);
+            if (!fresh || JSON.stringify(fresh) === JSON.stringify(i.product))
+              return i;
+            changed = true;
+            return {
+              product: fresh,
+              quantity: Math.min(i.quantity, fresh.maxQuantity),
+            };
+          });
+          return changed ? { items } : s;
+        }),
     }),
     {
-      name: "tenis-cart-usd-v4",
+      // v5: prices in córdobas; carts saved with dollar prices are discarded.
+      name: "tenis-cart-v5",
       version: 1,
       storage: createJSONStorage(() => localStorage),
       partialize: (s) => ({ items: s.items }),

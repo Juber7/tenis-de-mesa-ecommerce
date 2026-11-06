@@ -51,7 +51,7 @@ export function AddToCart({ product: p }: { product: Product }) {
         <Button asChild variant="direct" className="mt-3 w-full">
           <a href={directUrl} target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon className="h-5 w-5" />
-            Comprar directamente
+            Pedir directamente por WhatsApp
           </a>
         </Button>
       )}

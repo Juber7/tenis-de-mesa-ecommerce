@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usesSideRail as railRoute } from "@/lib/routes";
 import { usePathname } from "next/navigation";
 import { ShoppingBag, Menu, ArrowUpRight, MessageCircle } from "lucide-react";
 import { useCart } from "@/store/cart";
+import { useCartHydrated } from "@/store/use-cart-hydrated";
 import { CONTACT_NUMBER, contactLink } from "@/lib/contact";
 import { productCategories } from "@/lib/categories";
 import {
@@ -17,15 +19,14 @@ import {
 
 export function Header() {
   const pathname = usePathname();
-  const usesSideRail = ["/", "/tienda", "/carrito"].includes(pathname) || pathname.startsWith("/producto/");
+  const usesSideRail = railRoute(pathname);
   const items = useCart((s) => s.items);
-  const [ready, setReady] = useState(false);
+  const ready = useCartHydrated();
   const [open, setOpen] = useState(false);
-  const [whatsapp, setWhatsapp] = useState("https://wa.me/" + CONTACT_NUMBER);
+  const whatsapp = "https://wa.me/" + CONTACT_NUMBER;
   useEffect(() => {
+    // The cart store skips automatic hydration to avoid SSR mismatches.
     void useCart.persist.rehydrate();
-    setReady(true);
-    setWhatsapp(contactLink());
   }, []);
   const categoryLinks = [
     ...productCategories.map((category) => [

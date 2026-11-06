@@ -16,5 +16,8 @@ export type Product = {
   hasOptions: boolean;
   maxQuantity: number;
   onSale: boolean;
+  /** Exchange rate used to convert the dollar price to córdobas. */
+  fx?: ExchangeRate;
 };
+import type { ExchangeRate } from "@/lib/exchange-rate";
 export type CartItem = { product: Product; quantity: number };

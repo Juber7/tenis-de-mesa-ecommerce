@@ -11,3 +11,7 @@ studio/.sanity/
 .impeccable-engine-cache/
 .taste-skill/
 frontend/.taste-review/
+frontend/.open-next/
+frontend/.wrangler/
+frontend/.dev.vars*
+frontend/cloudflare-env.d.ts

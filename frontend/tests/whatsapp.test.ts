@@ -33,7 +33,7 @@ test("rechaza carrito vacío, cantidades inválidas, moneda mixta y teléfono in
   assert.throws(() =>
     cartTotal([
       items[0],
-      { product: { ...testProducts[1], currency: "NIO" }, quantity: 1 },
+      { product: { ...testProducts[1], currency: "USD" }, quantity: 1 },
     ]),
   );
   assert.throws(() => whatsappLink(items, "+502 invalid"));

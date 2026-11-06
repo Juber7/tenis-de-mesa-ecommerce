@@ -2,6 +2,7 @@ import { z } from "zod";
 import type { Product } from "@/types/product";
 import { productCategories } from "./categories";
 import { filterProducts } from "./product-filters";
+import { getExchangeRate, usdCentsToNio, type ExchangeRate } from "./exchange-rate";
 
 const apiVersion = "2025-02-19";
 const productsQuery = `*[_type == "product" && defined(slug.current) && defined(price)] | order(_createdAt desc, name asc) {
@@ -23,17 +24,21 @@ const schema = z.object({
     .array(z.object({ url: z.string().url(), alt: z.string().nullish() }))
     .nullish(),
 });
-// Prices are edited in dollars and stored in cents to keep totals exact.
+// Prices are edited in US dollars (taxes included) and shown in córdobas at the
+// BCN rate of the day. Amounts are integers (cents, centavos) so totals are exact.
 const toMinor = (value: number) => {
   const minor = Math.round(value * 100);
   if (!Number.isSafeInteger(minor)) throw new Error("Precio inválido en Sanity.");
   return minor;
 };
-export function normalizeProduct(raw: unknown): Product {
+export function normalizeProduct(raw: unknown, fx: ExchangeRate): Product {
   const p = schema.parse(raw);
-  const regularPrice = toMinor(p.price);
-  const salePrice = p.salePrice == null ? null : toMinor(p.salePrice);
-  const onSale = salePrice !== null && salePrice < regularPrice;
+  const usdRegular = toMinor(p.price);
+  const usdSale = p.salePrice == null ? null : toMinor(p.salePrice);
+  // Compare in dollars so rounding to centavos never hides or creates an offer.
+  const onSale = usdSale !== null && usdSale < usdRegular;
+  const regularPrice = usdCentsToNio(usdRegular, fx.rate);
+  const salePrice = usdSale === null ? null : usdCentsToNio(usdSale, fx.rate);
   const category = productCategories.find((c) => c.value === p.category);
   const gallery = (p.images ?? []).map((image) => ({
     src: image.url + "?w=1200&fit=max&auto=format",
@@ -48,10 +53,11 @@ export function normalizeProduct(raw: unknown): Product {
     image: gallery[0]?.src ?? "",
     imageAlt: gallery[0]?.alt ?? p.name,
     gallery,
-    price: onSale ? salePrice : regularPrice,
+    price: onSale && salePrice !== null ? salePrice : regularPrice,
     regularPrice,
-    currency: "USD",
+    currency: "NIO",
     minorUnit: 2,
+    fx,
     categories: category ? [{ name: category.label, slug: category.value }] : [],
     inStock: p.inStock ?? true,
     purchasable: true,
@@ -71,15 +77,18 @@ async function fetchCatalog(fresh: boolean): Promise<Product[]> {
   );
   url.searchParams.set("query", productsQuery);
   url.searchParams.set("perspective", "published");
-  const response = await fetch(url, {
-    signal: AbortSignal.timeout(12000),
-    ...(fresh ? { cache: "no-store" as const } : { next: { revalidate: 60 } }),
-  });
+  const [response, fx] = await Promise.all([
+    fetch(url, {
+      signal: AbortSignal.timeout(12000),
+      ...(fresh ? { cache: "no-store" as const } : { next: { revalidate: 60 } }),
+    }),
+    getExchangeRate(),
+  ]);
   if (!response.ok) throw new Error(`Sanity respondió HTTP ${response.status}`);
   const body = (await response.json()) as { result?: unknown };
   if (!Array.isArray(body.result))
     throw new Error("Sanity no devolvió una lista de productos.");
-  return body.result.map(normalizeProduct);
+  return body.result.map((raw) => normalizeProduct(raw, fx));
 }
 export async function fetchProducts(
   query: Record<string, string> = {},

@@ -8,7 +8,16 @@ export function ProductGallery({ images }: { images: Product["gallery"] }) {
   return (
     <div className="product-gallery-group">
       <div className="product-gallery">
-        <img className="h-full w-full object-contain" src={current.src} alt={current.alt} />
+        <img
+          className="h-full w-full object-contain"
+          src={current.src}
+          srcSet={[600, 900, 1200].map((w) => `${current.src.replace("w=1200", `w=${w}`)} ${w}w`).join(", ")}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          alt={current.alt}
+          width={1200}
+          height={1200}
+          fetchPriority="high"
+        />
       </div>
       {images.length > 1 && (
         <div className="product-thumbs">
@@ -21,7 +30,7 @@ export function ProductGallery({ images }: { images: Product["gallery"] }) {
               aria-current={index === active ? "true" : undefined}
               onClick={() => setActive(index)}
             >
-              <img src={image.thumb} alt="" />
+              <img src={image.thumb} alt="" width={200} height={200} loading="lazy" decoding="async" />
             </button>
           ))}
         </div>

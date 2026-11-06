@@ -10,9 +10,14 @@ export function ProductCard({ product: p }: { product: Product }) {
       >
         {p.image ? (
           <img
-            src={p.image}
+            src={p.image.replace("w=1200", "w=600")}
+            srcSet={`${p.image.replace("w=1200", "w=400")} 400w, ${p.image.replace("w=1200", "w=600")} 600w, ${p.image.replace("w=1200", "w=900")} 900w`}
+            sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
             alt={p.imageAlt}
+            width={600}
+            height={450}
             loading="lazy"
+            decoding="async"
             className="h-full w-full object-contain transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
           />
         ) : (
