@@ -6,9 +6,7 @@
 export const COMPLAINT_REASONS = [
   "Producto con defecto (garantía)",
   "Producto distinto al ofrecido",
-  "Retracto de la compra",
   "Entrega: retraso, daño o pérdida",
-  "Precio o cobro",
   "Atención recibida",
   "Otro",
 ] as const;
