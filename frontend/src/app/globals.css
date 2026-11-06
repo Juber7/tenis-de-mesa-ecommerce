@@ -251,14 +251,7 @@ body {
   min-height: 580px;
 }
 .logo-mark {
-  font-size: 44px;
-  font-weight: 800;
-  letter-spacing: -5px;
-  line-height: 1;
-}
-.logo-mark span {
-  color: #a9cfff;
-  margin-left: 4px;
+  display: block;
 }
 .filter-options {
   transform-origin: var(--radix-select-content-transform-origin);

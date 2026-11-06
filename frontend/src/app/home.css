@@ -22,8 +22,6 @@ body:has(.home-page) .announcement-bar svg { display: none; }
 body:has(.home-page) .nicaragua-stripe { display: block; }
 body:has(.home-page) .shop-header { background: var(--poster-paper); color: var(--poster-ink); }
 body:has(.home-page) .shop-header-inner { min-height: 88px; gap: 22px; }
-body:has(.home-page) .logo-mark { font: 30px/.9 var(--font-anton), Impact, sans-serif; letter-spacing: -.05em; }
-body:has(.home-page) .logo-mark span { color: var(--poster-accent); margin-left: 1px; }
 .brand-name { max-width: 60px; font: 700 11px/1.1 var(--font-barlow), sans-serif; letter-spacing: .09em; }
 body:has(.home-page) .nav-link { padding: 12px 10px; color: var(--poster-ink); font: 700 13px/1 var(--font-barlow), sans-serif; text-transform: uppercase; letter-spacing: .03em; }
 body:has(.home-page) .nav-link:hover { background: var(--poster-cards); color: var(--poster-ink); }
@@ -133,8 +131,7 @@ body:has(.home-page) .footer-contact-banner { display: none; }
   .home-side-rail { position: fixed; z-index: 50; top: auto; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); width: auto; height: 60px; flex-direction: row; justify-content: center; padding: 8px 12px; border: 1px solid rgb(255 255 255 / .14); border-radius: 22px; box-shadow: 0 12px 30px rgb(10 31 68 / .32); }
   .home-side-rail::after { display: none; }
   .home-side-rail .home-rail-logo { width: 44px; height: 44px; flex: none; align-self: center; margin: 0 6px 0 0; padding: 0; }
-  /* The glyph sits low inside icon.svg: lift it so the "m" lines up with the icons. */
-  .home-side-rail .home-rail-logo img { display: block; width: 34px; height: 34px; transform: translateY(-3px); }
+  .home-side-rail .home-rail-logo img { display: block; width: 34px; height: 34px; }
   .home-rail-actions { flex: none; flex-direction: row; gap: 4px; transform: none; }
   .home-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .home-category-card { aspect-ratio: 1.2; }
