@@ -43,7 +43,7 @@
 .legal-callout > :last-child { margin-bottom: 0; }
 .legal-callout-strong { background: var(--commerce-card); }
 .legal-pending { display: inline; padding: 1px 6px; border-radius: 6px; background: #fff4d6; color: #5c3d00; font-weight: 600; }
-.legal-aside { position: sticky; top: 24px; padding: 20px; border: 2px solid var(--commerce-ink); border-radius: 24px; background: var(--commerce-card); box-shadow: 6px 6px 0 var(--commerce-ink); color: var(--commerce-ink); }
+.legal-aside { position: sticky; top: 24px; padding: 20px; border: 2px solid var(--commerce-ink); border-radius: 24px; background: white; box-shadow: 6px 6px 0 var(--commerce-ink); color: var(--commerce-ink); }
 .legal-aside h2 { font: 400 22px/1 var(--font-anton), Impact, sans-serif; text-transform: uppercase; }
 .legal-aside nav { display: grid; margin-top: 12px; }
 .legal-aside a { display: flex; min-height: 40px; align-items: center; border-bottom: 1px solid rgb(10 31 68 / .18); font: 600 16px/1.2 var(--font-barlow), sans-serif; }
@@ -117,7 +117,12 @@ html[data-consent="pending"] .consent-banner[data-ssr] { display: block; }
 /* ---------- Complaint form ---------- */
 .complaint-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 14px; }
 .complaint-wide { grid-column: 1 / -1; }
-.complaint-field { display: grid; gap: 6px; min-width: 0; }
+/* align-content: start keeps every input the same height when a neighbouring
+   field in the row has a hint or error below it. */
+.complaint-field { display: grid; align-content: start; gap: 6px; min-width: 0; }
+.complaint-field .complaint-select { min-height: 46px; padding: 10px 12px; border: 2px solid var(--commerce-ink); border-radius: 12px; background: white; color: var(--commerce-ink); font: 400 16px/1.4 var(--font-inter), Arial, sans-serif; }
+.complaint-field .complaint-select[data-placeholder] { color: rgb(10 31 68 / .6); }
+.complaint-field .complaint-select:focus-visible { outline: 3px solid var(--commerce-accent); outline-offset: 2px; box-shadow: none; }
 .complaint-field > span { font: 700 15px/1.2 var(--font-barlow), sans-serif; letter-spacing: .03em; text-transform: uppercase; }
 .complaint-field abbr { color: var(--commerce-accent); text-decoration: none; }
 .complaint-field input, .complaint-field select, .complaint-field textarea { width: 100%; min-height: 46px; padding: 10px 12px; border: 2px solid var(--commerce-ink); border-radius: 12px; background: white; color: var(--commerce-ink); font: 400 16px/1.4 var(--font-inter), Arial, sans-serif; }

@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { LegalPage, legalMetadata, MerchantContact, Pending } from "@/components/legal/legal-page";
-import { DIPRODEC_URL } from "@/lib/site";
+import { LegalPage, legalMetadata } from "@/components/legal/legal-page";
 
 const path = "/legal/terminos";
 export const metadata = legalMetadata(
@@ -16,21 +15,7 @@ export default function TermsPage() {
       title="Términos y condiciones"
       lead="Cómo funciona la tienda, cómo se tramita un pedido y en qué momento se considera confirmada una compra."
     >
-      <div className="legal-callout legal-callout-strong">
-        <p>
-          <strong>En resumen:</strong> el sitio funciona como catálogo. El
-          mensaje que se envía por WhatsApp desde el carrito es una{" "}
-          <strong>solicitud de pedido</strong>. La compra queda confirmada
-          cuando, en ese mismo chat, se confirman la disponibilidad, el precio
-          final, la entrega y la forma de pago, y el cliente acepta esas
-          condiciones.
-        </p>
-      </div>
-
-      <h2 id="comercio">1. Identificación del comercio</h2>
-      <MerchantContact />
-
-      <h2 id="uso">2. Uso del sitio</h2>
+      <h2 id="uso">1. Uso del sitio</h2>
       <p>
         El catálogo se consulta sin registro: no existen cuentas de usuario ni
         formularios de pago. El uso del sitio implica la aceptación de estos
@@ -44,7 +29,7 @@ export default function TermsPage() {
         pedidos.
       </p>
 
-      <h2 id="productos">3. Información de los productos</h2>
+      <h2 id="productos">2. Información de los productos</h2>
       <p>
         Cada ficha muestra nombre, fotografías, descripción, categoría, precio
         y disponibilidad. Los colores pueden variar ligeramente según la
@@ -57,7 +42,7 @@ export default function TermsPage() {
         cualquier desgaste o detalle visible.
       </p>
 
-      <h2 id="precios">4. Precios y moneda</h2>
+      <h2 id="precios">3. Precios y moneda</h2>
       <ul>
         <li>
           Los precios se publican en <strong>córdobas (C$)</strong>. Cada
@@ -70,14 +55,6 @@ export default function TermsPage() {
           precio en córdobas puede variar de un día a otro si cambia el tipo
           de cambio oficial. El tipo de cambio aplicado se muestra en la ficha
           del producto, en el carrito y en el mensaje del pedido.
-        </li>
-        <li>
-          Los precios publicados son finales e incluyen los impuestos
-          aplicables.
-        </li>
-        <li>
-          El precio que se confirma por WhatsApp es el publicado en el momento
-          de enviar el pedido, aunque la confirmación se haga otro día.
         </li>
         <li>
           Si se acuerda el pago en dólares, se usa el mismo tipo de cambio del
@@ -94,7 +71,7 @@ export default function TermsPage() {
         </li>
       </ul>
 
-      <h2 id="disponibilidad">5. Disponibilidad e inventario</h2>
+      <h2 id="disponibilidad">4. Disponibilidad e inventario</h2>
       <p>
         La etiqueta «Disponible» indica que el producto tiene existencias según
         el inventario de la tienda. Agregar un producto al carrito no lo
@@ -103,7 +80,7 @@ export default function TermsPage() {
         monto, se devuelve de inmediato.
       </p>
 
-      <h2 id="pedidos">6. Procedimiento de pedido</h2>
+      <h2 id="pedidos">5. Procedimiento de pedido</h2>
       <ol>
         <li>Se agregan los productos al carrito. El carrito se guarda solo en el dispositivo del cliente.</li>
         <li>Al abrir el carrito, el sistema verifica los precios y la disponibilidad con el catálogo vigente.</li>
@@ -121,7 +98,7 @@ export default function TermsPage() {
         <li>Cuando el cliente acepta expresamente esas condiciones, la compra queda confirmada.</li>
       </ol>
 
-      <h2 id="confirmacion">7. Confirmación de la compra</h2>
+      <h2 id="confirmacion">6. Confirmación de la compra</h2>
       <p>
         El mensaje enviado desde el sitio es una solicitud de compra. La
         compraventa se perfecciona cuando ambas partes están de acuerdo sobre
@@ -141,39 +118,20 @@ export default function TermsPage() {
         ese caso se explica el motivo en el chat.
       </p>
 
-      <h2 id="pagos">8. Medios de pago</h2>
+      <h2 id="pagos">7. Medios de pago</h2>
       <p>
         El sitio no procesa pagos ni solicita datos bancarios: la forma de pago
-        se acuerda por WhatsApp. Medios aceptados:{" "}
-        <Pending>pendiente de confirmar por el comerciante (por ejemplo, efectivo contra entrega o transferencia)</Pending>.
-      </p>
-      <p>
-        <strong>Seguridad:</strong> nunca se solicita por WhatsApp ni por el
-        sitio el número completo de una tarjeta, su código de seguridad,
-        contraseñas ni códigos de verificación. Cualquier solicitud de ese
-        tipo hecha en nombre de la tienda debe ignorarse y reportarse.
-      </p>
-      <p>
-        Con cada compra se entrega la factura o el comprobante, que también se
-        usa para hacer valer la garantía.
+        se acuerda por WhatsApp. Se aceptan <strong>transferencias bancarias</strong>{" "}
+        y <strong>efectivo</strong>.
       </p>
 
-      <h2 id="entregas">9. Entregas</h2>
+      <h2 id="entregas">8. Entregas</h2>
       <p>
         Las opciones de entrega, sus condiciones y sus costos se describen en
-        la <Link href="/legal/envios">política de envíos</Link>. El producto
-        viaja bajo responsabilidad de la tienda hasta que el cliente lo recibe.
+        la <Link href="/legal/envios">política de envíos</Link>.
       </p>
 
-      <h2 id="retracto">10. Derecho de retracto</h2>
-      <p>
-        Conforme a la Ley 842, las compras a distancia pueden dejarse sin
-        efecto dentro de los <strong>5 días hábiles</strong> siguientes a la
-        recepción del producto. El procedimiento se explica en{" "}
-        <Link href="/legal/cambios-y-devoluciones#retracto">cambios y devoluciones</Link>.
-      </p>
-
-      <h2 id="garantias">11. Cambios, devoluciones y garantía</h2>
+      <h2 id="garantias">9. Cambios, devoluciones y garantía</h2>
       <p>
         Los productos con defectos de fábrica se cambian o se reembolsan según
         la <Link href="/legal/garantia">política de garantía</Link>. Los demás
@@ -183,7 +141,7 @@ export default function TermsPage() {
         las personas consumidoras.
       </p>
 
-      <h2 id="responsabilidades">12. Responsabilidades</h2>
+      <h2 id="responsabilidades">10. Responsabilidades</h2>
       <h3>Del comercio</h3>
       <ul>
         <li>Informar con veracidad las características, el precio y la disponibilidad de los productos.</li>
@@ -200,7 +158,7 @@ export default function TermsPage() {
         <li>Usar los productos según su naturaleza y las instrucciones del fabricante.</li>
       </ul>
 
-      <h2 id="limitaciones">13. Alcance de la responsabilidad</h2>
+      <h2 id="limitaciones">11. Alcance de la responsabilidad</h2>
       <p>
         Estos términos no excluyen ni limitan la responsabilidad que la ley
         atribuye al comercio frente a las personas consumidoras. El sitio puede
@@ -210,7 +168,7 @@ export default function TermsPage() {
         servicios de terceros con sus propias condiciones.
       </p>
 
-      <h2 id="propiedad">14. Propiedad intelectual</h2>
+      <h2 id="propiedad">12. Propiedad intelectual</h2>
       <p>
         El diseño, los textos y las imágenes propias del sitio pertenecen a
         «Tenis de Mesa». Las marcas de los productos pertenecen a sus
@@ -218,40 +176,25 @@ export default function TermsPage() {
         venta.
       </p>
 
-      <h2 id="datos">15. Protección de datos</h2>
+      <h2 id="datos">13. Protección de datos</h2>
       <p>
         El tratamiento de datos personales se describe en la{" "}
         <Link href="/legal/privacidad">política de privacidad</Link>.
       </p>
 
-      <h2 id="reclamos">16. Atención y reclamos</h2>
+      <h2 id="reclamos">14. Atención y reclamos</h2>
       <p>
         Las consultas y reclamos se reciben por WhatsApp o mediante el{" "}
         <Link href="/legal/reclamos">formulario de reclamos</Link>, que genera
         un comprobante con número y fecha. Cada reclamo se responde en un plazo
-        máximo de <strong>10 días hábiles</strong>.
-      </p>
-      <p>
-        Si la respuesta no resulta satisfactoria, el reclamo puede presentarse
-        ante la Dirección de Protección de los Derechos de las Personas
-        Consumidoras y Usuarias (DIPRODEC) del MIFIC. Información en{" "}
-        <a href={DIPRODEC_URL} target="_blank" rel="noopener noreferrer">el sitio del MIFIC</a>.
+        máximo de <strong>3 días hábiles</strong>.
       </p>
 
-      <h2 id="ley">17. Legislación aplicable</h2>
+      <h2 id="cambios">15. Modificaciones</h2>
       <p>
-        Estos términos se rigen por las leyes de Nicaragua. Las controversias
-        se resuelven por acuerdo directo, ante la DIPRODEC o ante los
-        tribunales competentes. No se exige someter ninguna controversia a
-        arbitraje.
-      </p>
-
-      <h2 id="cambios">18. Modificaciones</h2>
-      <p>
-        Estos términos pueden actualizarse; la fecha de la última versión
-        aparece al inicio de la página. Los cambios se aplican a los pedidos
-        enviados después de su publicación. Un pedido ya confirmado conserva
-        las condiciones vigentes al momento de su confirmación.
+        Estos términos pueden actualizarse. Los cambios se aplican a los
+        pedidos enviados después de su publicación. Un pedido ya confirmado
+        conserva las condiciones vigentes al momento de su confirmación.
       </p>
     </LegalPage>
   );

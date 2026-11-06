@@ -16,19 +16,12 @@ export default function CookiesPage() {
       title="Política de cookies"
       lead="Qué tecnologías de almacenamiento usa la tienda, para qué sirven y cómo se aceptan, rechazan o modifican las preferencias."
     >
-      <div className="legal-callout legal-callout-strong">
-        <p>
-          <strong>En resumen:</strong> la tienda solo usa almacenamiento
-          técnico necesario para el carrito y para recordar la decisión sobre
-          cookies. No se usan cookies analíticas, publicitarias ni de redes
-          sociales.
-        </p>
-        <p>
-          <ConsentPreferencesButton className="consent-button consent-button-quiet">
-            Configurar preferencias
-          </ConsentPreferencesButton>
-        </p>
-      </div>
+      <p>
+        <ConsentPreferencesButton className="consent-button consent-button-quiet">
+          Configurar preferencias
+        </ConsentPreferencesButton>
+      </p>
+
 
       <h2 id="que-son">1. Qué son las cookies</h2>
       <p>

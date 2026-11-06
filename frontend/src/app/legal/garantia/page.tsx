@@ -15,15 +15,6 @@ export default function WarrantyPage() {
       title="Garantía"
       lead="Qué cubre la garantía, qué solución se aplica y cómo se tramita."
     >
-      <div className="legal-callout legal-callout-strong">
-        <p>
-          <strong>En resumen:</strong> garantía de un mes (accesorios y
-          seminuevos sin garantía comercial). Ante un defecto de fábrica, el artículo
-          se cambia por otro igual. Si no hay existencias, el cliente devuelve
-          el artículo y se le reembolsa lo pagado. El trámite no tiene costo,
-          transporte incluido.
-        </p>
-      </div>
 
       <h2 id="cobertura">1. Qué cubre</h2>
       <p>

@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { LegalPage, legalMetadata, Pending } from "@/components/legal/legal-page";
+import { LegalPage, legalMetadata } from "@/components/legal/legal-page";
 import { whatsappTextLink } from "@/lib/contact";
-import { DIPRODEC_URL } from "@/lib/site";
 
 const path = "/legal/cambios-y-devoluciones";
 export const metadata = legalMetadata(
@@ -99,21 +98,8 @@ export default function ReturnsPage() {
       <h2 id="reembolsos">8. Reembolsos</h2>
       <ul>
         <li>El reembolso se hace por el mismo medio de pago, salvo que se acuerde otro.</li>
-        <li>Si el pago fue en efectivo, no se obliga a aceptar notas de crédito ni crédito en tienda.</li>
-        <li>
-          Plazo y forma del reembolso:{" "}
-          <Pending>pendiente de confirmar por el comerciante</Pending>
-        </li>
+        <li>El plazo y la forma del reembolso se acuerdan con el comerciante.</li>
       </ul>
-
-      <h2 id="inconformidad">9. Si la solución no resulta satisfactoria</h2>
-      <p>
-        Las solicitudes se responden en un máximo de <strong>10 días
-        hábiles</strong>. Si la respuesta no resulta satisfactoria, existe un
-        plazo de 30 días hábiles para acudir a la DIPRODEC del MIFIC.
-        Información en{" "}
-        <a href={DIPRODEC_URL} target="_blank" rel="noopener noreferrer">el sitio del MIFIC</a>.
-      </p>
     </LegalPage>
   );
 }
