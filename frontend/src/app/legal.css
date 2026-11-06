@@ -8,6 +8,8 @@
 .footer-legal-links a, .footer-legal-links button { display: inline-flex; min-height: 44px; align-items: center; color: white; font: 600 15px/1.2 var(--font-barlow), sans-serif; letter-spacing: .03em; text-decoration: underline; text-decoration-color: rgb(255 255 255 / .35); text-underline-offset: 4px; }
 .footer-legal-links a:hover, .footer-legal-links button:hover { text-decoration-color: var(--commerce-card); color: var(--commerce-card); }
 .footer-legal-owner { color: rgb(255 255 255 / .78); font: 500 14px/1.4 var(--font-barlow), sans-serif; }
+.footer-legal-owner a { color: white; text-decoration: underline; text-decoration-color: rgb(255 255 255 / .35); text-underline-offset: 3px; }
+.footer-legal-owner a:hover { color: var(--commerce-card); text-decoration-color: var(--commerce-card); }
 @media (min-width: 1024px) {
   body:has(.home-side-rail) .site-footer { padding-left: 64px; }
 }

@@ -61,7 +61,10 @@ export function Footer() {
           <p className="footer-legal-owner">
             © {new Date().getFullYear()} {BUSINESS.storeName} · {BUSINESS.ownerName} ·{" "}
             {BUSINESS.city}, {BUSINESS.country}
-            {BUSINESS.ruc ? ` · RUC ${BUSINESS.ruc}` : ""}
+            {BUSINESS.ruc ? ` · RUC ${BUSINESS.ruc}` : ""} · Desarrollado por{" "}
+            <a href="https://juber-sanchez.pages.dev/" target="_blank" rel="noopener">
+              Juber Sánchez
+            </a>
           </p>
         </div>
       </div>
