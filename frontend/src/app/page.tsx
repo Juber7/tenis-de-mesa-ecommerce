@@ -1,12 +1,37 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/hero";
 import { CategoryArt } from "@/components/products/category-art";
+import { ContactLink } from "@/components/contact-link";
+import { JsonLd } from "@/components/json-ld";
 import { productCategories } from "@/lib/categories";
-import { contactLink } from "@/lib/contact";
+import { CONTACT_NUMBER } from "@/lib/contact";
+import { absoluteUrl, BUSINESS } from "@/lib/site";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
+
+const storeLd = {
+  "@context": "https://schema.org",
+  "@type": "Store",
+  name: BUSINESS.storeName,
+  url: absoluteUrl("/"),
+  logo: absoluteUrl("/social-preview.png"),
+  image: absoluteUrl("/social-preview.png"),
+  telephone: `+${CONTACT_NUMBER}`,
+  currenciesAccepted: "USD",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: BUSINESS.city,
+    addressCountry: "NI",
+    ...(BUSINESS.address ? { streetAddress: BUSINESS.address } : {}),
+  },
+  sameAs: BUSINESS.social.map((s) => s.href),
+};
 
 export default function Home() {
   return (
     <div className="home-page">
+      <JsonLd data={storeLd} />
       <Hero />
       <section id="categorias" className="home-categories shell" aria-labelledby="categories-title">
         <div className="home-section-heading">
@@ -32,9 +57,9 @@ export default function Home() {
             <p className="home-contact-kicker">JUGUEMOS EN EQUIPO</p>
             <h2 id="contact-title">¿NO PUEDES<br />DECIDIRTE?</h2>
           </div>
-          <a className="poster-action" href={contactLink()} target="_blank" rel="noopener noreferrer">
+          <ContactLink className="poster-action">
             CONTÁCTATE CONMIGO <span aria-hidden="true">→</span>
-          </a>
+          </ContactLink>
         </div>
         <span className="home-contact-ni" aria-hidden="true">NI</span>
       </section>

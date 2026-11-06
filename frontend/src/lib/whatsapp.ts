@@ -19,24 +19,38 @@ export function cartTotal(items: CartItem[]): number {
     throw new Error("El total excede el límite permitido.");
   return total;
 }
-export function whatsappMessage(items: CartItem[]): string {
+export function whatsappMessage(items: CartItem[], reference?: string): string {
   const total = cartTotal(items);
   const lines = items.map(({ product: p, quantity }) => {
-    const image = new URL(p.image);
-    if (!["https:", "http:"].includes(image.protocol))
-      throw new Error("La imagen debe tener una URL pública HTTP(S).");
-    return `${p.name.replace(/[\r\n]+/g, " ")}\nPrecio unitario: ${money(p.price, p.currency, p.minorUnit)}\nCantidad: ${quantity}\nImagen: ${image.href}`;
+    const fields = [
+      p.name.replace(/[\r\n]+/g, " "),
+      `Precio unitario: ${money(p.price, p.currency, p.minorUnit)}`,
+      `Cantidad: ${quantity}`,
+    ];
+    // Products without a photo are still orderable; the image line is omitted.
+    if (p.image) {
+      const image = new URL(p.image);
+      if (!["https:", "http:"].includes(image.protocol))
+        throw new Error("La imagen debe tener una URL pública HTTP(S).");
+      fields.push(`Imagen: ${image.href}`);
+    }
+    return fields.join("\n");
   });
   return [
     "¡Hola Leandro! Quisiera realizar el siguiente pedido desde la página web:",
+    ...(reference ? [`Referencia del pedido: ${reference}`] : []),
     ...lines,
     `Total Calculado: ${money(total, items[0].product.currency, items[0].product.minorUnit)}`,
   ].join("\n\n");
 }
-export function whatsappLink(items: CartItem[], phone: string): string {
+export function whatsappLink(
+  items: CartItem[],
+  phone: string,
+  reference?: string,
+): string {
   if (!/^[1-9]\d{7,14}$/.test(phone))
     throw new Error(
       "Configura el número de WhatsApp con código de país y solo dígitos.",
     );
-  return `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMessage(items))}`;
+  return `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMessage(items, reference))}`;
 }

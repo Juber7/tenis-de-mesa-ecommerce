@@ -1,23 +1,11 @@
+import Link from "next/link";
 import { Facebook, Instagram, MessageCircle, Music2 } from "lucide-react";
-import { CONTACT_NUMBER, contactLink } from "@/lib/contact";
+import { CONTACT_NUMBER_DISPLAY } from "@/lib/contact";
+import { BUSINESS, LEGAL_PAGES } from "@/lib/site";
+import { ContactLink } from "@/components/contact-link";
+import { ConsentPreferencesButton } from "@/components/consent/consent-preferences-button";
 
-const socialLinks = [
-  {
-    href: "https://www.instagram.com/leonardo_paiz27/",
-    label: "Instagram",
-    Icon: Instagram,
-  },
-  {
-    href: "https://www.tiktok.com/@leopaiz27?is_from_webapp=1&sender_device=pc",
-    label: "TikTok",
-    Icon: Music2,
-  },
-  {
-    href: "https://www.facebook.com/alfredo.paizarana",
-    label: "Facebook",
-    Icon: Facebook,
-  },
-];
+const icons = { Instagram, TikTok: Music2, Facebook } as const;
 
 export function Footer() {
   return (
@@ -30,36 +18,52 @@ export function Footer() {
             <p>Escríbenos para elegir tu equipo o resolver cualquier consulta.</p>
           </div>
 
-          <a
-            href={contactLink()}
-            className="footer-whatsapp"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <ContactLink className="footer-whatsapp">
             <MessageCircle aria-hidden="true" size={20} strokeWidth={2.5} />
             <span>
               <small>WHATSAPP</small>
-              +{CONTACT_NUMBER.slice(0, 3)} {CONTACT_NUMBER.slice(3, 7)} {CONTACT_NUMBER.slice(7)}
+              {CONTACT_NUMBER_DISPLAY}
             </span>
-          </a>
+          </ContactLink>
 
           <nav className="footer-socials" aria-label="Redes sociales">
-            {socialLinks.map(({ href, label, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={"Visitar " + label}
-                title={label}
-              >
-                <Icon aria-hidden="true" size={20} strokeWidth={2.25} />
-              </a>
-            ))}
+            {BUSINESS.social.map(({ href, label }) => {
+              const Icon = icons[label];
+              return (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={"Visitar " + label}
+                  title={label}
+                >
+                  <Icon aria-hidden="true" size={20} strokeWidth={2.25} />
+                </a>
+              );
+            })}
           </nav>
         </div>
 
         <span className="footer-ni" aria-hidden="true">NI</span>
+      </div>
+      <div className="footer-legal">
+        <div className="shell footer-legal-inner">
+          <nav aria-label="Información legal" className="footer-legal-links">
+            <Link href="/contacto">Contacto</Link>
+            {LEGAL_PAGES.map((page) => (
+              <Link key={page.href} href={page.href}>
+                {page.label}
+              </Link>
+            ))}
+            <ConsentPreferencesButton />
+          </nav>
+          <p className="footer-legal-owner">
+            © {new Date().getFullYear()} {BUSINESS.storeName} · {BUSINESS.ownerName} ·{" "}
+            {BUSINESS.city}, {BUSINESS.country}
+            {BUSINESS.ruc ? ` · RUC ${BUSINESS.ruc}` : ""}
+          </p>
+        </div>
       </div>
     </footer>
   );

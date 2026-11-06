@@ -1,0 +1,47 @@
+// Cloudflare Workers configuration (OpenNext adapter). Nothing is deployed
+// until someone runs `npm run cf:deploy` with access to the Cloudflare account.
+// Steps before the first deploy: see DEPLOY-CLOUDFLARE.md.
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "tenis-de-mesa",
+	"compatibility_date": "2026-11-01",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			// Self-reference binding; the service must match "name" above.
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "tenis-de-mesa"
+		}
+	],
+	"kv_namespaces": [
+		{
+			// Incremental cache (ISR): catalog and product pages refresh every
+			// minute. Create it with `npx wrangler kv namespace create NEXT_INC_CACHE_KV`
+			// and paste the returned id here.
+			"binding": "NEXT_INC_CACHE_KV",
+			"id": "REEMPLAZAR_CON_EL_ID_DEL_NAMESPACE_KV"
+		}
+	],
+	"images": {
+		// Optimizes the local category images served through next/image.
+		"binding": "IMAGES"
+	},
+	// Public, non-secret values used at runtime. The same values must be set as
+	// build variables in Workers Builds (Settings → Build → Variables).
+	"vars": {
+		"SANITY_PROJECT_ID": "3609i2j4",
+		"SANITY_DATASET": "production",
+		"NEXT_PUBLIC_SITE_URL": "https://tenisdemesani.com"
+	},
+	// Once the custom domain is active, set "workers_dev" and "preview_urls"
+	// to false so the store is only reachable at its own domain, and add:
+	// "routes": [{ "pattern": "tenisdemesani.com", "custom_domain": true }]
+	"workers_dev": true,
+	"preview_urls": false,
+	"observability": { "enabled": true }
+}

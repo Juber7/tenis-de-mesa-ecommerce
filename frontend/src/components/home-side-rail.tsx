@@ -3,10 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { House, LayoutGrid, ShoppingBag, ShoppingCart } from "lucide-react";
+import { usesSideRail } from "@/lib/routes";
 
 export function HomeSideRail() {
   const pathname = usePathname();
-  if (!(["/", "/tienda", "/carrito"].includes(pathname) || pathname.startsWith("/producto/"))) return null;
+  if (!usesSideRail(pathname)) return null;
 
   return (
     <aside className="home-side-rail" aria-label="Accesos rápidos">
