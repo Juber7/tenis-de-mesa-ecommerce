@@ -6,11 +6,11 @@ const path = "/legal/privacidad";
 export const metadata = legalMetadata(
   path,
   "Política de privacidad",
-  "Qué datos personales tratamos, para qué, con quién los compartimos y cómo ejercer tus derechos según la Ley 787 de Nicaragua.",
+  "Qué datos personales se tratan, para qué, con quién se comparten y cómo se ejercen los derechos sobre ellos.",
 );
 
 const rightsLink = whatsappTextLink(
-  "Hola, quiero ejercer mi derecho de [acceso / rectificación / cancelación / oposición] sobre mis datos personales. Mi nombre es: ",
+  "Hola, solicito ejercer mi derecho de [acceso / rectificación / cancelación / oposición] sobre mis datos personales. Mi nombre es: ",
 );
 
 export default function PrivacyPage() {
@@ -18,227 +18,199 @@ export default function PrivacyPage() {
     <LegalPage
       path={path}
       title="Política de privacidad"
-      lead="Qué datos personales tratamos, para qué los usamos y cómo puedes ejercer tus derechos conforme a la Ley 787, Ley de Protección de Datos Personales."
+      lead="Qué datos personales se tratan, con qué finalidad y cuál es el procedimiento para consultarlos, corregirlos o eliminarlos."
     >
       <div className="legal-callout legal-callout-strong">
         <p>
-          <strong>En resumen:</strong> el sitio no tiene cuentas ni formularios
-          que guarden tus datos en nuestros servidores. Tu carrito se queda en
-          tu dispositivo. Los datos personales que tratamos son los que tú
-          compartes al escribirnos por WhatsApp para hacer un pedido, consultar
-          o reclamar, y los usamos solo para atenderte.
+          <strong>En resumen:</strong> el sitio no tiene cuentas ni guarda datos
+          de clientes en sus servidores. El carrito se queda en el dispositivo
+          del cliente. Los datos personales que se tratan son los que el
+          cliente comparte por WhatsApp para pedir, consultar o reclamar, y se
+          usan solo para atenderlo.
         </p>
       </div>
 
       <h2 id="responsable">1. Responsable del tratamiento</h2>
       <MerchantContact />
 
-      <h2 id="datos">2. Qué datos tratamos</h2>
+      <h2 id="datos">2. Datos que se tratan</h2>
       <h3>Al navegar por el sitio</h3>
       <ul>
         <li>
-          <strong>Carrito:</strong> los productos y cantidades que eliges se
-          guardan en el almacenamiento local de tu navegador. No se envían a
-          nuestros servidores salvo lo indicado en el punto siguiente.
+          <strong>Carrito:</strong> los productos y cantidades elegidos se
+          guardan en el almacenamiento local del navegador y no se envían a la
+          tienda.
         </li>
         <li>
-          <strong>Verificación del pedido:</strong> al abrir el carrito, el
-          sitio envía a nuestro servidor solo los identificadores de los
-          productos y sus cantidades para comprobar precios y disponibilidad.
-          No incluye tu nombre ni tu teléfono, y no lo guardamos.
+          <strong>Verificación del pedido:</strong> al abrir el carrito se
+          envían al servidor únicamente los identificadores de los productos y
+          sus cantidades, para comprobar precios y disponibilidad. No se envían
+          nombres ni teléfonos, y la consulta no se guarda.
         </li>
         <li>
-          <strong>Datos técnicos de conexión:</strong> como cualquier sitio
-          web, el servidor y la red que lo entregan reciben tu dirección IP, el
-          tipo de navegador y la página solicitada. Los usan nuestro proveedor
-          de alojamiento para entregar el sitio y protegerlo de abusos, y el
-          servicio de imágenes del catálogo para mostrarte las fotos.
+          <strong>Datos técnicos de conexión:</strong> el servicio de
+          alojamiento recibe la dirección IP, el tipo de navegador y la página
+          solicitada para entregar el sitio y protegerlo de abusos. El servicio
+          de imágenes del catálogo recibe los mismos datos al mostrar las
+          fotos.
         </li>
         <li>
-          El sitio <strong>no</strong> usa herramientas analíticas ni
-          publicitarias ni píxeles de seguimiento. Las tipografías se sirven
-          desde el propio sitio.
+          No se usan herramientas analíticas, publicitarias ni píxeles de
+          seguimiento. Las tipografías se sirven desde el propio sitio.
         </li>
       </ul>
-      <h3>Al hacer un pedido o escribirnos por WhatsApp</h3>
+      <h3>Al hacer un pedido o escribir por WhatsApp</h3>
       <ul>
-        <li>Tu número de teléfono y el nombre de tu perfil de WhatsApp.</li>
-        <li>El contenido del mensaje del pedido: productos, cantidades, precios y referencia.</li>
-        <li>Los datos que nos des para la entrega: nombre de quien recibe, punto de entrega o dirección y, si eliges CargoTrans, el departamento y municipio de destino.</li>
-        <li>Los datos necesarios para emitir la factura y, si pagas por transferencia, el comprobante de pago.</li>
-        <li>En un reclamo: nombre, cédula o documento de identidad, domicilio, teléfono, número de factura y el motivo, como exige el reglamento de la Ley 842.</li>
+        <li>Número de teléfono y nombre del perfil de WhatsApp.</li>
+        <li>Contenido del pedido: productos, cantidades, precios y referencia.</li>
+        <li>Datos de entrega: nombre de quien recibe, punto de entrega o dirección y, en envíos por CargoTrans, el departamento y municipio de destino.</li>
+        <li>Datos necesarios para emitir la factura y, si el pago es por transferencia, el comprobante de pago.</li>
+      </ul>
+      <h3>Al presentar un reclamo</h3>
+      <ul>
+        <li>Nombre, cédula o documento de identidad, domicilio, teléfono, número de factura y motivo del reclamo.</li>
       </ul>
       <p>
-        No solicitamos datos sensibles ni datos de tarjetas. Darnos los datos
-        de entrega y facturación es necesario para completar la compra: sin
-        ellos no podemos entregarte el pedido ni emitir la factura.
+        No se solicitan datos sensibles ni datos de tarjetas. Los datos de
+        entrega y facturación son necesarios para completar la compra: sin
+        ellos no es posible entregar el pedido ni emitir la factura.
       </p>
 
-      <h2 id="finalidades">3. Para qué usamos tus datos</h2>
+      <h2 id="finalidades">3. Finalidades</h2>
       <ul>
-        <li>Responder tus consultas y confirmar disponibilidad, precio, envío y forma de pago.</li>
-        <li>Preparar, entregar y dar seguimiento a tu pedido.</li>
-        <li>Emitir facturas y cumplir obligaciones tributarias y de protección al consumidor.</li>
+        <li>Responder consultas y confirmar disponibilidad, precio, entrega y forma de pago.</li>
+        <li>Preparar, entregar y dar seguimiento a los pedidos.</li>
+        <li>Emitir facturas y cumplir las obligaciones tributarias y de protección al consumidor.</li>
         <li>Atender garantías, cambios, devoluciones y reclamos.</li>
-        <li>Enviarte novedades u ofertas, <strong>solo si nos das tu consentimiento</strong>.</li>
+        <li>Enviar novedades u ofertas, <strong>solo con el consentimiento previo del cliente</strong>.</li>
       </ul>
 
       <h2 id="fundamento">4. Fundamento del tratamiento</h2>
-      <ul>
-        <li>
-          <strong>Relación comercial:</strong> los datos necesarios para
-          atender tu pedido, la entrega, la garantía y los reclamos se tratan
-          para cumplir la relación que inicias con nosotros (Ley 787,
-          artículo 6).
-        </li>
-        <li>
-          <strong>Obligaciones legales:</strong> la facturación y la
-          conservación de comprobantes que exigen la legislación tributaria y
-          la Ley 842.
-        </li>
-        <li>
-          <strong>Consentimiento:</strong> para mensajes promocionales. Puedes
-          retirarlo en cualquier momento, de forma gratuita.
-        </li>
-      </ul>
+      <p>
+        Conforme a la Ley 787, de Protección de Datos Personales, los datos se
+        tratan para cumplir la relación comercial que inicia el cliente
+        (pedido, entrega, garantía y reclamos) y las obligaciones legales de
+        facturación. Los mensajes promocionales requieren consentimiento, que
+        puede retirarse en cualquier momento y sin costo.
+      </p>
 
-      <h2 id="seguridad">5. Cómo guardamos y protegemos los datos</h2>
+      <h2 id="seguridad">5. Almacenamiento y protección</h2>
       <ul>
+        <li>El sitio no tiene base de datos de clientes: no almacena nombres, teléfonos ni direcciones.</li>
         <li>
-          El sitio no tiene base de datos de clientes: no almacena nombres,
-          teléfonos ni direcciones.
+          El sitio aplica encabezados de seguridad del navegador y recalcula
+          en el servidor el precio de cada pedido. Una vez publicado en su
+          dominio, se sirve únicamente por HTTPS.
         </li>
         <li>
-          El sitio aplica encabezados de seguridad del navegador y recalcula en
-          el servidor los precios de cada pedido. Una vez publicado en su
-          dominio, se servirá únicamente por HTTPS.
-        </li>
-        <li>
-          Las conversaciones y los datos de pedidos se guardan en la cuenta de
-          WhatsApp del comerciante. Dónde se guardan las facturas y registros:{" "}
+          Las conversaciones y los datos de pedidos se conservan en la cuenta
+          de WhatsApp del comerciante. Ubicación de facturas y registros:{" "}
           <Pending>pendiente de confirmar por el comerciante</Pending>.
         </li>
-        <li>
-          Solo el comerciante accede a esos datos y no los vende ni los cede a
-          terceros con fines comerciales.
-        </li>
+        <li>Solo el comerciante accede a estos datos, que no se venden ni se ceden con fines comerciales.</li>
       </ul>
 
       <h2 id="terceros">6. Terceros que intervienen</h2>
       <p>
-        Para que la tienda funcione intervienen los siguientes proveedores.
-        Algunos procesan datos fuera de Nicaragua, bajo sus propias políticas
-        de privacidad:
+        Los siguientes proveedores intervienen en el funcionamiento de la
+        tienda. Algunos procesan datos fuera de Nicaragua, bajo sus propias
+        políticas de privacidad:
       </p>
       <div className="table-wrap">
         <table>
           <thead>
             <tr>
               <th>Proveedor</th>
-              <th>Para qué</th>
-              <th>Qué datos</th>
+              <th>Función</th>
+              <th>Datos</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>WhatsApp (Meta Platforms)</td>
               <td>Comunicación, pedidos y reclamos</td>
-              <td>Teléfono, perfil y mensajes que intercambiamos</td>
+              <td>Teléfono, perfil y mensajes</td>
             </tr>
             <tr>
               <td>Cloudflare</td>
-              <td>Alojamiento del sitio, entrega y protección contra abusos</td>
-              <td>Datos técnicos de conexión (IP, navegador, página)</td>
+              <td>Alojamiento del sitio y protección contra abusos</td>
+              <td>Datos técnicos de conexión</td>
             </tr>
             <tr>
               <td>Sanity</td>
-              <td>Catálogo de productos y servicio de imágenes</td>
+              <td>Catálogo de productos e imágenes</td>
               <td>Datos técnicos de conexión al cargar las fotos</td>
             </tr>
             <tr>
               <td>CargoTrans</td>
-              <td>Envíos fuera de los puntos de entrega gratuitos, si eliges esa opción</td>
+              <td>Envíos fuera de los puntos de entrega gratuitos</td>
               <td>Nombre, teléfono y destino de la entrega</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <p>Fuera de estos casos, los datos solo se entregan a una autoridad cuando la ley lo exige.</p>
+
+      <h2 id="whatsapp">7. Comunicaciones por WhatsApp</h2>
       <p>
-        Fuera de estos casos, solo entregaremos datos a una autoridad cuando la
-        ley lo exija.
+        WhatsApp se usa para responder consultas y coordinar pedidos; las
+        conversaciones también las procesa WhatsApp según su propia política.
+        Los mensajes promocionales solo se envían a quien haya aceptado
+        recibirlos, en días hábiles entre las 8:00 y las 17:00. Para dejar de
+        recibirlos basta con responder «BAJA». Aceptar promociones nunca es
+        condición para comprar.
       </p>
 
-      <h2 id="whatsapp">7. Uso de WhatsApp para comunicaciones comerciales</h2>
-      <p>
-        Usamos WhatsApp para responder tus consultas y coordinar tus pedidos.
-        Las conversaciones también las procesa WhatsApp, según su propia
-        política de privacidad. Solo te enviaremos mensajes promocionales si
-        aceptas recibirlos; en ese caso, los enviaremos en días hábiles entre
-        las 8:00 y las 17:00, y puedes dejar de recibirlos en cualquier momento
-        respondiendo «BAJA». Aceptar promociones nunca es condición para
-        comprar.
-      </p>
-
-      <h2 id="derechos">8. Tus derechos</h2>
-      <p>Como titular de tus datos tienes derecho a:</p>
+      <h2 id="derechos">8. Derechos sobre los datos</h2>
       <ul>
-        <li><strong>Acceso:</strong> saber qué datos tenemos sobre ti y para qué los usamos.</li>
+        <li><strong>Acceso:</strong> conocer qué datos se tienen y para qué se usan.</li>
         <li><strong>Rectificación:</strong> corregir datos inexactos o incompletos.</li>
-        <li><strong>Cancelación:</strong> pedir que eliminemos tus datos cuando ya no sean necesarios, salvo los que debamos conservar por ley.</li>
-        <li><strong>Oposición:</strong> oponerte a un tratamiento, por ejemplo a recibir promociones.</li>
-        <li><strong>Revocar tu consentimiento</strong> en cualquier momento, sin costo.</li>
+        <li><strong>Cancelación:</strong> eliminar los datos que ya no sean necesarios, salvo los que deban conservarse por ley.</li>
+        <li><strong>Oposición:</strong> oponerse a un tratamiento, por ejemplo a recibir promociones.</li>
+        <li><strong>Revocación</strong> del consentimiento en cualquier momento.</li>
       </ul>
 
-      <h2 id="ejercer">9. Cómo ejercer tus derechos</h2>
+      <h2 id="procedimiento">9. Procedimiento para ejercer los derechos</h2>
       <ol>
         <li>
-          Envíanos tu solicitud por escrito por{" "}
+          Se envía la solicitud por escrito por{" "}
           <a href={rightsLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>,
-          indicando tu nombre, el derecho que quieres ejercer y, si aplica, los
-          datos que deben corregirse.
+          con el nombre del titular, el derecho que se ejerce y, si aplica,
+          los datos que deben corregirse.
         </li>
-        <li>Te confirmaremos la recepción con su fecha. Podemos pedirte información adicional para verificar tu identidad.</li>
+        <li>Se confirma la recepción indicando la fecha. Puede pedirse información adicional para verificar la identidad del titular.</li>
         <li>
-          Responderemos las solicitudes de acceso en un máximo de{" "}
-          <strong>10 días hábiles</strong>, y las de rectificación o
-          cancelación en un máximo de <strong>5 días hábiles</strong>
-          (Ley 787, artículos 17 y 19).
+          Las solicitudes de acceso se responden en un máximo de{" "}
+          <strong>10 días hábiles</strong>; las de rectificación o cancelación,
+          en un máximo de <strong>5 días hábiles</strong>.
         </li>
         <li>El trámite es gratuito.</li>
       </ol>
-      <p>
-        La autoridad competente en materia de datos personales, según la Ley
-        787, es la Dirección de Protección de Datos Personales del Ministerio
-        de Hacienda y Crédito Público.
-      </p>
 
-      <h2 id="conservacion">10. Cuánto tiempo conservamos los datos</h2>
+      <h2 id="conservacion">10. Conservación</h2>
       <ul>
-        <li><strong>Carrito:</strong> en tu dispositivo, hasta que lo vacíes o borres los datos del navegador.</li>
+        <li><strong>Carrito:</strong> en el dispositivo del cliente, hasta que se vacíe o se borren los datos del navegador.</li>
         <li><strong>Conversaciones y datos del pedido:</strong> mientras sean necesarios para la entrega, la garantía y la atención de reclamos.</li>
         <li><strong>Facturas y comprobantes:</strong> durante el plazo que exige la legislación tributaria.</li>
-        <li><strong>Consentimiento para promociones:</strong> hasta que lo retires.</li>
+        <li><strong>Consentimiento para promociones:</strong> hasta que se retire.</li>
       </ul>
-      <p>Cuando dejan de ser necesarios, los eliminamos.</p>
+      <p>Cuando dejan de ser necesarios, los datos se eliminan.</p>
 
       <h2 id="menores">11. Menores de edad</h2>
-      <p>
-        Los pedidos deben hacerlos personas mayores de edad o, en el caso de
-        menores, su madre, padre o representante.
-      </p>
+      <p>Los pedidos de menores de edad deben hacerse a través de su madre, padre o representante.</p>
 
       <h2 id="cookies">12. Cookies</h2>
       <p>
-        Consulta la <Link href="/legal/cookies">política de cookies</Link> para
-        conocer el almacenamiento técnico que usa el sitio y cómo gestionar tus
-        preferencias.
+        El almacenamiento técnico que usa el sitio y la forma de gestionar las
+        preferencias se describen en la{" "}
+        <Link href="/legal/cookies">política de cookies</Link>.
       </p>
 
-      <h2 id="cambios">13. Cambios en esta política</h2>
+      <h2 id="cambios">13. Modificaciones</h2>
       <p>
-        Si modificamos esta política, publicaremos la nueva versión en esta
-        página con su fecha de actualización. Si el cambio afecta un
-        tratamiento basado en tu consentimiento, te lo pediremos de nuevo.
+        Las nuevas versiones de esta política se publican en esta página con su
+        fecha de actualización. Si un cambio afecta un tratamiento basado en el
+        consentimiento, este se solicita de nuevo.
       </p>
     </LegalPage>
   );

@@ -6,7 +6,7 @@ const path = "/legal/terminos";
 export const metadata = legalMetadata(
   path,
   "Términos y condiciones",
-  "Condiciones de uso de la tienda, pedidos por WhatsApp, precios, pagos, entregas, garantías y reclamos conforme a la legislación de Nicaragua.",
+  "Condiciones de uso de la tienda: precios en córdobas, procedimiento de pedido por WhatsApp, confirmación de la compra, pagos, entregas, garantías y reclamos.",
 );
 
 export default function TermsPage() {
@@ -14,248 +14,244 @@ export default function TermsPage() {
     <LegalPage
       path={path}
       title="Términos y condiciones"
-      lead="Cómo funciona la tienda, qué significa enviar un pedido por WhatsApp y cuáles son tus derechos como persona consumidora en Nicaragua."
+      lead="Cómo funciona la tienda, cómo se tramita un pedido y en qué momento se considera confirmada una compra."
     >
       <div className="legal-callout legal-callout-strong">
         <p>
-          <strong>En resumen:</strong> este sitio es un catálogo. Enviar tu
-          carrito por WhatsApp es una <strong>solicitud de pedido</strong>, no
-          una compra cerrada. La compra queda confirmada cuando te respondemos
-          con la disponibilidad, el precio final, el envío y la forma de pago,
-          y tú aceptas esas condiciones en el chat. Tus derechos como persona
-          consumidora son irrenunciables y nada en estos términos los limita.
+          <strong>En resumen:</strong> el sitio funciona como catálogo. El
+          mensaje que se envía por WhatsApp desde el carrito es una{" "}
+          <strong>solicitud de pedido</strong>. La compra queda confirmada
+          cuando, en ese mismo chat, se confirman la disponibilidad, el precio
+          final, la entrega y la forma de pago, y el cliente acepta esas
+          condiciones.
         </p>
       </div>
 
-      <h2 id="quienes-somos">1. Quiénes somos</h2>
+      <h2 id="comercio">1. Identificación del comercio</h2>
       <MerchantContact />
 
       <h2 id="uso">2. Uso del sitio</h2>
       <p>
-        Al navegar en el sitio o enviar un pedido aceptas estos términos. Puedes
-        consultar el catálogo sin registrarte: no hay cuentas de usuario ni
-        formularios de pago. Te pedimos usar el sitio de buena fe y no intentar
-        alterar su funcionamiento, sus precios o el contenido de los pedidos.
-      </p>
-      <p>
-        Estos términos se aplican junto con la{" "}
-        <Link href="/legal/privacidad">política de privacidad</Link>, la{" "}
-        <Link href="/legal/cookies">política de cookies</Link>, la{" "}
-        <Link href="/legal/envios">política de envíos</Link>, la política de{" "}
+        El catálogo se consulta sin registro: no existen cuentas de usuario ni
+        formularios de pago. El uso del sitio implica la aceptación de estos
+        términos y de las políticas de{" "}
+        <Link href="/legal/privacidad">privacidad</Link>,{" "}
+        <Link href="/legal/cookies">cookies</Link>,{" "}
+        <Link href="/legal/envios">envíos</Link>,{" "}
         <Link href="/legal/cambios-y-devoluciones">cambios y devoluciones</Link>{" "}
-        y la <Link href="/legal/garantia">política de garantía</Link>.
+        y <Link href="/legal/garantia">garantía</Link>. No se permite alterar
+        el funcionamiento del sitio, sus precios ni el contenido de los
+        pedidos.
       </p>
 
       <h2 id="productos">3. Información de los productos</h2>
       <p>
-        Cada producto muestra su nombre, fotografías, descripción, categoría,
-        precio y si está disponible. Procuramos que la información sea clara,
-        veraz y completa. Los colores pueden verse ligeramente distintos según
-        tu pantalla. Si tienes una duda sobre un producto (medidas, grosor de
-        esponja, peso o compatibilidad), pregúntanos antes de confirmar.
+        Cada ficha muestra nombre, fotografías, descripción, categoría, precio
+        y disponibilidad. Los colores pueden variar ligeramente según la
+        pantalla. Las dudas sobre medidas, grosor de esponja, peso o
+        compatibilidad se resuelven por WhatsApp antes de confirmar la compra.
       </p>
       <p>
-        Los <strong>productos seminuevos</strong> se identifican en su propia
-        categoría. Antes de confirmar la compra te informaremos su estado y
+        Los <strong>productos seminuevos</strong> se publican en su propia
+        categoría. Antes de confirmar la compra se informa su estado y
         cualquier desgaste o detalle visible.
       </p>
 
       <h2 id="precios">4. Precios y moneda</h2>
       <ul>
         <li>
-          Los precios se publican en dólares estadounidenses (US$) y son precios
-          finales: incluyen los impuestos aplicables. No se cobra ningún cargo
-          adicional por el producto.
+          Los precios se publican en <strong>córdobas (C$)</strong>. Cada
+          producto tiene un precio base en dólares estadounidenses que se
+          convierte con el tipo de cambio oficial que publica el Banco Central
+          de Nicaragua (BCN) para el día en curso.
         </li>
         <li>
-          Si pagas en córdobas, se aplica el tipo de cambio oficial del Banco
-          Central de Nicaragua del día del pago.
+          La conversión se actualiza automáticamente cada día, de modo que el
+          precio en córdobas puede variar de un día a otro si cambia el tipo
+          de cambio oficial. El tipo de cambio aplicado se muestra en la ficha
+          del producto, en el carrito y en el mensaje del pedido.
         </li>
         <li>
-          El precio que te confirmemos por WhatsApp no será mayor que el
-          publicado en el sitio cuando enviaste tu pedido.
+          Los precios publicados son finales e incluyen los impuestos
+          aplicables.
         </li>
         <li>
-          El costo de envío, cuando exista, se informa por separado y antes de
-          que confirmes la compra. Consulta la{" "}
-          <Link href="/legal/envios">política de envíos</Link>.
+          El precio que se confirma por WhatsApp es el publicado en el momento
+          de enviar el pedido, aunque la confirmación se haga otro día.
         </li>
         <li>
-          Un producto marcado como <em>oferta</em> se vende al precio rebajado
-          mientras la oferta esté publicada en el sitio.
+          Si se acuerda el pago en dólares, se usa el mismo tipo de cambio del
+          pedido.
+        </li>
+        <li>
+          El costo de envío, cuando corresponde, se informa por separado antes
+          de confirmar la compra (ver la{" "}
+          <Link href="/legal/envios">política de envíos</Link>).
+        </li>
+        <li>
+          Los productos marcados como <em>oferta</em> se venden al precio
+          rebajado mientras la oferta esté publicada.
         </li>
       </ul>
-      <p>
-        El total que muestra el carrito se calcula con los precios vigentes en
-        el catálogo: el sitio los vuelve a verificar con nuestro inventario
-        antes de abrir WhatsApp.
-      </p>
 
       <h2 id="disponibilidad">5. Disponibilidad e inventario</h2>
       <p>
-        La etiqueta «Disponible» indica que el producto tiene existencias
-        según nuestro inventario. Agregar un producto al carrito no lo reserva.
-        Si al recibir tu pedido un producto ya no tiene existencias, te lo
-        diremos en el chat; no tendrás que pagarlo y, si ya hubieras adelantado
-        algún monto, te lo devolveremos de inmediato.
+        La etiqueta «Disponible» indica que el producto tiene existencias según
+        el inventario de la tienda. Agregar un producto al carrito no lo
+        reserva. Si al revisar el pedido un producto ya no tiene existencias,
+        se informa en el chat, no se cobra y, si se hubiera adelantado algún
+        monto, se devuelve de inmediato.
       </p>
 
-      <h2 id="pedidos">6. Cómo se hace un pedido</h2>
+      <h2 id="pedidos">6. Procedimiento de pedido</h2>
       <ol>
-        <li>Agregas productos al carrito. El carrito se guarda solo en tu dispositivo.</li>
+        <li>Se agregan los productos al carrito. El carrito se guarda solo en el dispositivo del cliente.</li>
+        <li>Al abrir el carrito, el sistema verifica los precios y la disponibilidad con el catálogo vigente.</li>
         <li>
-          Al abrir el carrito, el sitio verifica precios y disponibilidad con
-          el catálogo actualizado.
+          El botón «Enviar pedido por WhatsApp» abre un mensaje con los
+          productos, cantidades, precios, total, tipo de cambio y una
+          referencia de pedido. El mensaje no se envía de forma automática:
+          lo envía el cliente.
         </li>
         <li>
-          Con el botón «Enviar pedido por WhatsApp» se abre un mensaje con los
-          productos, cantidades, precios, el total calculado y una referencia
-          de pedido. El mensaje no se envía solo: tú decides enviarlo.
+          Por el mismo chat se responde con la confirmación de disponibilidad,
+          precio final, forma y costo de entrega, fecha estimada y forma de
+          pago.
         </li>
-        <li>
-          Te respondemos por WhatsApp para confirmar disponibilidad, precio
-          final, forma y costo de entrega, fecha estimada y forma de pago.
-        </li>
-        <li>
-          Cuando aceptas expresamente esas condiciones en el chat, la compra
-          queda confirmada.
-        </li>
+        <li>Cuando el cliente acepta expresamente esas condiciones, la compra queda confirmada.</li>
       </ol>
 
       <h2 id="confirmacion">7. Confirmación de la compra</h2>
       <p>
-        El mensaje que envías desde el sitio es una solicitud de compra. La
+        El mensaje enviado desde el sitio es una solicitud de compra. La
         compraventa se perfecciona cuando ambas partes están de acuerdo sobre
-        el producto y el precio: es decir, cuando tú aceptas en el chat las
-        condiciones que te confirmamos. Hasta ese momento puedes cambiar o
-        cancelar tu solicitud sin costo.
+        el producto y el precio, es decir, cuando el cliente acepta en el chat
+        las condiciones confirmadas. Hasta ese momento la solicitud puede
+        modificarse o cancelarse sin costo.
       </p>
       <p>
-        Al confirmar, te enviaremos por WhatsApp un resumen con los productos,
-        el precio final, el costo de envío, la forma de pago, la fecha estimada
-        de entrega y la referencia del pedido. Guárdalo como comprobante.
+        Una vez confirmada la compra, se envía por WhatsApp un resumen con los
+        productos, el precio final, el costo de envío, la forma de pago, la
+        fecha estimada de entrega y la referencia del pedido. Ese resumen sirve
+        como comprobante.
       </p>
       <p>
-        Solo podemos rechazar una solicitud por una causa justificada, como la
-        falta real de existencias o la imposibilidad de entregar en el lugar
-        solicitado. En ese caso te lo explicaremos en el chat.
+        Una solicitud solo se rechaza por causa justificada, como la falta real
+        de existencias o la imposibilidad de entregar en el lugar indicado. En
+        ese caso se explica el motivo en el chat.
       </p>
 
       <h2 id="pagos">8. Medios de pago</h2>
       <p>
-        El sitio no procesa pagos ni solicita datos bancarios. La forma de pago
+        El sitio no procesa pagos ni solicita datos bancarios: la forma de pago
         se acuerda por WhatsApp. Medios aceptados:{" "}
         <Pending>pendiente de confirmar por el comerciante (por ejemplo, efectivo contra entrega o transferencia)</Pending>.
       </p>
       <p>
-        <strong>Seguridad:</strong> nunca te pediremos por WhatsApp ni por el
-        sitio el número completo de tu tarjeta, su código de seguridad,
-        contraseñas ni códigos de verificación. Si alguien te los pide en
-        nuestro nombre, no los compartas y avísanos.
+        <strong>Seguridad:</strong> nunca se solicita por WhatsApp ni por el
+        sitio el número completo de una tarjeta, su código de seguridad,
+        contraseñas ni códigos de verificación. Cualquier solicitud de ese
+        tipo hecha en nombre de la tienda debe ignorarse y reportarse.
       </p>
       <p>
-        Te entregaremos la factura o el comprobante de tu compra, que también
-        sirve para hacer valer la garantía.
+        Con cada compra se entrega la factura o el comprobante, que también se
+        usa para hacer valer la garantía.
       </p>
 
       <h2 id="entregas">9. Entregas</h2>
       <p>
-        Las opciones de entrega, sus condiciones y quién asume cada costo están
-        en la <Link href="/legal/envios">política de envíos</Link>. Respondemos
-        ante ti por los daños o pérdidas que sufra el producto durante el
-        transporte hasta que lo recibas.
+        Las opciones de entrega, sus condiciones y sus costos se describen en
+        la <Link href="/legal/envios">política de envíos</Link>. El producto
+        viaja bajo responsabilidad de la tienda hasta que el cliente lo recibe.
       </p>
 
       <h2 id="retracto">10. Derecho de retracto</h2>
       <p>
-        En las ventas a distancia, la Ley 842 (artículo 81) te reconoce el
-        derecho a retractarte de la compra dentro de los{" "}
-        <strong>5 días hábiles</strong> siguientes a la recepción del producto.
-        Para ejercerlo, escríbenos por WhatsApp dentro de ese plazo. El
-        procedimiento está en{" "}
+        Conforme a la Ley 842, las compras a distancia pueden dejarse sin
+        efecto dentro de los <strong>5 días hábiles</strong> siguientes a la
+        recepción del producto. El procedimiento se explica en{" "}
         <Link href="/legal/cambios-y-devoluciones#retracto">cambios y devoluciones</Link>.
       </p>
 
       <h2 id="garantias">11. Cambios, devoluciones y garantía</h2>
       <p>
         Los productos con defectos de fábrica se cambian o se reembolsan según
-        la <Link href="/legal/garantia">política de garantía</Link>. Esta
-        política comercial se suma a la garantía legal, que no puede reducirse
-        ni excluirse.
+        la <Link href="/legal/garantia">política de garantía</Link>. Los demás
+        casos se tramitan según la política de{" "}
+        <Link href="/legal/cambios-y-devoluciones">cambios y devoluciones</Link>.
+        Ninguna de estas políticas limita los derechos que la ley reconoce a
+        las personas consumidoras.
       </p>
 
       <h2 id="responsabilidades">12. Responsabilidades</h2>
-      <h3>Del comerciante</h3>
+      <h3>Del comercio</h3>
       <ul>
-        <li>Informar de forma veraz las características, el precio y la disponibilidad de los productos.</li>
+        <li>Informar con veracidad las características, el precio y la disponibilidad de los productos.</li>
         <li>Respetar el precio publicado y las condiciones confirmadas en el chat.</li>
-        <li>Entregar el producto acordado, en buen estado y en el lugar y plazo convenidos.</li>
-        <li>Atender garantías, devoluciones y reclamos conforme a la ley.</li>
-        <li>Tratar tus datos personales según la política de privacidad.</li>
+        <li>Entregar el producto acordado, en buen estado, en el lugar y plazo convenidos.</li>
+        <li>Atender garantías, devoluciones y reclamos.</li>
+        <li>Tratar los datos personales según la política de privacidad.</li>
       </ul>
-      <h3>De la persona compradora</h3>
+      <h3>Del cliente</h3>
       <ul>
-        <li>Proporcionar datos de contacto y entrega correctos.</li>
+        <li>Proporcionar datos de contacto y de entrega correctos.</li>
         <li>Revisar el resumen del pedido antes de aceptarlo.</li>
-        <li>Recibir el pedido en el lugar y horario acordados, o avisar con anticipación si no puede hacerlo.</li>
+        <li>Recibir el pedido en el lugar y horario acordados o avisar con anticipación si no es posible.</li>
         <li>Usar los productos según su naturaleza y las instrucciones del fabricante.</li>
       </ul>
 
-      <h2 id="limitaciones">13. Alcance de nuestra responsabilidad</h2>
+      <h2 id="limitaciones">13. Alcance de la responsabilidad</h2>
       <p>
-        Nada en estos términos excluye ni limita la responsabilidad que nos
-        corresponde por ley frente a las personas consumidoras. El sitio puede
-        estar temporalmente fuera de servicio por mantenimiento o por causas
-        ajenas a nosotros; en ese caso puedes pedir por WhatsApp. Los enlaces a
-        WhatsApp y a redes sociales llevan a servicios de terceros que tienen
-        sus propias condiciones.
+        Estos términos no excluyen ni limitan la responsabilidad que la ley
+        atribuye al comercio frente a las personas consumidoras. El sitio puede
+        quedar temporalmente fuera de servicio por mantenimiento o por causas
+        ajenas a la tienda; en ese caso los pedidos se atienden directamente
+        por WhatsApp. Los enlaces a WhatsApp y a redes sociales llevan a
+        servicios de terceros con sus propias condiciones.
       </p>
 
       <h2 id="propiedad">14. Propiedad intelectual</h2>
       <p>
         El diseño, los textos y las imágenes propias del sitio pertenecen a
         «Tenis de Mesa». Las marcas de los productos pertenecen a sus
-        respectivos titulares y se mencionan solo para identificar los
-        productos que vendemos.
+        titulares y se mencionan solo para identificar los productos a la
+        venta.
       </p>
 
       <h2 id="datos">15. Protección de datos</h2>
       <p>
-        Tratamos tus datos conforme a la Ley 787, Ley de Protección de Datos
-        Personales. Consulta la <Link href="/legal/privacidad">política de privacidad</Link>.
+        El tratamiento de datos personales se describe en la{" "}
+        <Link href="/legal/privacidad">política de privacidad</Link>.
       </p>
 
       <h2 id="reclamos">16. Atención y reclamos</h2>
       <p>
-        Puedes presentar consultas y reclamos por WhatsApp o mediante el{" "}
+        Las consultas y reclamos se reciben por WhatsApp o mediante el{" "}
         <Link href="/legal/reclamos">formulario de reclamos</Link>, que genera
-        un comprobante con número y fecha. Responderemos tu reclamo en un plazo
-        máximo de <strong>10 días hábiles</strong> (Ley 842, artículo 100).
+        un comprobante con número y fecha. Cada reclamo se responde en un plazo
+        máximo de <strong>10 días hábiles</strong>.
       </p>
       <p>
-        Si no quedas conforme con la respuesta, o no la recibes, puedes acudir a
-        la Dirección de Protección de los Derechos de las Personas Consumidoras
-        y Usuarias (DIPRODEC) del Ministerio de Fomento, Industria y Comercio
-        (MIFIC). Información y contactos en{" "}
+        Si la respuesta no resulta satisfactoria, el reclamo puede presentarse
+        ante la Dirección de Protección de los Derechos de las Personas
+        Consumidoras y Usuarias (DIPRODEC) del MIFIC. Información en{" "}
         <a href={DIPRODEC_URL} target="_blank" rel="noopener noreferrer">el sitio del MIFIC</a>.
       </p>
 
-      <h2 id="ley">17. Legislación aplicable y controversias</h2>
+      <h2 id="ley">17. Legislación aplicable</h2>
       <p>
-        Estos términos se rigen por las leyes de la República de Nicaragua, en
-        especial la Ley 842, Ley de Protección de los Derechos de las Personas
-        Consumidoras y Usuarias, y su reglamento. Las controversias pueden
-        resolverse por acuerdo directo, ante DIPRODEC o ante los tribunales
-        competentes de Nicaragua. No exigimos someter ninguna controversia a
+        Estos términos se rigen por las leyes de Nicaragua. Las controversias
+        se resuelven por acuerdo directo, ante la DIPRODEC o ante los
+        tribunales competentes. No se exige someter ninguna controversia a
         arbitraje.
       </p>
 
-      <h2 id="cambios">18. Cambios en estos términos</h2>
+      <h2 id="cambios">18. Modificaciones</h2>
       <p>
-        Podemos actualizar estos términos; la fecha de la última actualización
+        Estos términos pueden actualizarse; la fecha de la última versión
         aparece al inicio de la página. Los cambios se aplican a los pedidos
-        enviados después de su publicación: un pedido ya confirmado mantiene
-        las condiciones vigentes al confirmarlo.
+        enviados después de su publicación. Un pedido ya confirmado conserva
+        las condiciones vigentes al momento de su confirmación.
       </p>
     </LegalPage>
   );

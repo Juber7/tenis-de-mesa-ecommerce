@@ -18,7 +18,7 @@ const storeLd = {
   logo: absoluteUrl("/social-preview.png"),
   image: absoluteUrl("/social-preview.png"),
   telephone: `+${CONTACT_NUMBER}`,
-  currenciesAccepted: "USD",
+  currenciesAccepted: "NIO",
   address: {
     "@type": "PostalAddress",
     addressLocality: BUSINESS.city,

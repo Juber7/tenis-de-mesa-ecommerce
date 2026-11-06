@@ -20,7 +20,12 @@ beforeEach(() => {
   process.env.SANITY_PROJECT_ID = "testproject";
   process.env.SANITY_DATASET = "production";
   sanityCalls = 0;
-  globalThis.fetch = (async () => {
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    if (String(input).includes("bcn.gob.ni"))
+      return new Response(
+        "<soap:Envelope><soap:Body><RecuperaTC_DiaResponse><RecuperaTC_DiaResult>36.6243</RecuperaTC_DiaResult></RecuperaTC_DiaResponse></soap:Body></soap:Envelope>",
+        { status: 200 },
+      );
     sanityCalls++;
     return new Response(JSON.stringify({ result: sanity }), { status: 200 });
   }) as typeof fetch;
@@ -36,15 +41,17 @@ const call = (body: string, contentType = "application/json") =>
     body,
   }));
 
-test("checkout usa precios del servidor, no los del navegador", async () => {
+test("checkout usa precios del servidor en córdobas al tipo de cambio del BCN", async () => {
   const res = await call(JSON.stringify([{ id: "goma-1", quantity: 2 }]));
   assert.equal(res.status, 200);
   const body = await res.json();
-  assert.equal(body.total, 4898);
+  // US$ 24.49 × 36.6243 = C$ 896.93 por unidad.
+  assert.equal(body.total, 179386);
   assert.match(body.reference, /^P-\d{6}-/);
   const text = new URL(body.url).searchParams.get("text")!;
-  assert.match(text, /Precio unitario: \$24\.49/);
-  assert.match(text, /Total Calculado: \$48\.98/);
+  assert.match(text, /Precio unitario: C\$ 896\.93/);
+  assert.match(text, /Total Calculado: C\$ 1,793\.86/);
+  assert.match(text, /Tipo de cambio: C\$ 36\.6243 por US\$ 1 \(tipo de cambio oficial del BCN/);
   assert.ok(text.includes(body.reference));
   assert.equal(res.headers.get("cache-control"), "no-store");
 });

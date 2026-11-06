@@ -8,6 +8,17 @@ Clasificación usada: **IMPLEMENTADO Y VERIFICADO** · **IMPLEMENTADO, PENDIENTE
 
 ---
 
+## Actualización (6 de noviembre de 2026)
+
+- **Moneda (resuelve §11.1):** los precios se publican en córdobas. El precio base sigue en US$ en Sanity y se convierte cada día con el tipo de cambio oficial del BCN (servicio web `servicios.bcn.gob.ni`, 36.6243 el 5 y 6-nov-2026). El tipo de cambio se muestra en la ficha, el carrito y el mensaje de WhatsApp. Si el BCN no responde, se usa el día anterior y luego una tasa de respaldo, con aviso en el registro. No se modificó ningún dato de Sanity. **IMPLEMENTADO Y VERIFICADO** en local. En Cloudflare queda **PENDIENTE DE VERIFICACIÓN**: el certificado TLS del BCN no envía su intermedio y algunos clientes lo rechazan. Tras publicar, la ficha debe decir «tipo de cambio oficial del BCN, [fecha]» y no «de referencia».
+- **Envíos:** el envío por CargoTrans y el envío de devolución de un retracto sin defecto los paga el cliente.
+- **Garantía:** un mes para todos los productos; Accesorios y Productos seminuevos sin garantía comercial (se mantienen los reclamos por producto distinto al ofrecido o con defectos ocultos). **PENDIENTE DE REVISIÓN LEGAL:** la Ley 842 prevé una garantía obligatoria que no puede excluirse por completo.
+- **Páginas legales:** reescritas con verbos impersonales y procedimientos por caso, con mínimas referencias a la ley. En garantía se eliminaron «Lo que dice la ley», el subpunto de coordinación de entrega y «Documento de garantía».
+- **Paneles revisados:**
+  - Cloudflare: plan Workers Free, sin medio de pago, sin dominios, sin Workers ni KV, 1 miembro, **verificación en dos pasos inactiva**.
+  - Sanity: 1 administrador, sin tokens de API, dataset `production` público, CORS con `localhost:3333` y el Studio, prueba Growth que pasa sola a Free en 26 días.
+- **Pendientes del comerciante:** medios de pago, punto y horarios del IND, puntos céntricos de Managua, plazo y forma del reembolso, ubicación de facturas; además de dirección, RUC, correo y horario.
+
 ## 1. Resumen ejecutivo del estado inicial
 
 La tienda funcionaba bien como catálogo: Next.js 16 con productos administrados en Sanity, carrito local y cierre de venta por WhatsApp. **No estaba lista para publicarse**:

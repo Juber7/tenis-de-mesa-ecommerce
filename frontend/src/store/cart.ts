@@ -74,7 +74,8 @@ export const useCart = create<Cart>()(
         }),
     }),
     {
-      name: "tenis-cart-usd-v4",
+      // v5: prices in córdobas; carts saved with dollar prices are discarded.
+      name: "tenis-cart-v5",
       version: 1,
       storage: createJSONStorage(() => localStorage),
       partialize: (s) => ({ items: s.items }),

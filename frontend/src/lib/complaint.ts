@@ -48,23 +48,23 @@ export function validateComplaint(
   const data = normalizeComplaint(raw);
   const errors: ComplaintErrors = {};
   if (data.name.length < 3 || data.name.length > 100 || !/\p{L}/u.test(data.name))
-    errors.name = "Escribe tu nombre completo (3 a 100 caracteres).";
+    errors.name = "Se requiere el nombre completo (3 a 100 caracteres).";
   // Nicaraguan cédula (001-010190-0001A) or another ID document.
   if (!/^[A-Z0-9-]{5,20}$/.test(data.idNumber))
-    errors.idNumber = "Escribe tu cédula (por ejemplo 001-010190-0001A) u otro documento de identidad.";
+    errors.idNumber = "Se requiere la cédula (por ejemplo 001-010190-0001A) u otro documento de identidad.";
   if (data.address.length < 5 || data.address.length > 200)
-    errors.address = "Escribe tu domicilio (5 a 200 caracteres).";
+    errors.address = "Se requiere el domicilio (5 a 200 caracteres).";
   const digits = data.phone.replace(/\D/g, "");
   if (!/^\+?\d+$/.test(data.phone) || digits.length < 8 || digits.length > 15)
-    errors.phone = "Escribe un teléfono válido de 8 a 15 dígitos.";
+    errors.phone = "Se requiere un teléfono válido de 8 a 15 dígitos.";
   if (data.invoice.length > 40) errors.invoice = "Máximo 40 caracteres.";
   if (!(COMPLAINT_REASONS as readonly string[]).includes(data.reason))
-    errors.reason = "Elige el motivo del reclamo.";
+    errors.reason = "Se requiere seleccionar el motivo del reclamo.";
   if (data.description.length < 20 || data.description.length > 1500)
-    errors.description = "Describe lo ocurrido (20 a 1500 caracteres).";
+    errors.description = "Se requiere una descripción de lo ocurrido (20 a 1500 caracteres).";
   if (data.request.length > 500) errors.request = "Máximo 500 caracteres.";
   if (!privacyAccepted)
-    errors.privacy = "Confirma que leíste cómo usaremos tus datos.";
+    errors.privacy = "Se requiere confirmar la lectura del uso de los datos.";
   return { data, errors };
 }
 

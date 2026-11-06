@@ -34,7 +34,14 @@ if (await portInUse(3000)) {
   const frontend = spawn(process.execPath, [
     resolve(root, "frontend/node_modules/next/dist/bin/next"),
     "dev", "--hostname", "127.0.0.1",
-  ], { cwd: resolve(root, "frontend"), stdio: "inherit", windowsHide: true });
+  ], {
+    cwd: resolve(root, "frontend"),
+    stdio: "inherit",
+    windowsHide: true,
+    // The BCN exchange-rate service omits an intermediate certificate; the
+    // operating system's store completes the chain (Node 22.15+/23.8+).
+    env: { ...process.env, NODE_USE_SYSTEM_CA: "1" },
+  });
   const stop = () => frontend.kill();
   process.on("SIGINT", stop);
   process.on("SIGTERM", stop);

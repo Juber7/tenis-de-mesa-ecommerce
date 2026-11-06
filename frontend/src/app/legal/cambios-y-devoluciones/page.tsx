@@ -7,11 +7,11 @@ const path = "/legal/cambios-y-devoluciones";
 export const metadata = legalMetadata(
   path,
   "Cambios y devoluciones",
-  "Cambios por defectos de fábrica, derecho de retracto y procedimiento de reclamación. Tus derechos como persona consumidora en Nicaragua.",
+  "Procedimiento para cambios por defecto de fábrica, productos distintos a lo pedido, retracto de la compra y reembolsos.",
 );
 
 const claimLink = whatsappTextLink(
-  "Hola, quiero solicitar un cambio o devolución. Referencia o factura del pedido: ",
+  "Hola, solicito un cambio o devolución. Referencia o factura del pedido: ",
 );
 
 export default function ReturnsPage() {
@@ -19,105 +19,99 @@ export default function ReturnsPage() {
     <LegalPage
       path={path}
       title="Cambios y devoluciones"
-      lead="Distinguimos entre los derechos que te da la ley, que son irrenunciables, y la política comercial de la tienda."
+      lead="Cómo se tramita cada caso: defecto de fábrica, producto distinto al pedido, retracto de la compra y cambio por preferencia."
     >
-      <h2 id="legales">1. Tus derechos legales (irrenunciables)</h2>
-      <p>
-        La Ley 842, Ley de Protección de los Derechos de las Personas
-        Consumidoras y Usuarias, es de orden público: ningún acuerdo, aviso o
-        política de la tienda puede reducir estos derechos.
-      </p>
-      <ul>
-        <li>
-          <strong id="retracto">Derecho de retracto:</strong> en las ventas a
-          distancia puedes retractarte dentro de los <strong>5 días
-          hábiles</strong> siguientes a la recepción del producto (artículo
-          81).
-        </li>
-        <li>
-          <strong>Garantía legal:</strong> si el producto tiene un defecto o no
-          funciona normalmente, tienes derecho a su reparación, reposición o a
-          la devolución de lo pagado, sin costo, según la{" "}
-          <Link href="/legal/garantia">política de garantía</Link>.
-        </li>
-        <li>
-          <strong>Producto distinto al ofrecido:</strong> si lo que recibes no
-          corresponde a lo que ofrecimos o confirmamos, puedes pedir el cambio
-          o la devolución de lo pagado.
-        </li>
-        <li>
-          <strong>Pagos anticipados:</strong> si la venta no se concreta, te
-          devolvemos de inmediato cualquier monto adelantado.
-        </li>
-        <li>
-          <strong>Reembolsos:</strong> si pagaste en efectivo, no te
-          obligaremos a aceptar una nota de crédito o crédito en tienda.
-        </li>
-      </ul>
+      <div className="legal-callout">
+        <p>
+          Los derechos que la Ley 842 reconoce a las personas consumidoras son
+          irrenunciables. Esta política describe el procedimiento interno y no
+          limita esos derechos.
+        </p>
+      </div>
 
-      <h2 id="politica">2. Nuestra política comercial</h2>
-      <ul>
-        <li>
-          <strong>Defectos de fábrica:</strong> cambiamos el artículo por otro
-          igual si hay existencias. Si no hay, recogemos o recibimos el artículo
-          y te reembolsamos el monto pagado. Los detalles están en la{" "}
-          <Link href="/legal/garantia">política de garantía</Link>.
-        </li>
-        <li>
-          <strong>Cambios por preferencia</strong> (modelo, color o grosor
-          distinto) fuera del plazo de retracto: no forman parte de nuestra
-          política, pero puedes consultarnos y los evaluaremos según
-          disponibilidad.
-        </li>
-        <li>
-          <strong>Productos seminuevos:</strong> su estado se informa antes de
-          la compra. Condiciones de garantía para seminuevos:{" "}
-          <Pending>pendiente de confirmar por el comerciante y revisión legal</Pending>
-        </li>
-      </ul>
-
-      <h2 id="procedimiento">3. Cómo solicitar un cambio, una devolución o el retracto</h2>
+      <h2 id="solicitud">1. Cómo se inicia cualquier solicitud</h2>
       <ol>
         <li>
-          Escríbenos por{" "}
+          Se escribe por{" "}
           <a href={claimLink} target="_blank" rel="noopener noreferrer">WhatsApp</a>{" "}
-          o usa el <Link href="/legal/reclamos">formulario de reclamos</Link>,
-          que te entrega un comprobante con número y fecha.
+          o se usa el <Link href="/legal/reclamos">formulario de reclamos</Link>,
+          que genera un comprobante con número y fecha.
         </li>
-        <li>
-          Indica la referencia del pedido o el número de factura, el producto
-          y el motivo. Si se trata de un defecto, envía fotos o un video que lo
-          muestren.
-        </li>
-        <li>
-          Te confirmaremos la recepción y te diremos cómo entregarnos el
-          producto. Cuando se trate de un defecto o de un producto distinto al
-          ofrecido, el transporte corre por nuestra cuenta.
-        </li>
-        <li>
-          Revisamos el producto y te damos una solución. En garantía, el plazo
-          máximo para resolver es de <strong>30 días calendario</strong>.
-        </li>
-        <li>
-          El reembolso se hace por el mismo medio de pago, salvo que acordemos
-          otro contigo. Plazo y forma del reembolso:{" "}
-          <Pending>pendiente de confirmar por el comerciante</Pending>
-        </li>
+        <li>Se indica la referencia del pedido o el número de factura, el producto y el motivo.</li>
+        <li>Se confirma la recepción de la solicitud y se indica cómo entregar el producto.</li>
       </ol>
-      <h3>En el retracto</h3>
+
+      <h2 id="defecto">2. Caso: producto con defecto de fábrica</h2>
       <p>
-        Devuelve el producto en el estado en que lo recibiste, con sus
-        accesorios. Te reembolsaremos el monto pagado. Quién asume el envío de
-        retorno en un retracto sin defecto:{" "}
-        <Pending>pendiente de revisión legal</Pending>
+        Se tramita como garantía: el artículo se cambia por otro igual si hay
+        existencias y, si no las hay, se recibe el artículo y se reembolsa el
+        monto pagado. El procedimiento completo está en la{" "}
+        <Link href="/legal/garantia">política de garantía</Link>. El
+        transporte del producto no tiene costo para el cliente.
       </p>
 
-      <h2 id="reclamos">4. Si no estás conforme</h2>
+      <h2 id="distinto">3. Caso: producto distinto al pedido o incompleto</h2>
+      <ol>
+        <li>Se envían fotos del producto recibido y de su empaque.</li>
+        <li>Se verifica la diferencia con el pedido confirmado.</li>
+        <li>Se entrega el producto correcto o la parte faltante o, si el cliente lo prefiere, se reembolsa el monto pagado. El transporte corre por cuenta de la tienda.</li>
+      </ol>
+
+      <h2 id="retracto">4. Caso: retracto de la compra</h2>
       <p>
-        Respondemos los reclamos en un máximo de <strong>10 días
-        hábiles</strong>. Si la respuesta no te satisface, tienes{" "}
-        <strong>30 días hábiles</strong> para acudir a la DIPRODEC del MIFIC
-        (Ley 842, artículo 100). Información en{" "}
+        Las compras a distancia pueden dejarse sin efecto dentro de los{" "}
+        <strong>5 días hábiles</strong> siguientes a la recepción del
+        producto.
+      </p>
+      <ol>
+        <li>Se comunica la decisión por WhatsApp dentro de ese plazo, indicando la referencia del pedido.</li>
+        <li>El producto se devuelve en el estado en que se recibió, con sus accesorios y empaque.</li>
+        <li>
+          Cuando el producto no tiene defecto, <strong>el costo del envío de
+          devolución corre por cuenta del cliente</strong>.
+        </li>
+        <li>Recibido y revisado el producto, se reembolsa el monto pagado por él.</li>
+      </ol>
+
+      <h2 id="preferencia">5. Caso: cambio por preferencia</h2>
+      <p>
+        Fuera del plazo de retracto, los cambios por preferencia (modelo,
+        color o grosor distinto) no forman parte de la política de la tienda.
+        Pueden consultarse y se evalúan según la disponibilidad; en ese caso,
+        los costos de envío corren por cuenta del cliente.
+      </p>
+
+      <h2 id="transporte">6. Caso: daño o pérdida durante el envío</h2>
+      <p>
+        Se tramita según la{" "}
+        <Link href="/legal/envios#danos">política de envíos</Link>: se reemplaza
+        el producto o se devuelve lo pagado, incluido el envío.
+      </p>
+
+      <h2 id="seminuevos">7. Productos seminuevos</h2>
+      <p>
+        Su estado se informa antes de la compra. Los productos seminuevos y
+        los accesorios no tienen garantía comercial (ver{" "}
+        <Link href="/legal/garantia#plazo">garantía</Link>); se mantienen los
+        reclamos por producto distinto al ofrecido o con defectos ocultos.
+      </p>
+
+      <h2 id="reembolsos">8. Reembolsos</h2>
+      <ul>
+        <li>El reembolso se hace por el mismo medio de pago, salvo que se acuerde otro.</li>
+        <li>Si el pago fue en efectivo, no se obliga a aceptar notas de crédito ni crédito en tienda.</li>
+        <li>
+          Plazo y forma del reembolso:{" "}
+          <Pending>pendiente de confirmar por el comerciante</Pending>
+        </li>
+      </ul>
+
+      <h2 id="inconformidad">9. Si la solución no resulta satisfactoria</h2>
+      <p>
+        Las solicitudes se responden en un máximo de <strong>10 días
+        hábiles</strong>. Si la respuesta no resulta satisfactoria, existe un
+        plazo de 30 días hábiles para acudir a la DIPRODEC del MIFIC.
+        Información en{" "}
         <a href={DIPRODEC_URL} target="_blank" rel="noopener noreferrer">el sitio del MIFIC</a>.
       </p>
     </LegalPage>

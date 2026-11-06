@@ -86,9 +86,9 @@ export function ComplaintForm() {
         <p className="commerce-kicker">COMPROBANTE DE RECLAMO</p>
         <h3>Reclamo {receipt.reference}</h3>
         <p>
-          Guarda este comprobante (puedes imprimirlo o guardarlo como PDF). Para
-          que recibamos tu reclamo, <strong>envíalo por WhatsApp</strong> con el
-          botón de abajo: te confirmaremos la recepción en el chat.
+          Este comprobante puede imprimirse o guardarse como PDF. El reclamo
+          queda presentado cuando se <strong>envía por WhatsApp</strong> con el
+          botón de abajo; la recepción se confirma en el chat.
         </p>
         <pre className="complaint-text">{receipt.message}</pre>
         <div className="consent-actions complaint-actions">
@@ -122,7 +122,7 @@ export function ComplaintForm() {
     <form className="complaint-form" noValidate onSubmit={submit}>
       {errorList.length > 0 && (
         <div ref={summaryRef} tabIndex={-1} role="alert" className="complaint-errors">
-          <p>Revisa estos datos:</p>
+          <p>Hay datos por revisar:</p>
           <ul>
             {errorList.map(([key, message]) => (
               <li key={key}>
@@ -166,7 +166,7 @@ export function ComplaintForm() {
           aria-describedby={errors.reason ? "reclamo-reason-error" : undefined}
           onChange={(e) => set("reason", e.target.value)}
         >
-          <option value="">Elige una opción</option>
+          <option value="">Seleccionar motivo</option>
           {COMPLAINT_REASONS.map((r) => (
             <option key={r} value={r}>{r}</option>
           ))}
@@ -174,7 +174,7 @@ export function ComplaintForm() {
         {errors.reason && <small id="reclamo-reason-error" className="complaint-error">{errors.reason}</small>}
       </label>
       <label className="complaint-field complaint-wide">
-        <span>Describe lo ocurrido<abbr title="obligatorio" aria-hidden="true"> *</abbr></span>
+        <span>Descripción de lo ocurrido<abbr title="obligatorio" aria-hidden="true"> *</abbr></span>
         <textarea
           id="reclamo-description"
           required
@@ -188,7 +188,7 @@ export function ComplaintForm() {
         {errors.description && <small id="reclamo-description-error" className="complaint-error">{errors.description}</small>}
       </label>
       <label className="complaint-field complaint-wide">
-        <span>¿Qué solución solicitas?</span>
+        <span>Solución solicitada</span>
         <textarea
           id="reclamo-request"
           rows={2}
@@ -208,9 +208,9 @@ export function ComplaintForm() {
           onChange={(e) => setPrivacy(e.target.checked)}
         />
         <span>
-          Entiendo que estos datos no se envían a la tienda hasta que yo mande
-          el reclamo por WhatsApp, y que se usarán solo para atender mi reclamo
-          según la <Link href="/legal/privacidad">política de privacidad</Link>.
+          Leída la <Link href="/legal/privacidad">política de privacidad</Link>:
+          estos datos no se envían a la tienda hasta que el reclamo se manda
+          por WhatsApp, y se usan solo para atenderlo.
         </span>
       </label>
       <button type="submit" className="consent-button complaint-submit complaint-wide">

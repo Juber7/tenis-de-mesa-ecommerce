@@ -143,7 +143,7 @@ export const testProducts: Product[] = catalog.map((product) => ({
   imageAlt: product.name,
   gallery: [],
   regularPrice: product.price,
-  currency: "USD",
+  currency: "NIO",
   minorUnit: 2,
   categories: [categories[product.categorySlug]],
   inStock: true,

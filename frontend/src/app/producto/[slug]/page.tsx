@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchProducts, getProduct } from "@/lib/catalog";
 import { money } from "@/lib/utils";
+import { describeRate } from "@/lib/exchange-rate";
 import { absoluteUrl, BUSINESS, OG_BASE } from "@/lib/site";
 import { AddToCart } from "@/components/products/add-to-cart";
 import { ProductGallery } from "@/components/products/product-gallery";
@@ -143,6 +144,7 @@ export default async function ProductPage({
           </p>
           <AddToCart product={p} />
           <p className="product-note">
+            {p.fx && <>Precios en córdobas calculados a {describeRate(p.fx)}. </>}
             Confirmamos disponibilidad, precio final, envío y pago contigo por
             WhatsApp. Agregar al carrito no reserva inventario. Consulta la{" "}
             <Link href="/legal/envios">política de envíos</Link>, la{" "}

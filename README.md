@@ -47,7 +47,7 @@ GOOGLE_SITE_VERIFICATION=   # opcional, Search Console
 
 `NEXT_PUBLIC_SITE_URL` se usa al compilar (URLs canónicas, sitemap, robots y Open Graph). Si no empieza por `https://`, `robots.txt` bloquea la indexación a propósito, para que las copias locales o de prueba no aparezcan en Google. Reinicia Next.js después de cambiar variables.
 
-**WhatsApp:** el número del comerciante (+505 8817 4072) está en un único lugar, `src/lib/contact.ts`, y lo usan el carrito, la ficha de producto, el footer, el contacto, las páginas legales y los reclamos. Los precios proceden de Sanity y se expresan en dólares (USD). Las imágenes deben ser URLs públicas HTTP(S).
+**WhatsApp:** el número del comerciante (+505 8817 4072) está en un único lugar, `src/lib/contact.ts`, y lo usan el carrito, la ficha de producto, el footer, el contacto, las páginas legales y los reclamos. Los precios se cargan en dólares en Sanity y la tienda los muestra en córdobas con el tipo de cambio oficial del BCN del día (`src/lib/exchange-rate.ts`, servicio web del BCN, caché diaria y tasa de respaldo). El certificado del servicio del BCN no envía su intermedio: en local, `Iniciar tienda.cmd` activa `NODE_USE_SYSTEM_CA=1` para completarlo con el almacén de Windows. Las imágenes deben ser URLs públicas HTTP(S).
 
 **Datos del comercio:** `src/lib/site.ts` (`BUSINESS`) guarda nombre, ciudad, redes, RUC, dirección, correo y horario. Los campos en `null` no se publican. Las páginas legales marcan en amarillo los datos que el comerciante debe confirmar; `npm run check:launch` los lista todos.
 

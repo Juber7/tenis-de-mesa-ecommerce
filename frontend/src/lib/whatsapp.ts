@@ -1,5 +1,6 @@
 import type { CartItem } from "@/types/product";
 import { money } from "./utils";
+import { describeRate } from "./exchange-rate";
 export function cartTotal(items: CartItem[]): number {
   if (!items.length) throw new Error("El carrito está vacío.");
   const first = items[0].product;
@@ -21,6 +22,7 @@ export function cartTotal(items: CartItem[]): number {
 }
 export function whatsappMessage(items: CartItem[], reference?: string): string {
   const total = cartTotal(items);
+  const fx = items[0].product.fx;
   const lines = items.map(({ product: p, quantity }) => {
     const fields = [
       p.name.replace(/[\r\n]+/g, " "),
@@ -40,7 +42,11 @@ export function whatsappMessage(items: CartItem[], reference?: string): string {
     "¡Hola Leandro! Quisiera realizar el siguiente pedido desde la página web:",
     ...(reference ? [`Referencia del pedido: ${reference}`] : []),
     ...lines,
-    `Total Calculado: ${money(total, items[0].product.currency, items[0].product.minorUnit)}`,
+    [
+      `Total Calculado: ${money(total, items[0].product.currency, items[0].product.minorUnit)}`,
+      // The merchant can check the córdoba amounts against the dollar prices.
+      ...(fx ? [`Tipo de cambio: ${describeRate(fx)}`] : []),
+    ].join("\n"),
   ].join("\n\n");
 }
 export function whatsappLink(

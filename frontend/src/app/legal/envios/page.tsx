@@ -6,7 +6,7 @@ const path = "/legal/envios";
 export const metadata = legalMetadata(
   path,
   "Política de envíos",
-  "Envío gratuito al IND y a puntos céntricos de Managua, y envíos por CargoTrans al resto de Nicaragua.",
+  "Entrega gratuita en el IND y en puntos céntricos de Managua. Envíos por CargoTrans al resto de Nicaragua, con costo a cargo del cliente.",
 );
 
 export default function ShippingPage() {
@@ -14,15 +14,15 @@ export default function ShippingPage() {
     <LegalPage
       path={path}
       title="Política de envíos"
-      lead="Opciones de entrega, quién asume cada costo y qué pasa si el producto se daña en el camino."
+      lead="Opciones de entrega, quién asume cada costo y cómo se procede en cada caso."
     >
       <div className="legal-callout legal-callout-strong">
         <p>
           <strong>En resumen:</strong> la entrega es gratuita en el Instituto
           Nicaragüense de Deportes (IND) y en puntos céntricos de Managua. Al
-          resto del país enviamos por CargoTrans, dentro de su cobertura. La
-          opción, el costo y la fecha se confirman por WhatsApp antes de que
-          aceptes la compra.
+          resto del país se envía por CargoTrans, dentro de su cobertura, y el
+          costo del envío lo paga el cliente. La opción, el costo y la fecha se
+          confirman por WhatsApp antes de cerrar la compra.
         </p>
       </div>
 
@@ -32,8 +32,8 @@ export default function ShippingPage() {
           <thead>
             <tr>
               <th>Opción</th>
-              <th>Costo para ti</th>
-              <th>Cómo funciona</th>
+              <th>Costo</th>
+              <th>Detalle</th>
             </tr>
           </thead>
           <tbody>
@@ -41,7 +41,6 @@ export default function ShippingPage() {
               <td>Instituto Nicaragüense de Deportes (IND), Managua</td>
               <td>Gratis</td>
               <td>
-                Coordinamos contigo el día y la hora de entrega por WhatsApp.
                 Punto exacto y horarios:{" "}
                 <Pending>pendiente de confirmar por el comerciante</Pending>
               </td>
@@ -50,79 +49,86 @@ export default function ShippingPage() {
               <td>Puntos céntricos de Managua</td>
               <td>Gratis</td>
               <td>
-                Te ofrecemos el punto disponible más cercano. Lista de puntos y
-                condiciones (horarios, días, monto mínimo si lo hubiera):{" "}
+                Lista de puntos y condiciones (horarios, días, monto mínimo si
+                lo hubiera):{" "}
                 <Pending>pendiente de confirmar por el comerciante</Pending>
               </td>
             </tr>
             <tr>
-              <td>
-                CargoTrans, resto de Nicaragua dentro de su cobertura
-              </td>
-              <td>
-                Según la tarifa de CargoTrans para tu destino. Quién la paga:{" "}
-                <Pending>pendiente de confirmar por el comerciante</Pending>
-              </td>
-              <td>
-                Enviamos el paquete a la agencia o dirección de CargoTrans que
-                elijas. Te informamos el costo y el tiempo estimado antes de
-                que confirmes la compra.
-              </td>
+              <td>CargoTrans: resto de Nicaragua, dentro de su cobertura</td>
+              <td>A cargo del cliente, según la tarifa de CargoTrans</td>
+              <td>Entrega en la agencia o dirección de CargoTrans que se indique.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="cargotrans">2. Envíos por CargoTrans</h2>
+      <h2 id="ind">2. Procedimiento: entrega en el IND</h2>
+      <ol>
+        <li>Al confirmar la compra se elige la entrega en el IND.</li>
+        <li>Se acuerdan por WhatsApp el día y la hora.</li>
+        <li>El pedido se entrega en el punto acordado a la persona indicada en el chat.</li>
+      </ol>
+
+      <h2 id="managua">3. Procedimiento: entrega en un punto céntrico de Managua</h2>
+      <ol>
+        <li>Se propone el punto disponible más cercano al cliente.</li>
+        <li>Se acuerdan por WhatsApp el punto, el día y la hora.</li>
+        <li>El pedido se entrega en el punto acordado a la persona indicada en el chat.</li>
+      </ol>
+
+      <h2 id="cargotrans">4. Procedimiento: envío por CargoTrans</h2>
+      <ol>
+        <li>Se verifica que el destino esté dentro de la cobertura de CargoTrans.</li>
+        <li>
+          Se informa el costo del envío según la tarifa de CargoTrans y el
+          tiempo estimado de entrega. <strong>El costo del envío corre por
+          cuenta del cliente</strong> y se informa antes de confirmar la
+          compra.
+        </li>
+        <li>Una vez confirmada la compra, el paquete se entrega a CargoTrans y se comparten los datos para darle seguimiento.</li>
+        <li>El cliente recibe el paquete en la agencia o dirección indicada.</li>
+      </ol>
       <p>
-        CargoTrans es una empresa de transporte de paquetería con agencias en
-        los departamentos del país. La cobertura, las tarifas y los tiempos de
-        entrega los define CargoTrans; puedes consultarlos en{" "}
+        La cobertura, las tarifas y los tiempos de entrega los define
+        CargoTrans y pueden consultarse en{" "}
         <a href={CARGOTRANS_URL} target="_blank" rel="noopener noreferrer">cargotrans.com.ni</a>.
-        Antes de confirmar tu compra te diremos:
-      </p>
-      <ul>
-        <li>si tu destino está dentro de la cobertura;</li>
-        <li>el costo del envío y quién lo paga;</li>
-        <li>el tiempo estimado de entrega que informe CargoTrans;</li>
-        <li>cómo dar seguimiento al paquete.</li>
-      </ul>
-      <p>
-        Si tu destino no está cubierto, buscaremos contigo otra alternativa o
-        no se realizará la compra, sin costo para ti.
+        Si el destino no está cubierto, se busca otra alternativa o la compra
+        no se realiza, sin costo para el cliente.
       </p>
 
-      <h2 id="plazos">3. Fechas de entrega</h2>
+      <h2 id="plazos">5. Fechas de entrega y retrasos</h2>
       <p>
         La fecha o el plazo estimado de entrega se acuerda en el chat al
-        confirmar la compra. Si surge un retraso, te avisaremos de inmediato.
-        Si no podemos entregar el pedido, te devolveremos sin demora cualquier
-        monto que hayas adelantado.
+        confirmar la compra. Ante cualquier retraso se avisa de inmediato. Si
+        el pedido no puede entregarse, se devuelve sin demora cualquier monto
+        adelantado.
       </p>
 
-      <h2 id="danos">4. Daños o pérdidas durante el transporte</h2>
-      <p>
-        El producto viaja bajo nuestra responsabilidad hasta que lo recibes.
-        Si llega dañado, incompleto o no llega, escríbenos por WhatsApp con la
-        referencia del pedido y, si es posible, fotos del paquete y del
-        producto. Lo reemplazaremos o te devolveremos lo pagado, incluido el
-        envío que hayas pagado. Te recomendamos revisar el paquete al recibirlo
-        y avisarnos cuanto antes, pero esto no limita los plazos que te da la
-        ley para reclamar.
-      </p>
+      <h2 id="danos">6. Procedimiento: producto dañado, incompleto o extraviado</h2>
+      <ol>
+        <li>Se recomienda revisar el paquete al recibirlo.</li>
+        <li>Si llega dañado, incompleto o no llega, se informa por WhatsApp con la referencia del pedido y, si es posible, fotos del paquete y del producto.</li>
+        <li>
+          Se reemplaza el producto o se devuelve lo pagado, incluido el costo
+          del envío. El producto viaja bajo responsabilidad de la tienda hasta
+          su entrega.
+        </li>
+      </ol>
+      <p>Avisar pronto agiliza la solución, pero no reduce los plazos legales para reclamar.</p>
 
-      <h2 id="recepcion">5. Recepción del pedido</h2>
+      <h2 id="recepcion">7. Recepción del pedido</h2>
       <ul>
-        <li>Indica un nombre y un teléfono de contacto de quien recibirá el pedido.</li>
-        <li>Si no puedes asistir a la entrega acordada, avísanos con anticipación para reprogramarla.</li>
-        <li>Al recibir, puedes revisar que el producto corresponda a tu pedido.</li>
+        <li>Se debe indicar el nombre y el teléfono de la persona que recibirá el pedido.</li>
+        <li>Si no es posible asistir a la entrega acordada, se avisa con anticipación para reprogramarla.</li>
+        <li>Al recibir, puede revisarse que el producto corresponda al pedido.</li>
       </ul>
 
-      <h2 id="relacionadas">6. Políticas relacionadas</h2>
+      <h2 id="relacionadas">8. Políticas relacionadas</h2>
       <p>
-        Consulta los <Link href="/legal/terminos">términos y condiciones</Link>,
-        la política de <Link href="/legal/cambios-y-devoluciones">cambios y devoluciones</Link>{" "}
-        y la <Link href="/legal/garantia">garantía</Link>.
+        <Link href="/legal/terminos">Términos y condiciones</Link> ·{" "}
+        <Link href="/legal/cambios-y-devoluciones">Cambios y devoluciones</Link> ·{" "}
+        <Link href="/legal/garantia">Garantía</Link>
       </p>
     </LegalPage>
   );

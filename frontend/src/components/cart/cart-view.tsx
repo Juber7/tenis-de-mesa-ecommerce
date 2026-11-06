@@ -5,6 +5,7 @@ import { Minus, Plus, Trash2, ArrowLeft, ShoppingBag, RotateCw } from "lucide-re
 import { useCart } from "@/store/cart";
 import { useCartHydrated } from "@/store/use-cart-hydrated";
 import { money } from "@/lib/utils";
+import { describeRate } from "@/lib/exchange-rate";
 import type { CartItem } from "@/types/product";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { Button } from "@/components/ui/button";
@@ -216,6 +217,9 @@ export function CartView() {
             </strong>
           </div>
           <p className="mb-6 text-sm leading-6 text-charcoal/75">
+            {verified?.[0]?.product.fx && (
+              <>Precios en córdobas calculados a {describeRate(verified[0].product.fx)}. </>
+            )}
             El total no incluye el envío cuando este tenga costo. Disponibilidad,
             envío y forma de pago se confirman por WhatsApp.
           </p>
