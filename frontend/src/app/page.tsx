@@ -23,7 +23,7 @@ const storeLd = {
     "@type": "PostalAddress",
     addressLocality: BUSINESS.city,
     addressCountry: "NI",
-    ...(BUSINESS.address ? { streetAddress: BUSINESS.address } : {}),
+    postalCode: BUSINESS.postalCode,
   },
   sameAs: BUSINESS.social.map((s) => s.href),
 };
