@@ -13,7 +13,7 @@ export function Footer() {
       <div className="footer-contact-banner">
         <div className="shell footer-contact-layout">
           <div className="footer-contact-copy">
-            <p className="footer-kicker">TENIS DE MESA · NICARAGUA</p>
+            <p className="footer-kicker">TENIS DE MESA · MANAGUA, NICARAGUA</p>
             <h2>¿LISTO PARA JUGAR?</h2>
             <p>Escríbenos para elegir tu equipo o resolver cualquier consulta.</p>
           </div>

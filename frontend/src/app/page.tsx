@@ -15,6 +15,9 @@ const storeLd = {
   "@type": "Store",
   name: BUSINESS.storeName,
   url: absoluteUrl("/"),
+  description:
+    "Tienda de tenis de mesa en Managua, Nicaragua: raquetas, gomas, pelotas y accesorios.",
+  areaServed: { "@type": "City", name: BUSINESS.city },
   logo: absoluteUrl("/social-preview.png"),
   image: absoluteUrl("/social-preview.png"),
   telephone: `+${CONTACT_NUMBER}`,

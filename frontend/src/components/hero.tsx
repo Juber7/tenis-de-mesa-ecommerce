@@ -18,7 +18,7 @@ export function Hero() {
       <div className="shell home-hero-inner">
         <div className="home-hero-copy">
           <h1 id="home-title">EQUÍPATE<br />PARA GANAR.</h1>
-          <p className="home-hero-label">TENIS DE MESA · NICARAGUA</p>
+          <p className="home-hero-label">TENIS DE MESA · MANAGUA, NICARAGUA</p>
           <Link className="poster-action" href="/tienda">
             VER CATÁLOGO <span aria-hidden="true">→</span>
           </Link>

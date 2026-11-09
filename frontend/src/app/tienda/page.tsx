@@ -18,10 +18,10 @@ export async function generateMetadata({
   const variation =
     query.search || query.orderby || query.on_sale || query.page !== "1";
   const canonical = category ? `/tienda?categoria=${category.value}` : "/tienda";
-  const title = category ? `${category.label} de tenis de mesa` : "Tienda";
+  const title = category ? `${category.label} de tenis de mesa` : "Tienda de tenis de mesa en Managua";
   const description = category
-    ? `${category.label} de tenis de mesa disponibles en Nicaragua. Consulta precios y haz tu pedido por WhatsApp.`
-    : "Catálogo de raquetas, gomas, pelotas y accesorios de tenis de mesa en Nicaragua. Haz tu pedido por WhatsApp.";
+    ? `${category.label} de tenis de mesa disponibles en Managua, Nicaragua. Consulta precios y haz tu pedido por WhatsApp.`
+    : "Catálogo de raquetas, gomas, pelotas y accesorios de tenis de mesa en Managua, Nicaragua. Haz tu pedido por WhatsApp.";
   return {
     title,
     description,

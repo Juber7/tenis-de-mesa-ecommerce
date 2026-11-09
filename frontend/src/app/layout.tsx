@@ -36,12 +36,12 @@ const barlow = Barlow({
 const anton = Anton({ subsets: ["latin"], weight: "400", variable: "--font-anton", display: "swap" });
 
 const description =
-  "Raquetas, gomas, pelotas y accesorios de tenis de mesa en Nicaragua. Elige tu equipo y coordina tu pedido por WhatsApp.";
+  "Tienda de tenis de mesa en Managua, Nicaragua: raquetas, gomas, pelotas y accesorios. Elige tu equipo y coordina tu pedido por WhatsApp.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Tenis de Mesa · Equipo de tenis de mesa en Nicaragua",
+    default: "Tenis de Mesa en Managua · Raquetas, gomas y pelotas",
     template: "%s | Tenis de Mesa",
   },
   description,
