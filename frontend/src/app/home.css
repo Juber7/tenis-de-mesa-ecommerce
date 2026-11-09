@@ -127,7 +127,8 @@ body:has(.home-page) .footer-contact-banner { display: none; }
   .hero-card-rubbers, .hero-card-balls { width: 190px; height: 215px; }
 }
 @media (max-width: 1023px) {
-  .home-page { padding-left: 0; padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+  /* No bottom padding: the footer below reserves the space for the bottom bar. */
+  .home-page { padding-left: 0; }
   .home-side-rail { position: fixed; z-index: 50; top: auto; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); width: auto; height: 60px; flex-direction: row; justify-content: center; padding: 8px 12px; border: 1px solid rgb(255 255 255 / .14); border-radius: 22px; box-shadow: 0 12px 30px rgb(10 31 68 / .32); }
   .home-side-rail::after { display: none; }
   .home-side-rail .home-rail-logo { width: 44px; height: 44px; flex: none; align-self: center; margin: 0 12px 0 0; padding: 0; }

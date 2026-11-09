@@ -80,7 +80,8 @@
   .cart-summary { border-radius: 22px; box-shadow: 5px 5px 0 var(--commerce-ink); }
 }
 @media (max-width: 1023px) {
-  .commerce-page { padding-left: 0; padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+  /* No bottom padding: the footer below reserves the space for the bottom bar. */
+  .commerce-page { padding-left: 0; }
   body:has(.commerce-page) .site-footer { padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
 }
 
