@@ -21,7 +21,8 @@ export const BUSINESS = {
   /** Número RUC emitido por la DGI. */
   ruc: null as string | null,
   /** Dirección física para notificaciones y reclamos. */
-  address: null as string | null,
+  address: "Managua 11039" as string | null,
+  postalCode: "11039",
   /** Correo electrónico de atención, si el comerciante decide publicarlo. */
   email: null as string | null,
   /** Horario de atención por WhatsApp, por ejemplo "Lunes a sábado, 9:00 a 18:00". */

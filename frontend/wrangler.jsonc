@@ -20,11 +20,9 @@
 	],
 	"kv_namespaces": [
 		{
-			// Incremental cache (ISR): catalog and product pages refresh every
-			// minute. Create it with `npx wrangler kv namespace create NEXT_INC_CACHE_KV`
-			// and paste the returned id here.
+			// Incremental cache (ISR): catalog and product pages refresh every minute.
 			"binding": "NEXT_INC_CACHE_KV",
-			"id": "REEMPLAZAR_CON_EL_ID_DEL_NAMESPACE_KV"
+			"id": "356ceac82ae94dadb79c43d583f77e2e"
 		}
 	],
 	"images": {
@@ -38,10 +36,13 @@
 		"SANITY_DATASET": "production",
 		"NEXT_PUBLIC_SITE_URL": "https://tenisdemesani.com"
 	},
-	// Once the custom domain is active, set "workers_dev" and "preview_urls"
-	// to false so the store is only reachable at its own domain, and add:
-	// "routes": [{ "pattern": "tenisdemesani.com", "custom_domain": true }]
-	"workers_dev": true,
+	// The store is only reachable at its own domain (www redirects to the
+	// apex in next.config.ts); no public *.workers.dev copy.
+	"routes": [
+		{ "pattern": "tenisdemesani.com", "custom_domain": true },
+		{ "pattern": "www.tenisdemesani.com", "custom_domain": true }
+	],
+	"workers_dev": false,
 	"preview_urls": false,
 	"observability": { "enabled": true }
 }

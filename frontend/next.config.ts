@@ -54,5 +54,16 @@ const config: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    // www is attached to the same Worker; send it to the canonical domain.
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.tenisdemesani.com" }],
+        destination: "https://tenisdemesani.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 export default config;
