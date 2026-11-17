@@ -50,6 +50,7 @@ export function Footer() {
       <div className="footer-legal">
         <div className="shell footer-legal-inner">
           <nav aria-label="Información legal" className="footer-legal-links">
+            <Link href="/nosotros">Nosotros</Link>
             <Link href="/contacto">Contacto</Link>
             {LEGAL_PAGES.map((page) => (
               <Link key={page.href} href={page.href}>

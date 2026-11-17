@@ -41,7 +41,7 @@ export function LegalPage({
         <aside className="legal-aside" aria-label="Otras páginas legales">
           <h2>Información</h2>
           <nav>
-            {[{ href: "/contacto", label: "Contacto" }, ...LEGAL_PAGES].map((page) => (
+            {[{ href: "/nosotros", label: "Nosotros" }, { href: "/contacto", label: "Contacto" }, ...LEGAL_PAGES].map((page) => (
               <Link
                 key={page.href}
                 href={page.href}

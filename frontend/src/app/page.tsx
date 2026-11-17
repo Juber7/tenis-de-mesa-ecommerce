@@ -81,29 +81,6 @@ export default async function Home() {
         </div>
       </section>
       <ComicCarousel panels={panels} />
-      <section className="home-about shell" aria-labelledby="about-title">
-        <h2 id="about-title">TIENDA DE PING PONG <br />EN MANAGUA</h2>
-        <div className="home-about-copy">
-          <p>
-            Somos una tienda de tenis de mesa (ping pong) en Managua, Nicaragua. Aquí encuentras
-            raquetas, gomas, pelotas de ping pong, pega, fundas, robots de entrenamiento y
-            accesorios, con precios en córdobas.
-          </p>
-          <p>
-            Elige tu equipo en la <Link href="/tienda">tienda en línea</Link> y coordina tu
-            pedido por WhatsApp. Entregamos sin costo en el IND y en puntos céntricos de Managua,
-            y enviamos al resto de Nicaragua por CargoTrans (el envío lo paga el cliente).
-            Consulta la <Link href="/legal/envios">política de envíos</Link>.
-          </p>
-          <ul className="home-about-links" aria-label="Categorías de la tienda">
-            {productCategories.map((category) => (
-              <li key={category.value}>
-                <Link href={`/tienda?categoria=${category.value}`}>{category.search}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
       <section id="contacto" className="home-contact" aria-labelledby="contact-title">
         <div className="shell home-contact-inner">
           <div>

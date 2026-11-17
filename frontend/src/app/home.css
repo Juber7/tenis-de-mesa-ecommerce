@@ -182,27 +182,6 @@ body:has(.home-page) .footer-contact-banner { display: none; }
   .hero-product-showcase-slide:nth-child(4) img { animation-delay: 6s; }
 }
 
-/* About the store: the text search engines read to know what is sold here
-   and where ("ping pong", "Managua"), with a link to every category. */
-.home-about { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 28px 56px; align-items: start; padding-bottom: 92px; }
-.home-about h2 { font: 400 clamp(42px, 4.2vw, 62px)/1 var(--font-anton), Impact, sans-serif; color: var(--poster-ink); }
-.home-about-copy p { max-width: 62ch; color: var(--poster-ink); font: 400 18px/1.55 var(--font-barlow-text), sans-serif; }
-.home-about-copy p + p { margin-top: 14px; }
-.home-about-copy p a { border-bottom: 2px solid var(--poster-accent); color: var(--poster-ink); font-weight: 500; text-decoration: none; }
-.home-about-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
-.home-about-links a { display: block; padding: 9px 12px 8px; border: 2px solid var(--poster-ink); background: white; color: var(--poster-ink); font: 700 15px/1 var(--font-barlow), sans-serif; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; transition: background-color 140ms ease, color 140ms ease; }
-.home-about-links a:active { background: var(--poster-ink); color: white; }
-@media (hover: hover) and (pointer: fine) {
-  .home-about-copy p a:hover { color: var(--poster-accent); }
-  .home-about-links a:hover { background: var(--poster-ink); color: white; }
-}
-@media (max-width: 1023px) {
-  .home-about { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 767px) {
-  .home-about { padding-bottom: 56px; }
-  .home-about-copy p { font-size: 17px; }
-}
 @media (prefers-reduced-motion: reduce) {
   .home-page *, .home-page *::before, .home-page *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .hero-product-showcase-track { transform: translateX(0); }
@@ -218,7 +197,7 @@ body:has(.home-page) .footer-contact-banner { display: none; }
   .home-hero-halftone { top: 600px; }
   .home-hero-copy .poster-action { top: 672px; }
   .home-section-heading { gap: 16px; }
-  .home-section-heading h2, .home-about h2 { font-size: clamp(30px, 10vw, 42px); }
+  .home-section-heading h2 { font-size: clamp(30px, 10vw, 42px); }
   .comic-controls { flex: none; }
   .home-contact::after { right: -84px; bottom: -96px; width: 170px; height: 170px; }
   .home-contact-ni { right: 15px; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); font-size: 26px; }
