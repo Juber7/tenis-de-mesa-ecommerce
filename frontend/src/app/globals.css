@@ -36,30 +36,6 @@
 .product-card {
   @apply overflow-hidden rounded-2xl border border-sand bg-white transition-[border-color,box-shadow,transform] duration-200 hover:border-[#A9CFFF] hover:shadow-[0_14px_30px_-20px_rgba(10,31,68,.4)];
 }
-.loader-ball {
-  animation: ball-bounce 0.75s cubic-bezier(0.36, 0, 0.66, 1) infinite alternate;
-}
-.loader-paddle {
-  transform-origin: 60px 96px;
-  animation: paddle-tap 1.5s ease-in-out infinite;
-}
-@keyframes ball-bounce {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(57px);
-  }
-}
-@keyframes paddle-tap {
-  0%,
-  100% {
-    transform: rotate(-3deg);
-  }
-  50% {
-    transform: rotate(3deg);
-  }
-}
 .results-enter {
   animation: results-enter 240ms var(--ease-out) both;
 }
@@ -320,10 +296,6 @@ a,
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .loader-ball,
-  .loader-paddle {
-    animation: none !important;
-  }
   *,
   *::before,
   *::after {
