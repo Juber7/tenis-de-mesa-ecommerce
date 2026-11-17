@@ -156,3 +156,15 @@ html[data-consent="pending"] .consent-banner[data-ssr] { display: block; }
   .complaint-receipt { position: absolute; inset: 0 auto auto 0; width: 100%; border: 0; }
   .complaint-actions { display: none; }
 }
+/* Phones: smaller corner disc, and a cookie notice that leaves the page
+   visible behind it (two buttons side by side instead of three stacked). */
+@media (max-width: 767px) {
+  .legal-intro::after { top: -80px; right: -60px; width: 160px; height: 160px; }
+  .legal-title { font-size: clamp(38px, 12vw, 60px); overflow-wrap: anywhere; }
+  .consent-banner { padding: 12px 14px 14px; border-radius: 18px; }
+  .consent-banner h2 { font-size: 19px; }
+  .consent-banner p { margin-top: 6px; font-size: 13.5px; line-height: 1.35; }
+  .consent-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .consent-actions .consent-button { min-height: 44px; padding: 6px 8px; font-size: 14px; line-height: 1.1; text-align: center; }
+  .consent-actions .consent-button-quiet { order: 3; grid-column: 1 / -1; min-height: 40px; }
+}

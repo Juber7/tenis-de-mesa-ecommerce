@@ -118,3 +118,8 @@
   .product-info-panel { padding: 24px; }
   .product-description { font-size: 17px; }
 }
+/* Phones: the corner disc stays in its corner, clear of the kicker and title. */
+@media (max-width: 767px) {
+  .commerce-intro::after { top: -80px; right: -60px; width: 160px; height: 160px; }
+  .commerce-title { font-size: clamp(42px, 14vw, 72px); overflow-wrap: anywhere; }
+}

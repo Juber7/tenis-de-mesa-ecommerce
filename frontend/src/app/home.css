@@ -207,3 +207,25 @@ body:has(.home-page) .footer-contact-banner { display: none; }
   .home-page *, .home-page *::before, .home-page *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .hero-product-showcase-track { transform: translateX(0); }
 }
+/* Phones (360–390 px wide: Infinix Smart 8, Galaxy S22 Ultra…). The pieces of
+   the hero keep clear of each other: the cards do not cover one another's
+   labels and the button sits below them. */
+@media (max-width: 767px) {
+  .home-hero, .home-hero-inner { min-height: 800px; }
+  .home-hero-cards { height: 400px; }
+  .hero-card-rubbers { height: 178px; }
+  .hero-card-balls { top: 204px; height: 176px; }
+  .home-hero-halftone { top: 600px; }
+  .home-hero-copy .poster-action { top: 672px; }
+  .home-section-heading { gap: 16px; }
+  .home-section-heading h2, .home-about h2 { font-size: clamp(30px, 10vw, 42px); }
+  .comic-controls { flex: none; }
+  .home-contact::after { right: -84px; bottom: -96px; width: 170px; height: 170px; }
+  .home-contact-ni { right: 15px; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); font-size: 26px; }
+}
+@media (max-width: 359px) {
+  .home-hero-copy h1 { font-size: 50px; }
+  .home-hero-label { font-size: 13px; letter-spacing: .05em; }
+  .home-hero-copy .poster-action { min-height: 56px; font-size: 24px; }
+  .home-contact .poster-action { gap: 12px; padding-inline: 16px; font-size: 17px; }
+}
