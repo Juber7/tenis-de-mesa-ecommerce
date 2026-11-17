@@ -67,7 +67,8 @@ test("pedido con referencia: la referencia va después del encabezado", () => {
   assert.ok(blocks.at(-1)!.startsWith("Total Calculado:"));
 });
 
-test("pedido sin foto: omite la línea de imagen", () => {
+test("pedido sin foto: enlaza igual la página del producto", () => {
   const message = whatsappMessage([{ product: { ...testProducts[0], image: "" }, quantity: 1 }]);
   assert.ok(!message.includes("Imagen:"));
+  assert.ok(message.includes(`/producto/${testProducts[0].slug}`));
 });

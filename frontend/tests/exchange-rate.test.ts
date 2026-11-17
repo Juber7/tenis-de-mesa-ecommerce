@@ -72,3 +72,10 @@ test("si hoy falla usa el día anterior y, si todo falla, el respaldo", async ()
   assert.equal(fx.rate, FALLBACK_RATE);
   assert.match(describeRate(fx), /referencia/);
 });
+
+test("la etiqueta del tipo de cambio no lleva fecha", () => {
+  assert.equal(
+    describeRate({ rate: 36.6243, date: "2026-11-09", source: "bcn" }).replace(/\u00a0/g, " "),
+    "C$ 36.6243 por US$ 1 (tipo de cambio oficial del BCN al día de hoy)",
+  );
+});

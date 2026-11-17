@@ -1,6 +1,7 @@
 import type { CartItem } from "@/types/product";
 import { money } from "./utils";
 import { describeRate } from "./exchange-rate";
+import { absoluteUrl } from "./site";
 export function cartTotal(items: CartItem[]): number {
   if (!items.length) throw new Error("El carrito está vacío.");
   const first = items[0].product;
@@ -24,22 +25,17 @@ export function whatsappMessage(items: CartItem[], reference?: string): string {
   const total = cartTotal(items);
   const fx = items[0].product.fx;
   const lines = items.map(({ product: p, quantity }) => {
-    const fields = [
+    return [
       p.name.replace(/[\r\n]+/g, " "),
       `Precio unitario: ${money(p.price, p.currency, p.minorUnit)}`,
       `Cantidad: ${quantity}`,
-    ];
-    // Products without a photo are still orderable; the image line is omitted.
-    if (p.image) {
-      const image = new URL(p.image);
-      if (!["https:", "http:"].includes(image.protocol))
-        throw new Error("La imagen debe tener una URL pública HTTP(S).");
-      fields.push(`Imagen: ${image.href}`);
-    }
-    return fields.join("\n");
+      // The product's page in the store, so the merchant opens exactly what
+      // was ordered (not a link to a photo).
+      `Producto: ${absoluteUrl(`/producto/${encodeURIComponent(p.slug)}`)}`,
+    ].join("\n");
   });
   return [
-    "¡Hola Leandro! Quisiera realizar el siguiente pedido desde la página web:",
+    "¡Hola Leonardo! Quisiera realizar el siguiente pedido desde la página web:",
     ...(reference ? [`Referencia del pedido: ${reference}`] : []),
     ...lines,
     [

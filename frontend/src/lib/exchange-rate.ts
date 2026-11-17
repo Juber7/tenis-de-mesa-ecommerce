@@ -83,19 +83,11 @@ export async function getExchangeRate(now = new Date()): Promise<ExchangeRate> {
 /** Converts US$ cents to córdoba centavos, rounding half up. */
 export const usdCentsToNio = (cents: number, rate: number) => Math.round(cents * rate);
 
-export function formatRateDate(date: string) {
-  return new Intl.DateTimeFormat("es-NI", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(date + "T12:00:00Z"));
-}
-
-/** "C$ 36.6243 por US$ 1 (BCN, 6 de noviembre de 2026)" */
+/** The rate is looked up again every day for today's date in Managua, so the
+ * label says "al día de hoy" instead of carrying a date. */
 export function describeRate(fx: ExchangeRate) {
   const rate = `C$ ${fx.rate.toFixed(4)} por US$ 1`;
   return fx.source === "bcn"
-    ? `${rate} (tipo de cambio oficial del BCN, ${formatRateDate(fx.date)})`
+    ? `${rate} (tipo de cambio oficial del BCN al día de hoy)`
     : `${rate} (tipo de cambio oficial de referencia del BCN)`;
 }

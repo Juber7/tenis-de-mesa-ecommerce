@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { testProducts } from "./fixtures";
 import { cartTotal, whatsappLink, whatsappMessage } from "../src/lib/whatsapp";
+import { absoluteUrl } from "../src/lib/site";
 const items = [
   { product: testProducts[0], quantity: 2 },
   { product: testProducts[1], quantity: 3 },
@@ -15,11 +16,17 @@ test("total exacto, dos productos, cuatro campos y encabezado solicitado", () =>
   const blocks = message.split("\n\n");
   assert.equal(
     blocks[0],
-    "¡Hola Leandro! Quisiera realizar el siguiente pedido desde la página web:",
+    "¡Hola Leonardo! Quisiera realizar el siguiente pedido desde la página web:",
   );
   assert.equal(blocks.length, 4);
   assert.equal(blocks[1].split("\n").length, 4);
   assert.match(blocks[1], /Cantidad: 2/);
+  // Each product links to its page in the store, not to its photo.
+  assert.equal(
+    blocks[1].split("\n")[3],
+    `Producto: ${absoluteUrl("/producto/" + testProducts[0].slug)}`,
+  );
+  assert.doesNotMatch(message, /Imagen:|example\.com\/products/);
   assert.match(blocks[2], /Cantidad: 3/);
   assert.ok(blocks[3].startsWith("Total Calculado:"));
   const url = new URL(whatsappLink(items, "50255551234"));
@@ -38,19 +45,15 @@ test("rechaza carrito vacío, cantidades inválidas, moneda mixta y teléfono in
   );
   assert.throws(() => whatsappLink(items, "+502 invalid"));
 });
-test("respeta monedas sin decimales y rechaza imágenes no HTTP", () => {
+test("respeta monedas sin decimales y enlaza productos sin foto", () => {
   const item = {
     product: { ...testProducts[0], currency: "JPY", minorUnit: 0, price: 1200 },
     quantity: 2,
   };
   assert.equal(cartTotal([item]), 2400);
   assert.match(whatsappMessage([item]), /2,400/);
-  assert.throws(() =>
-    whatsappMessage([
-      {
-        product: { ...testProducts[0], image: "javascript:alert(1)" },
-        quantity: 1,
-      },
-    ]),
-  );
+  const noPhoto = whatsappMessage([
+    { product: { ...testProducts[0], image: "", slug: "goma nueva" }, quantity: 1 },
+  ]);
+  assert.match(noPhoto, /Producto: \S+\/producto\/goma%20nueva\n/);
 });
