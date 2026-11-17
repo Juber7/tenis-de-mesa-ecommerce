@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SearchForm } from "@/components/products/search-form";
 import { FilterSelect } from "@/components/ui/filter-select";
-import { productCategories } from "@/lib/categories";
+import { categorySearchName, productCategories } from "@/lib/categories";
 import { ProductCard } from "@/components/products/product-card";
 import { shopQuery, type ShopParams } from "@/lib/product-filters";
 import type { Product } from "@/types/product";
@@ -17,6 +17,7 @@ export function ShopView({
   const val = (k: string) => (typeof s[k] === "string" ? s[k] : "");
   const q = query.search || "";
   const category = query.category || "";
+  const searchName = categorySearchName(category);
   const order = query.orderby ? `price-${query.order}` : "";
   const sale = query.on_sale === "true";
   const page = Number(query.page);
@@ -32,9 +33,15 @@ export function ShopView({
     <section className="commerce-page">
       <div className="commerce-intro">
         <div className="shell">
-          <p className="commerce-kicker">TENIS DE MESA · NICARAGUA</p>
+          <p className="commerce-kicker">
+            {(searchName ?? "Ping pong y tenis de mesa").toUpperCase()} · MANAGUA
+          </p>
           <h1 className="commerce-title">Encuentra<br /><em>tu equipo.</em></h1>
-          <p className="commerce-subtitle">Selecciona, compara y prepara tu pedido en un solo lugar.</p>
+          <p className="commerce-subtitle">
+            {searchName
+              ? `${searchName} disponibles en Managua, Nicaragua. Selecciona, compara y prepara tu pedido.`
+              : "Selecciona, compara y prepara tu pedido en un solo lugar."}
+          </p>
         </div>
       </div>
       <div className="shell pb-16 md:pb-24">

@@ -8,6 +8,7 @@ import { absoluteUrl, BUSINESS, OG_BASE } from "@/lib/site";
 import { AddToCart } from "@/components/products/add-to-cart";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { JsonLd } from "@/components/json-ld";
+import { categorySearchName } from "@/lib/categories";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import type { Product } from "@/types/product";
@@ -17,11 +18,14 @@ export async function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
 }
 
+/** "Pelotas de ping pong": the product's category as people search for it. */
+const searchName = (p: Product) => categorySearchName(p.categories[0]?.slug);
+
 const summary = (p: Product) => {
   const text = p.description.replace(/\s+/g, " ").trim();
   const base = text || `${p.name}, ${p.categories[0]?.name ?? "equipo"} de tenis de mesa.`;
   const short = base.length > 150 ? base.slice(0, 147).replace(/\s+\S*$/, "") + "…" : base;
-  return `${short} ${money(p.price, p.currency, p.minorUnit)}. Pedido por WhatsApp en Nicaragua.`;
+  return `${short} ${money(p.price, p.currency, p.minorUnit)}. ${searchName(p) ?? "Tenis de mesa"} en Managua; pedido por WhatsApp.`;
 };
 
 /** Social previews (WhatsApp, Facebook) use a 1200x630 crop of the main photo. */
@@ -39,8 +43,9 @@ export async function generateMetadata({
   const url = `/producto/${p.slug}`;
   const image = socialImage(p);
   const description = summary(p);
+  const category = searchName(p);
   return {
-    title: p.name,
+    title: category ? `${p.name} · ${category}` : p.name,
     description,
     alternates: { canonical: url },
     openGraph: {
@@ -75,7 +80,7 @@ export default async function ProductPage({
     description: p.description || undefined,
     image: p.gallery.map((g) => g.src),
     sku: p.id,
-    category: p.categories[0]?.name,
+    category: searchName(p) ?? p.categories[0]?.name,
     offers: {
       "@type": "Offer",
       url: absoluteUrl(`/producto/${p.slug}`),
@@ -122,7 +127,7 @@ export default async function ProductPage({
         )}
         <div className="product-info-panel">
           <p className="product-kicker">
-            {p.categories.map((c) => c.name).join(" · ")}
+            {searchName(p) ?? p.categories.map((c) => c.name).join(" · ")}
           </p>
           <h1>
             {p.name}

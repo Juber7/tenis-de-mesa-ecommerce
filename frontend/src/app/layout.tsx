@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import type { Metadata, Viewport } from "next";
 import { Anton, Barlow, Barlow_Condensed, Inter } from "next/font/google";
 import "./globals.css";
 import "./home.css";
+import "./comic.css";
 import "./commerce.css";
 import "./legal.css";
 import { Header } from "@/components/layout/header";
@@ -9,7 +11,9 @@ import { Footer } from "@/components/layout/footer";
 import { HomeSideRail } from "@/components/home-side-rail";
 import { CookieConsent } from "@/components/consent/cookie-consent";
 import { PressNavigation } from "@/components/press-navigation";
-import { OG_BASE, SITE_URL } from "@/lib/site";
+import { ComicJump } from "@/components/comic-jump";
+import { PageLoader } from "@/components/page-loader";
+import { OG_BASE, SEARCH_TERMS, SITE_URL } from "@/lib/site";
 import { CONSENT_STORAGE_KEY } from "@/lib/consent";
 
 const CONSENT_BOOTSTRAP = `try{if(!localStorage.getItem(${JSON.stringify(CONSENT_STORAGE_KEY)}))document.documentElement.dataset.consent="pending"}catch(e){document.documentElement.dataset.consent="pending"}`;
@@ -35,22 +39,26 @@ const barlow = Barlow({
 });
 const anton = Anton({ subsets: ["latin"], weight: "400", variable: "--font-anton", display: "swap" });
 
+// People search for the sport as "ping pong" at least as often as "tenis de
+// mesa", so titles and descriptions name both.
+const title = "Tienda de Ping Pong y Tenis de Mesa en Managua, Nicaragua";
 const description =
-  "Tienda de tenis de mesa en Managua, Nicaragua: raquetas, gomas, pelotas y accesorios. Elige tu equipo y coordina tu pedido por WhatsApp.";
+  "Tienda de ping pong y tenis de mesa en Managua, Nicaragua: raquetas, gomas, pelotas de ping pong y accesorios. Elige tu equipo y coordina tu pedido por WhatsApp.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Tenis de Mesa en Managua · Raquetas, gomas y pelotas",
+    default: title,
     template: "%s | Tenis de Mesa",
   },
   description,
+  keywords: SEARCH_TERMS,
   applicationName: "Tenis de Mesa",
   formatDetection: { telephone: false, email: false, address: false },
-  openGraph: { ...OG_BASE, title: "Tenis de Mesa", description },
+  openGraph: { ...OG_BASE, title, description },
   twitter: {
     card: "summary_large_image",
-    title: "Tenis de Mesa",
+    title,
     description,
     images: ["/social-preview.png"],
   },
@@ -102,6 +110,11 @@ export default function RootLayout({
         <Footer />
         <CookieConsent />
         <PressNavigation />
+        <ComicJump />
+        {/* Reads the query string, which is only known in the browser. */}
+        <Suspense fallback={null}>
+          <PageLoader />
+        </Suspense>
       </body>
     </html>
   );

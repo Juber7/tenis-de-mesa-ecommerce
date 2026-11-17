@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { filterProducts, shopQuery } from "../src/lib/product-filters";
+import { featuredByCategory, filterProducts, shopQuery } from "../src/lib/product-filters";
 import { testProducts } from "./fixtures";
 import { productCategories } from "../src/lib/categories";
 
@@ -78,4 +78,15 @@ test("URL traduce todos los filtros y normaliza valores predeterminados", () => 
   assert.deepEqual(shopQuery({ orden: "invalid", q: ["a", "b"] }), {
     page: "1",
   });
+});
+test("destacados: un producto por categoría, con existencias y foto primero", () => {
+  const featured = featuredByCategory(testProducts, productCategories);
+  // Fixture categories: raquetas, gomas, pelotas, pega and seminuevos.
+  assert.deepEqual(
+    featured.map((f) => [f.category.value, f.product.id]),
+    [["paletas", "102"], ["gomas", "101"], ["pelotas", "103"], ["pega", "104"], ["productos-seminuevos", "110"]],
+  );
+  const soldOut = testProducts.map((p) => (p.id === "101" ? { ...p, inStock: false } : p));
+  assert.equal(featuredByCategory(soldOut, productCategories)[1].product.id, "105");
+  assert.deepEqual(featuredByCategory([], productCategories), []);
 });

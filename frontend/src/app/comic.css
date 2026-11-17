@@ -1,0 +1,115 @@
+/* Comic-strip carousel on the home page. Colours are the poster palette of
+   home.css. */
+
+.home-comic { padding-bottom: 92px; }
+.comic-controls { display: flex; gap: 14px; margin-bottom: 8px; }
+.comic-arrow { display: grid; width: 48px; height: 48px; place-items: center; border: 2px solid var(--poster-ink); background: white; box-shadow: 5px 5px 0 var(--poster-ink); color: var(--poster-ink); font: 700 24px/1 var(--font-barlow), sans-serif; transition: transform 140ms var(--ease-premium-out), box-shadow 140ms var(--ease-premium-out), background-color 140ms ease, color 140ms ease; }
+.comic-arrow:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--poster-ink); }
+.comic-arrow:focus-visible { outline: 3px solid var(--poster-accent); outline-offset: 4px; }
+
+/* The ink frame is the page of the comic; its colour shows through as the
+   gutters between panels. */
+.comic-frame { --gutter: 10px; --slant: 26px; padding: var(--gutter); background: var(--poster-ink); box-shadow: 9px 9px 0 var(--poster-accent); }
+.comic-track { display: flex; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.comic-track::-webkit-scrollbar { display: none; }
+
+/* Panels are trapezoids that alternate (wide on top, wide at the bottom) and
+   overlap by slant − gutter, which leaves a slanted gutter of constant width. */
+.comic-panel { --overlap: calc(var(--slant) - var(--gutter)); position: relative; flex: 0 0 calc((100% + 2 * var(--overlap)) / 3); height: 440px; scroll-snap-align: start; clip-path: polygon(0 0, 100% 0, calc(100% - var(--slant)) 100%, var(--slant) 100%); background: var(--poster-accent); color: white; }
+.comic-panel + .comic-panel { margin-left: calc(-1 * var(--overlap)); }
+.comic-panel:nth-child(even) { clip-path: polygon(var(--slant) 0, calc(100% - var(--slant)) 0, 100% 100%, 0 100%); }
+/* Halftone dots, fading towards one corner. */
+.comic-panel::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(var(--dot, rgb(255 255 255 / .3)) 2.2px, transparent 2.6px); background-size: 13px 13px; mask-image: linear-gradient(155deg, #000 5%, transparent 72%); pointer-events: none; }
+.comic-panel:nth-child(4n + 2) { --dot: white; background: var(--poster-cards); color: var(--poster-ink); }
+.comic-panel:nth-child(4n + 3) { --dot: var(--poster-cards); background: white; color: var(--poster-ink); }
+.comic-panel:nth-child(4n + 4) { --dot: var(--poster-accent); background: var(--poster-ink); }
+.comic-panel:nth-child(even)::before { mask-image: linear-gradient(205deg, #000 5%, transparent 72%); }
+
+.comic-link { position: relative; display: block; height: 100%; padding: 70px 44px 0; color: inherit; text-decoration: none; }
+.comic-link:focus-visible { outline: 0; }
+.comic-link:focus-visible .comic-info { outline: 3px solid var(--poster-accent); outline-offset: 3px; }
+.comic-panel:nth-child(4n + 1) .comic-link:focus-visible .comic-info { outline-color: white; }
+
+.comic-caption { position: absolute; z-index: 2; top: 18px; left: 40px; max-width: 55%; padding: 7px 10px 6px; border: 2px solid var(--poster-ink); background: var(--poster-ink); color: white; font: 700 17px/1 var(--font-barlow), sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.comic-panel:nth-child(4n + 1) .comic-caption, .comic-panel:nth-child(4n + 4) .comic-caption { background: white; color: var(--poster-ink); }
+
+.comic-burst { position: absolute; z-index: 3; top: 10px; right: 34px; display: grid; width: 116px; height: 116px; place-items: center; transform: rotate(9deg); transition: transform 220ms var(--ease-premium-out); }
+.comic-burst svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: var(--burst, white); stroke: var(--poster-ink); stroke-width: 5; stroke-linejoin: round; paint-order: stroke; }
+.comic-burst b { position: relative; color: var(--burst-ink, var(--poster-accent)); font: 400 25px/1 var(--font-anton), Impact, sans-serif; letter-spacing: .01em; transform: rotate(-14deg); }
+.comic-panel:nth-child(4n + 2) .comic-burst { --burst: var(--poster-accent); --burst-ink: white; }
+.comic-panel:nth-child(4n + 3) .comic-burst { --burst: var(--poster-ink); --burst-ink: white; }
+.comic-panel:nth-child(4n + 4) .comic-burst svg { stroke: var(--poster-accent); }
+
+.comic-photo { position: relative; z-index: 1; display: block; width: min(68%, 230px); aspect-ratio: 1; margin: 0 auto; overflow: hidden; border: 3px solid var(--poster-ink); background: white; box-shadow: 8px 8px 0 var(--poster-ink); transform: rotate(-3deg); transition: transform 220ms var(--ease-premium-out), box-shadow 220ms var(--ease-premium-out); }
+.comic-panel:nth-child(even) .comic-photo { transform: rotate(3deg); }
+.comic-panel:nth-child(4n + 4) .comic-photo { box-shadow: 8px 8px 0 var(--poster-accent); }
+.comic-photo img { width: 100%; height: 100%; padding: 8px; object-fit: contain; }
+.comic-photo-empty { display: grid; height: 100%; place-items: center; color: var(--poster-ink); font: 700 15px/1 var(--font-barlow), sans-serif; text-transform: uppercase; }
+
+.comic-info { position: absolute; z-index: 2; right: 40px; bottom: 20px; left: 40px; display: block; padding: 10px 13px 9px; border: 2px solid var(--poster-ink); background: white; box-shadow: 5px 5px 0 var(--poster-ink); color: var(--poster-ink); }
+.comic-panel:nth-child(4n + 4) .comic-info { box-shadow: 5px 5px 0 var(--poster-accent); }
+.comic-name { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font: 700 18px/1.08 var(--font-barlow), sans-serif; text-transform: uppercase; }
+.comic-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-top: 5px; color: var(--poster-accent); font: 400 25px/1 var(--font-anton), Impact, sans-serif; }
+.comic-price del { color: var(--poster-ink); font: 500 13px/1 var(--font-barlow-text), sans-serif; opacity: .7; }
+
+.comic-link:active .comic-photo { transform: rotate(0deg) scale(.97); box-shadow: 4px 4px 0 var(--poster-ink); }
+@media (hover: hover) and (pointer: fine) {
+  .comic-arrow:hover { background: var(--poster-accent); color: white; }
+  .comic-link:hover .comic-photo { transform: rotate(0deg) scale(1.05); }
+  .comic-link:hover .comic-burst { transform: rotate(18deg) scale(1.12); }
+}
+
+/* Loading screen (ui/loader-screen.tsx + ui/paddle-loader.tsx): a comic panel
+   where a ball bounces up from a paddle. The ball and paddle keep the timing
+   of .loader-ball / .loader-paddle in globals.css: the ball touches the paddle
+   0.75 s into every 1.5 s cycle, which is when the star and the sound pop. */
+.comic-loader-screen { position: fixed; z-index: 80; inset: 0; display: grid; place-items: center; padding: 24px; background-color: var(--poster-accent); background-image: radial-gradient(rgb(255 255 255 / .28) 2.6px, transparent 3px); background-size: 16px 16px; animation: comic-loader-in 160ms ease-out both; }
+@keyframes comic-loader-in { from { opacity: 0; } to { opacity: 1; } }
+.comic-loader { display: flex; flex-direction: column; align-items: center; }
+.comic-loader-panel { position: relative; width: min(78vw, 310px); padding: 40px 26px 16px; border: 4px solid var(--poster-ink); background: white; box-shadow: 10px 10px 0 var(--poster-ink); transform: rotate(-2deg); }
+.comic-loader-panel::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(var(--poster-cards) 2.2px, transparent 2.6px); background-size: 13px 13px; mask-image: linear-gradient(200deg, #000 5%, transparent 70%); pointer-events: none; }
+.comic-loader-art { position: relative; display: block; width: 100%; height: auto; overflow: visible; }
+.comic-loader-art * { stroke: var(--poster-ink); stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round; }
+.comic-loader-shadow { fill: var(--poster-ink); stroke: none; opacity: .14; }
+.comic-loader-handle { fill: var(--poster-cards); }
+.comic-loader-blade { fill: var(--poster-ink); }
+.comic-loader-rubber { fill: var(--poster-accent); }
+.comic-loader-shine { fill: none; stroke: white; stroke-width: 2; opacity: .75; }
+.comic-loader-ball { fill: white; }
+.comic-loader-hit { fill: var(--poster-cards); stroke-width: 3; opacity: 0; transform-box: fill-box; transform-origin: center; animation: comic-loader-hit 1.5s linear infinite; }
+.comic-loader-sound { position: absolute; z-index: 1; top: 16px; left: 14px; opacity: 0; color: var(--poster-accent); font: 400 34px/1 var(--font-anton), Impact, sans-serif; text-shadow: 3px 3px 0 var(--poster-ink); -webkit-text-stroke: 1px var(--poster-ink); transform: rotate(-11deg); animation: comic-loader-sound 3s linear infinite; }
+.comic-loader-pong { right: 14px; left: auto; color: white; transform: rotate(9deg); animation-delay: 1.5s; }
+.comic-loader-caption { margin-top: 30px; padding: 10px 14px 9px; border: 2px solid var(--poster-ink); background: var(--poster-ink); box-shadow: 6px 6px 0 var(--poster-cards); color: white; font: 700 19px/1 var(--font-barlow), sans-serif; letter-spacing: .06em; text-align: center; text-transform: uppercase; transform: rotate(1.5deg); }
+@keyframes comic-loader-hit {
+  0%, 44% { opacity: 0; transform: scale(.3) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(12deg); }
+  64%, 100% { opacity: 0; transform: scale(1.5) rotate(20deg); }
+}
+/* One sound every other bounce: 3 s cycle, peak at the 0.75 s hit. */
+@keyframes comic-loader-sound {
+  0%, 22% { opacity: 0; scale: .4; }
+  25% { opacity: 1; scale: 1.18; }
+  30%, 42% { opacity: 1; scale: 1; }
+  48%, 100% { opacity: 0; scale: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .comic-loader-hit, .comic-loader-sound { animation: none !important; }
+  .comic-loader-ping { opacity: 1; }
+}
+
+@media (max-width: 1023px) {
+  .comic-panel { flex-basis: calc((100% + var(--overlap)) / 2); }
+}
+@media (max-width: 767px) {
+  .home-comic { padding-bottom: 60px; }
+  .comic-controls { margin-bottom: 4px; }
+  .comic-arrow { width: 44px; height: 44px; font-size: 21px; }
+  .comic-frame { --gutter: 8px; --slant: 20px; box-shadow: 6px 6px 0 var(--poster-accent); }
+  /* The next panel peeks in, so it reads as something to swipe. */
+  .comic-panel { flex-basis: 84%; height: 410px; }
+  .comic-link { padding: 66px 34px 0; }
+  .comic-caption { top: 14px; left: 30px; font-size: 15px; }
+  .comic-burst { top: 8px; right: 24px; width: 100px; height: 100px; }
+  .comic-burst b { font-size: 22px; }
+  .comic-info { right: 30px; bottom: 16px; left: 30px; }
+}

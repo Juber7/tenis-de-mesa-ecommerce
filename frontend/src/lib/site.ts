@@ -48,6 +48,26 @@ export const OG_BASE = {
   images: [{ url: "/social-preview.png", width: 1200, height: 630, alt: "Logo de Tenis de Mesa" }],
 };
 
+/**
+ * Terms people use to find a store like this one. Search engines give the
+ * keywords tag little or no weight; the same terms are written in the visible
+ * texts, titles and descriptions, which is what counts.
+ */
+export const SEARCH_TERMS = [
+  "ping pong",
+  "tenis de mesa",
+  "tienda de ping pong en Managua",
+  "tienda de tenis de mesa en Managua",
+  "ping pong Nicaragua",
+  "tenis de mesa Nicaragua",
+  "pelotas de ping pong",
+  "raquetas de ping pong",
+  "paletas de ping pong",
+  "gomas de tenis de mesa",
+  "fundas para raquetas de ping pong",
+  "robot de ping pong",
+];
+
 /** Date the legal texts were last reviewed (ISO, America/Managua). */
 export const LEGAL_UPDATED_AT = "2026-11-05";
 

@@ -1,8 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { PaddleLoader } from "@/components/ui/paddle-loader";
+import { LoaderScreen } from "@/components/ui/loader-screen";
 export function SearchForm({
   children,
   className,
@@ -12,7 +11,6 @@ export function SearchForm({
 }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
-  const reduced = useReducedMotion();
   const currentParams = useSearchParams();
   const [visible, setVisible] = useState(false);
   const shownAt = useRef(0);
@@ -67,20 +65,7 @@ export function SearchForm({
       >
         {children}
       </form>
-      <AnimatePresence>
-        {visible && (
-          <motion.div
-            key="search-loading"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reduced ? 0 : 0.2 }}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-cream/95 text-charcoal backdrop-blur-sm"
-          >
-            <PaddleLoader />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <LoaderScreen visible={visible} />
     </>
   );
 }

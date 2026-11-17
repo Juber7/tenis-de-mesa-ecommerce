@@ -53,3 +53,24 @@ export function filterProducts(
     totalPages: Math.ceil(products.length / perPage),
   };
 }
+
+/**
+ * One product per category, in the given category order, for the home
+ * carousel. Prefers a product that is in stock and has a photo; categories
+ * without products are skipped.
+ */
+export function featuredByCategory(
+  catalog: Product[],
+  categories: readonly { value: string; label: string }[],
+) {
+  return categories.flatMap((category) => {
+    const inCategory = catalog.filter((p) =>
+      p.categories.some((c) => c.slug === category.value),
+    );
+    const product =
+      inCategory.find((p) => p.inStock && p.image) ??
+      inCategory.find((p) => p.image) ??
+      inCategory[0];
+    return product ? [{ category, product }] : [];
+  });
+}
