@@ -1,4 +1,4 @@
-# Tenis de Mesa · Leandro
+# Tenis de Mesa · Leonardo
 
 Tienda headless local construida con Next.js App Router, TypeScript estricto, Tailwind CSS, Motion, componentes shadcn/ui basados en Radix y Zustand. Los productos se administran en Sanity; el cierre de venta es manual por WhatsApp.
 

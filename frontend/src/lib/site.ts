@@ -14,7 +14,7 @@ export const absoluteUrl = (path = "/") => new URL(path, SITE_URL + "/").href;
  */
 export const BUSINESS = {
   storeName: "Tenis de Mesa",
-  ownerName: "Leandro Paiz",
+  ownerName: "Leonardo Paiz",
   country: "Nicaragua",
   city: "Managua",
   whatsapp: CONTACT_NUMBER,
