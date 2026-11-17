@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import type { Metadata, Viewport } from "next";
 import { Anton, Barlow, Barlow_Condensed, Inter } from "next/font/google";
 import "./globals.css";
@@ -12,7 +11,6 @@ import { HomeSideRail } from "@/components/home-side-rail";
 import { CookieConsent } from "@/components/consent/cookie-consent";
 import { PressNavigation } from "@/components/press-navigation";
 import { ComicJump } from "@/components/comic-jump";
-import { PageLoader } from "@/components/page-loader";
 import { OG_BASE, SEARCH_TERMS, SITE_URL } from "@/lib/site";
 import { CONSENT_STORAGE_KEY } from "@/lib/consent";
 
@@ -111,10 +109,6 @@ export default function RootLayout({
         <CookieConsent />
         <PressNavigation />
         <ComicJump />
-        {/* Reads the query string, which is only known in the browser. */}
-        <Suspense fallback={null}>
-          <PageLoader />
-        </Suspense>
       </body>
     </html>
   );

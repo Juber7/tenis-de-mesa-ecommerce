@@ -52,50 +52,24 @@
 .comic-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-top: 5px; color: var(--poster-accent); font: 400 25px/1 var(--font-anton), Impact, sans-serif; }
 .comic-price del { color: var(--poster-ink); font: 500 13px/1 var(--font-barlow-text), sans-serif; opacity: .7; }
 
-.comic-link:active .comic-photo { transform: rotate(0deg) scale(.97); box-shadow: 4px 4px 0 var(--poster-ink); }
 @media (hover: hover) and (pointer: fine) {
   .comic-arrow:hover { background: var(--poster-accent); color: white; }
   .comic-link:hover .comic-photo { transform: rotate(0deg) scale(1.05); }
   .comic-link:hover .comic-burst { transform: rotate(18deg) scale(1.12); }
 }
 
-/* Loading screen (ui/loader-screen.tsx + ui/paddle-loader.tsx): a comic panel
-   where a ball bounces up from a paddle. The ball and paddle keep the timing
-   of .loader-ball / .loader-paddle in globals.css: the ball touches the paddle
-   0.75 s into every 1.5 s cycle, which is when the star and the sound pop. */
-.comic-loader-screen { position: fixed; z-index: 80; inset: 0; display: grid; place-items: center; padding: 24px; background-color: var(--poster-accent); background-image: radial-gradient(rgb(255 255 255 / .28) 2.6px, transparent 3px); background-size: 16px 16px; animation: comic-loader-in 160ms ease-out both; }
-@keyframes comic-loader-in { from { opacity: 0; } to { opacity: 1; } }
-.comic-loader { display: flex; flex-direction: column; align-items: center; }
-.comic-loader-panel { position: relative; width: min(78vw, 310px); padding: 40px 26px 16px; border: 4px solid var(--poster-ink); background: white; box-shadow: 10px 10px 0 var(--poster-ink); transform: rotate(-2deg); }
-.comic-loader-panel::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(var(--poster-cards) 2.2px, transparent 2.6px); background-size: 13px 13px; mask-image: linear-gradient(200deg, #000 5%, transparent 70%); pointer-events: none; }
-.comic-loader-art { position: relative; display: block; width: 100%; height: auto; overflow: visible; }
-.comic-loader-art * { stroke: var(--poster-ink); stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round; }
-.comic-loader-shadow { fill: var(--poster-ink); stroke: none; opacity: .14; }
-.comic-loader-handle { fill: var(--poster-cards); }
-.comic-loader-blade { fill: var(--poster-ink); }
-.comic-loader-rubber { fill: var(--poster-accent); }
-.comic-loader-shine { fill: none; stroke: white; stroke-width: 2; opacity: .75; }
-.comic-loader-ball { fill: white; }
-.comic-loader-hit { fill: var(--poster-cards); stroke-width: 3; opacity: 0; transform-box: fill-box; transform-origin: center; animation: comic-loader-hit 1.5s linear infinite; }
-.comic-loader-sound { position: absolute; z-index: 1; top: 16px; left: 14px; opacity: 0; color: var(--poster-accent); font: 400 34px/1 var(--font-anton), Impact, sans-serif; text-shadow: 3px 3px 0 var(--poster-ink); -webkit-text-stroke: 1px var(--poster-ink); transform: rotate(-11deg); animation: comic-loader-sound 3s linear infinite; }
-.comic-loader-pong { right: 14px; left: auto; color: white; transform: rotate(9deg); animation-delay: 1.5s; }
-.comic-loader-caption { margin-top: 30px; padding: 10px 14px 9px; border: 2px solid var(--poster-ink); background: var(--poster-ink); box-shadow: 6px 6px 0 var(--poster-cards); color: white; font: 700 19px/1 var(--font-barlow), sans-serif; letter-spacing: .06em; text-align: center; text-transform: uppercase; transform: rotate(1.5deg); }
-@keyframes comic-loader-hit {
-  0%, 44% { opacity: 0; transform: scale(.3) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1.2) rotate(12deg); }
-  64%, 100% { opacity: 0; transform: scale(1.5) rotate(20deg); }
-}
-/* One sound every other bounce: 3 s cycle, peak at the 0.75 s hit. */
-@keyframes comic-loader-sound {
-  0%, 22% { opacity: 0; scale: .4; }
-  25% { opacity: 1; scale: 1.18; }
-  30%, 42% { opacity: 1; scale: 1; }
-  48%, 100% { opacity: 0; scale: 1; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .comic-loader-hit, .comic-loader-sound { animation: none !important; }
-  .comic-loader-ping { opacity: 1; }
-}
+/* Button press, the same motion as the poster buttons: the photo and the
+   caption are pushed into their offset shadows. The carousel holds
+   .is-pressing for 180 ms before it opens the product. */
+.comic-info { transition: transform 180ms var(--ease-premium-out), box-shadow 180ms var(--ease-premium-out); }
+.comic-link:active .comic-photo, .comic-link.is-pressing .comic-photo { transform: rotate(0deg) translate(5px, 5px) scale(.97); box-shadow: 3px 3px 0 var(--poster-ink); transition-duration: 180ms; }
+.comic-link:active .comic-info, .comic-link.is-pressing .comic-info { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--poster-ink); }
+.comic-panel:nth-child(4n + 4) .comic-link:active .comic-photo, .comic-panel:nth-child(4n + 4) .comic-link.is-pressing .comic-photo { box-shadow: 3px 3px 0 var(--poster-accent); }
+.comic-panel:nth-child(4n + 4) .comic-link:active .comic-info, .comic-panel:nth-child(4n + 4) .comic-link.is-pressing .comic-info { box-shadow: 2px 2px 0 var(--poster-accent); }
+
+/* A panel opens its product through the category listing (comic-jump.tsx).
+   The listing is only a step in the history: it is never shown on the way. */
+html[data-comic-jump] main { visibility: hidden; }
 
 @media (max-width: 1023px) {
   .comic-panel { flex-basis: calc((100% + var(--overlap)) / 2); }

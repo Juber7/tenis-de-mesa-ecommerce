@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { create } from "zustand";
 
@@ -25,20 +25,30 @@ export const useComicJump = create<{
   finish: () => set({ active: null }),
 }));
 
-/** If a page never arrives, stop the jump (and the loader that covers it). */
+/** If a page never arrives, stop the jump and show whatever page is there. */
 const GIVE_UP_MS = 8000;
 
 /**
- * Runs the two navigations of a jump. PageLoader covers the screen with the
- * paddle loader meanwhile, so the category page never flashes on the way to
- * the product. Lives in the root layout because it must survive both
- * navigations.
+ * Runs the two navigations of a jump. Lives in the root layout because it
+ * must survive both of them.
  */
 export function ComicJump() {
   const router = useRouter();
   const pathname = usePathname();
   const active = useComicJump((s) => s.active);
   const finish = useComicJump((s) => s.finish);
+  // The category listing is only a step in the history. It stays hidden
+  // (comic.css) from the moment it renders, before the browser paints it,
+  // until the product replaces it: the visitor sees home, then the product.
+  const passing = active !== null && pathname === "/tienda";
+
+  useLayoutEffect(() => {
+    if (!passing) return;
+    document.documentElement.dataset.comicJump = "true";
+    return () => {
+      delete document.documentElement.dataset.comicJump;
+    };
+  }, [passing]);
 
   useEffect(() => {
     if (!active) return;

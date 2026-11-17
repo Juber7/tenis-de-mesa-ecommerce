@@ -18,6 +18,8 @@ export type ComicPanel = {
 /** Table tennis sounds, one per panel. */
 const SOUNDS = ["¡ZAS!", "¡PING!", "¡PONG!", "¡PUM!", "¡TOC!", "¡PAF!", "¡BAM!", "¡FIU!"];
 const AUTOPLAY_MS = 4500;
+/** Matches the 180 ms press transition in comic.css. */
+const PRESS_MS = 180;
 
 /**
  * Comic-strip carousel with one product per category. Each panel opens its
@@ -102,7 +104,22 @@ export function ComicCarousel({ panels }: { panels: ComicPanel[] }) {
                     // New tab, new window, etc.: a normal link to the product.
                     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
                     event.preventDefault();
-                    start({ via, to });
+                    const link = event.currentTarget;
+                    if (link.dataset.pressing) return;
+                    router.prefetch(via);
+                    router.prefetch(to);
+                    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                      start({ via, to });
+                      return;
+                    }
+                    // Play the button press before leaving, like the poster buttons.
+                    link.dataset.pressing = "true";
+                    link.classList.add("is-pressing");
+                    window.setTimeout(() => {
+                      link.classList.remove("is-pressing");
+                      delete link.dataset.pressing;
+                      start({ via, to });
+                    }, PRESS_MS);
                   }}
                 >
                   <span className="comic-caption">{panel.category.label}</span>
